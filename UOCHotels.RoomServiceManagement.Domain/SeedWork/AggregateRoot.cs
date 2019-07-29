@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UOCHotels.RoomServiceManagement.Domain.Infrastructure
+namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
 {
     public abstract class AggregateRoot : Entity
     {

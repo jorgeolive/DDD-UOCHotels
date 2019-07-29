@@ -1,5 +1,5 @@
 ﻿using System;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {

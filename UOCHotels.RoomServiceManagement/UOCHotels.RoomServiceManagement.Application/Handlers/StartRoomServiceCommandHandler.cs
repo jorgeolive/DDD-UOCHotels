@@ -11,19 +11,30 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
     public class StartRoomServiceCommandHandler : AsyncRequestHandler<StartRoomServiceCommand>
     {
         private readonly IRoomServiceManagementContext dbContext;
+        private readonly IMediator mediator;
 
-        public StartRoomServiceCommandHandler(IRoomServiceManagementContext context)
+
+        public StartRoomServiceCommandHandler(IRoomServiceManagementContext context, IMediator mediator)
         {
             dbContext = context;
         }
 
         protected override async Task Handle(StartRoomServiceCommand request, CancellationToken cancellationToken)
         {
-            var roomService = this.dbContext.RoomServiceContext.Any(x => x.Id == request.RoomServiceId) ? this.dbContext.RoomServiceContext.Where(x => x.Id == request.RoomServiceId).Single() : throw new RoomServiceNotFoundException(); 
+            var room = this.dbContext.RoomContext.Any(x =>
+                                                        x.Id == request.RoomId &&
+                                                        x.RoomServices.Any(rs => rs.Id == request.RoomServiceId))
+                ? this.dbContext.RoomContext.Where(x =>
+                                                        x.Id == request.RoomId &&
+                                                        x.RoomServices.Any(rs => rs.Id == request.RoomServiceId))
+                                            .Single()
+                : throw new RoomServiceNotFoundException();
 
-            roomService.Start();
+            room.StartService(request.RoomServiceId);
 
             await this.dbContext.SaveChangesAsync(cancellationToken);
+            await mediator.Publish(room.);
+            //raise events. 
         }
     }
 }

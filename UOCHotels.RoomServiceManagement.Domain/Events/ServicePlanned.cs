@@ -5,9 +5,13 @@ namespace UOCHotels.RoomServiceManagement.Domain.Events
 {
     public class ServicePlanned : INotification
     {
-        public Guid Id;
-        public DateTime PlannedOn;
-        public Guid EmployeeId;
-        public Guid RoomId;
+        public readonly Guid Id;
+        public readonly DateTime PlannedOn;
+
+        public ServicePlanned(Guid roomServiceId, DateTime plannedOn)
+        {
+            Id = roomServiceId;
+            PlannedOn = plannedOn;
+        }
     }
 }

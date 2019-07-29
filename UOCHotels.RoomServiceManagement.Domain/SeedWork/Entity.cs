@@ -1,9 +1,14 @@
 ﻿using System;
-namespace UOCHotels.RoomServiceManagement.Domain.Infrastructure
+namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
 {
     public abstract class Entity
     {
-        public virtual long Id { get; protected set; }
+        protected Entity(Guid id)
+        {
+            Id = id;
+        }
+
+        public Guid Id { get; protected set; }
 
         public override bool Equals(object obj)
         {
@@ -15,7 +20,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.Infrastructure
             if (ReferenceEquals(this, other))
                 return true;
 
-            if (Id == 0 || other.Id == 0)
+            if (Id == Guid.Empty)
                 return false;
 
             return Id == other.Id;

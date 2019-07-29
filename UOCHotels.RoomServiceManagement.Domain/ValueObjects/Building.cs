@@ -1,11 +1,11 @@
 ﻿using System;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {
     public class Building : ValueObject<Building>
     {
-        public string Name { get; internal set; } 
+        public string Name { get; internal set; }
 
         public Building(string buildingName)
         {

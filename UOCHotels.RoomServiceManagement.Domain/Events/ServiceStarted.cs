@@ -5,8 +5,8 @@ namespace UOCHotels.RoomServiceManagement.Domain.Events
 {
     public class ServiceStarted : INotification
     {
-        Guid ServiceId;
-        DateTime StartTimestamp;
+        public readonly Guid ServiceId;
+        public readonly DateTime StartTimestamp;
 
         public ServiceStarted(Guid roomServiceId, DateTime timestamp)
         {

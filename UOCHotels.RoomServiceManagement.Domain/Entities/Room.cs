@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MediatR;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
+using UOCHotels.RoomServiceManagement.Domain.Events;
 using UOCHotels.RoomServiceManagement.Domain.Exceptions;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Domain.Extensions;
+using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {
@@ -12,6 +13,7 @@ namespace UOCHotels.RoomServiceManagement.Domain
     {
         public DateTime AccomodationEndDate { get; internal set; }
         public Address Address;
+        public bool IsOccupied { get; internal set; }
         public List<RoomComplement> RoomComplements { get; internal set; }
         public List<RoomService> RoomServices { get; internal set; }
         public RoomType RoomType { get; internal set; }
@@ -23,33 +25,52 @@ namespace UOCHotels.RoomServiceManagement.Domain
         {
             Address = address ?? throw new ArgumentNullException(nameof(address));
             RoomComplements = new List<RoomComplement>();
+            RoomServices = new List<RoomService>();
         }
 
         public void AddComplement(RoomComplement roomComplement)
         {
-            if (RoomComplements.Any(x => x == roomComplement)) throw new ComplementExistsException("");
+            if (RoomComplements.Any(x => x == roomComplement))
+            {
+                throw new ComplementExistsException(roomComplement.ToString());
+            }
+
             RoomComplements.Add(roomComplement);
         }
 
-        public void AddService(RoomService service)
+        public void StartService(Guid roomServiceId)
         {
-            RoomServices.Add(service);
-        }
-
-        public void CompleteService(Guid roomServiceId, Guid employeeId)
-        {
-            if (!RoomServices.Any(x => x.Id == roomServiceId))
+            if (this.GetRoomService(roomServiceId).Status != RoomServiceStatus.Started)
             {
-                throw new ArgumentException(nameof(roomServiceId));
+                throw new InvalidRoomServiceOperationException("Room service is not started");
             }
 
-            var roomService = RoomServices.Single(x => x.Id == roomServiceId);
+            if (this.IsOccupied)
+            {
+                throw new InvalidRoomServiceOperationException("Can't start a room service with hosts in the room.");
+            }
 
-            if (roomService.Status != RoomServiceStatus.Started)
+            Apply(new ServiceStarted(roomServiceId, DateTime.Now));
+        }
 
+        public void CompleteService(Guid roomServiceId)
+        {
+            if (this.GetRoomService(roomServiceId).Status != RoomServiceStatus.Started)
+            {
                 throw new InvalidRoomServiceOperationException("Room service is not started");
+            }
 
+            Apply(new ServiceFinished(roomServiceId, DateTime.Now));
+        }
 
+        public void PlanService(Guid roomServiceId, DateTime date)
+        {
+            if (this.GetRoomService(roomServiceId).Status != RoomServiceStatus.Inactive)
+            {
+                throw new InvalidRoomServiceOperationException("Room service is not started");
+            }
+
+            Apply(new ServicePlanned(this.GetRoomService(roomServiceId).Id, date));
         }
 
         protected override void When(object @event)

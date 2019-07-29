@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Text;
 
-namespace UOCHotels.RoomServiceManagement.Domain.Infrastructure
+namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
 {
     public abstract class ValueObject<T>
     where T : class
