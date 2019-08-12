@@ -7,9 +7,14 @@ namespace UOCHotels.RoomServiceManagement.Domain
     {
         public string Name { get; internal set; }
 
-        public Building(string buildingName)
+        public static Building CreateFor(string buildingName)
         {
-            Name = string.IsNullOrEmpty(buildingName) ? throw new ArgumentNullException(nameof(buildingName)) : buildingName;
+            return string.IsNullOrEmpty(buildingName) ? throw new ArgumentNullException(nameof(buildingName)) : new Building(buildingName);
+        }
+
+        private Building(string buildingName)
+        {
+            Name = buildingName;
         }
 
         public override string ToString()

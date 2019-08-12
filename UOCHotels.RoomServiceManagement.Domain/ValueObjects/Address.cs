@@ -1,19 +1,24 @@
-﻿using System;
-using UOCHotels.RoomServiceManagement.Domain.SeedWork;
+﻿using UOCHotels.RoomServiceManagement.Domain.SeedWork;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {
     public class Address : ValueObject<Address>
     {
         public Building Building { get; internal set; }
-        public string DoorNumber { get; internal set; }
+        public DoorNumber DoorNumber { get; internal set; }
         public Floor Floor { get; internal set; }
 
-        public Address(string doorNumber, Floor roomFloor, Building building)
+        public static Address CreateFor(DoorNumber doorNumber, Floor roomFloor, Building buildingName)
         {
-            DoorNumber = !string.IsNullOrEmpty(doorNumber) ? doorNumber : throw new ArgumentNullException(nameof(doorNumber));
-            Floor = roomFloor ?? throw new ArgumentNullException(nameof(roomFloor));
-            Building = building ?? throw new ArgumentNullException(nameof(building));
+            return new Address(doorNumber, roomFloor, buildingName);
+        }
+
+        private Address(DoorNumber doorNumber, Floor roomFloor, Building building)
+        {
+            DoorNumber = doorNumber;
+            Building = building;
+            Floor = Floor;
         }
 
         public override string ToString()

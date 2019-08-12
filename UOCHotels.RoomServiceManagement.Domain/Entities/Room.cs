@@ -6,10 +6,11 @@ using UOCHotels.RoomServiceManagement.Domain.Events;
 using UOCHotels.RoomServiceManagement.Domain.Exceptions;
 using UOCHotels.RoomServiceManagement.Domain.Extensions;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {
-    public class Room : AggregateRoot
+    public class Room : AggregateRoot<RoomId>
     {
         public DateTime AccomodationEndDate { get; internal set; }
         public Address Address;
@@ -19,10 +20,9 @@ namespace UOCHotels.RoomServiceManagement.Domain
         public RoomType RoomType { get; internal set; }
         public bool ServicedToday => RoomServices.Any(x => x.EndTimeStamp?.Date == DateTime.UtcNow.Date);
 
-        private Room() : base(Guid.NewGuid()) { }
-
-        public Room(Address address) : base(Guid.NewGuid())
+        public Room(RoomId id, Address address)
         {
+            Id = id ?? throw new ArgumentNullException(nameof(id));
             Address = address ?? throw new ArgumentNullException(nameof(address));
             RoomComplements = new List<RoomComplement>();
             RoomServices = new List<RoomService>();
@@ -53,25 +53,7 @@ namespace UOCHotels.RoomServiceManagement.Domain
             Apply(new ServiceStarted(roomServiceId, DateTime.Now));
         }
 
-        public void CompleteService(Guid roomServiceId)
-        {
-            if (this.GetRoomService(roomServiceId).Status != RoomServiceStatus.Started)
-            {
-                throw new InvalidRoomServiceOperationException("Room service is not started");
-            }
 
-            Apply(new ServiceFinished(roomServiceId, DateTime.Now));
-        }
-
-        public void PlanService(Guid roomServiceId, DateTime date)
-        {
-            if (this.GetRoomService(roomServiceId).Status != RoomServiceStatus.Inactive)
-            {
-                throw new InvalidRoomServiceOperationException("Room service is not started");
-            }
-
-            Apply(new ServicePlanned(this.GetRoomService(roomServiceId).Id, date));
-        }
 
         protected override void When(object @event)
         {

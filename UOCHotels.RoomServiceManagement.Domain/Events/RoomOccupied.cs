@@ -1,5 +1,6 @@
 ﻿using System;
 using MediatR;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Domain.Events
 {
@@ -8,9 +9,9 @@ namespace UOCHotels.RoomServiceManagement.Domain.Events
         public Guid RoomId { get; private set; }
         public DateTime TimeStamp { get; private set; }
 
-        public RoomOccupied(Guid id, DateTime timeStamp)
+        public RoomOccupied(RoomId roomId, DateTime timeStamp)
         {
-            RoomId = id;
+            RoomId = roomId.GetValue();
             TimeStamp = timeStamp;
         }
     }

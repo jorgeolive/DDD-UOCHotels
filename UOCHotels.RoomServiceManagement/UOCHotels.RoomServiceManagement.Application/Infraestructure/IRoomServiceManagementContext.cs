@@ -10,6 +10,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Infraestructure
     {
         DbSet<RoomService> RoomServiceContext { get; set; }
         DbSet<Room> RoomContext { get; set; }
+        DbSet<Employee> EmployeeContext { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

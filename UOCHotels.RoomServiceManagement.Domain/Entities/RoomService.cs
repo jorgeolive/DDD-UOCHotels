@@ -1,32 +1,36 @@
 ﻿using System;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
 using UOCHotels.RoomServiceManagement.Domain.Events;
-using UOCHotels.RoomServiceManagement.Domain.Exceptions;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 using UOCHotels.RoomServiceManagement.Domain.Interfaces;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
+using UOCHotels.RoomServiceManagement.Domain.Exceptions;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {
-    public class RoomService : Entity
+    public class RoomService : AggregateRoot<RoomServiceId>
     {
-        public Room Room { get; private set; }
-        public Employee ServicedBy { get; private set; }
+        public RoomId AssociatedRoomId { get; private set; }
+        public EmployeeId ServicedById { get; private set; }
         public RoomServiceStatus Status { get; private set; } = RoomServiceStatus.NotSet;
         public DateTime? PlannedOn { get; private set; }
         public DateTime? StartTimeStamp { get; private set; }
         public DateTime? EndTimeStamp { get; private set; }
 
-        protected RoomService(Guid id) : base(id) { }
-
-        public static RoomService Create(Room room)
+        protected RoomService(RoomServiceId id, RoomId roomId)
         {
-            var service = new RoomService(Guid.NewGuid())
-            {
-                Room = room,
-                Status = RoomServiceStatus.Inactive
-            };
+            Id = id;
+            AssociatedRoomId = roomId;
+        }
 
-            return service;
+        public static RoomService Create(RoomServiceId serviceId, RoomId associatedRoomId)
+        {
+            return new RoomService(serviceId, associatedRoomId)
+            {
+                AssociatedRoomId = associatedRoomId,
+                Status = RoomServiceStatus.Inactive,
+                Id = serviceId
+            };
         }
 
         public TimeSpan GetCompletionTimeDeviation(IEstimateRoomServiceCalculator calculator)
@@ -37,10 +41,32 @@ namespace UOCHotels.RoomServiceManagement.Domain
             }
 
             var actualDif = this.EndTimeStamp - this.StartTimeStamp;
-            var estimatedDif = new TimeSpan(0, calculator.Calculate(this.Room, this.ServicedBy), 0);
+            var estimatedDif = new TimeSpan(0, calculator.Calculate(AssociatedRoomId, ServicedById), 0);
 
             return actualDif.Value - estimatedDif;
         }
+
+        public void Plan(DateTime timeStamp, EmployeeId employeeId)
+        {
+            if (Status != RoomServiceStatus.Inactive)
+            {
+                throw new InvalidRoomServiceOperationException("Room service is not started");
+            }
+
+            Apply(
+            new ServicePlanned(this.Id, employeeId, timeStamp));
+        }
+
+        public void Complete()
+        {
+            if (Status != RoomServiceStatus.Started)
+            {
+                throw new InvalidRoomServiceOperationException("Room service is not started");
+            }
+
+            Apply(new ServiceFinished(Id, DateTime.Now));
+        }
+
 
         protected override void When(object @event)
         {
@@ -48,8 +74,8 @@ namespace UOCHotels.RoomServiceManagement.Domain
             {
                 case ServicePlanned e:
 
-                    ServicedBy = e.employee;
-                    PlannedOn = plannedOn;
+                    ServicedById = new EmployeeId(e.ServiceOwnerId);
+                    PlannedOn = e.PlannedOn;
                     Status = RoomServiceStatus.Planned;
 
                     break;
@@ -60,5 +86,6 @@ namespace UOCHotels.RoomServiceManagement.Domain
         {
             throw new NotImplementedException();
         }
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {
@@ -7,15 +7,24 @@ namespace UOCHotels.RoomServiceManagement.Domain
     {
         private int _floor;
 
-        public Floor(int floor)
+        public static Floor CreateFor(int floorNumber)
         {
-            if (floor < 0) throw new ArgumentException("The floor value is not valid");
+            return new Floor(floorNumber);
+        }
+
+        private Floor(int floor)
+        {
             _floor = floor;
         }
 
         protected override bool EqualsCore(Floor other)
         {
             return _floor == other._floor;
+        }
+
+        public override string ToString()
+        {
+            return _floor.ToString();
         }
     }
 }

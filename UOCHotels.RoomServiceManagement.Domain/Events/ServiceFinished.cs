@@ -1,16 +1,17 @@
 ﻿using System;
 using MediatR;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Domain.Events
 {
     public class ServiceFinished : INotification
     {
-        public Guid ServiceId { get; internal set; }
+        public Guid ServiceId { get; private set; }
         public DateTime Timestamp { get; internal set; }
 
-        public ServiceFinished(Guid serviceId, DateTime closingTimestamp)
+        public ServiceFinished(RoomServiceId serviceId, DateTime closingTimestamp)
         {
-            ServiceId = serviceId;
+            ServiceId = serviceId.GetValue();
             Timestamp = closingTimestamp;
         }
     }

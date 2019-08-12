@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
 {
-    public abstract class AggregateRoot : Entity
+    public abstract class AggregateRoot<TId> where TId : ValueObject<TId>
     {
-        private readonly List<object> _events;
+        public TId Id { get; protected set; }
+        private readonly List<object> _changes;
 
-        protected AggregateRoot(Guid id)
-        {
-            if (id == Guid.Empty) throw new ArgumentNullException(nameof(id));
-            _events = new List<object>();
-        }
+        protected AggregateRoot()
+        => _changes = new List<object>();
+
 
         protected abstract void When(object @event);
 
@@ -21,7 +20,9 @@ namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
         {
             When(@event);
             EnsureValidState();
-            _events.Add(@event);
+            _changes.Add(@event);
         }
+
+        public void ClearChanges() => _changes.Clear();
     }
 }

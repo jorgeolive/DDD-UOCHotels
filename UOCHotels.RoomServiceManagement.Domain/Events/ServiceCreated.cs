@@ -1,18 +1,19 @@
 ﻿using System;
 using MediatR;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Domain.Events
 {
     public class ServiceCreated : INotification
     {
-        public readonly Guid Id, EmployeeId, RoomId;
+        public Guid ServiceId { get; private set; }
+        public Guid RoomId { get; private set; }
         public readonly DateTime PlannedOn;
 
-        public ServiceCreated(Guid serviceId, DateTime plannedOn, Guid workedById, Guid roomId)
+        public ServiceCreated(RoomServiceId serviceId, DateTime plannedOn, EmployeeId workedById, RoomId roomId)
         {
-            Id = serviceId;
-            RoomId = roomId;
-            EmployeeId = workedById;
+            ServiceId = serviceId.GetValue();
+            RoomId = roomId.GetValue();
             PlannedOn = plannedOn;
         }
     }
