@@ -5,6 +5,7 @@ using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 using UOCHotels.RoomServiceManagement.Domain.Interfaces;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 using UOCHotels.RoomServiceManagement.Domain.Exceptions;
+using System.Collections.Generic;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {
@@ -16,24 +17,26 @@ namespace UOCHotels.RoomServiceManagement.Domain
         public DateTime? PlannedOn { get; private set; }
         public DateTime? StartTimeStamp { get; private set; }
         public DateTime? EndTimeStamp { get; private set; }
+        public List<Comment> Comments { get; private set; }
 
         protected RoomService(RoomServiceId id, RoomId roomId)
         {
             Id = id;
             AssociatedRoomId = roomId;
+            Comments = new List<Comment>();
         }
 
-        public static RoomService Create(RoomServiceId serviceId, RoomId associatedRoomId)
+        public static RoomService Create(RoomServiceId serviceId, RoomId roomId)
         {
-            return new RoomService(serviceId, associatedRoomId)
-            {
-                AssociatedRoomId = associatedRoomId,
-                Status = RoomServiceStatus.Inactive,
-                Id = serviceId
-            };
+            var service = new RoomService(serviceId, roomId) { Status = RoomServiceStatus.Inactive };
+
+            service.Apply(
+                      new ServiceCreated(serviceId, roomId));
+
+            return service;
         }
 
-        public TimeSpan GetCompletionTimeDeviation(IEstimateRoomServiceCalculator calculator)
+        public TimeSpan GetCompletionTimeDeviation(int calculatedDeviation)
         {
             if (this.Status != RoomServiceStatus.Completed)
             {
@@ -41,7 +44,7 @@ namespace UOCHotels.RoomServiceManagement.Domain
             }
 
             var actualDif = this.EndTimeStamp - this.StartTimeStamp;
-            var estimatedDif = new TimeSpan(0, calculator.Calculate(AssociatedRoomId, ServicedById), 0);
+            var estimatedDif = new TimeSpan(0, calculatedDeviation, 0);
 
             return actualDif.Value - estimatedDif;
         }
@@ -67,6 +70,21 @@ namespace UOCHotels.RoomServiceManagement.Domain
             Apply(new ServiceFinished(Id, DateTime.Now));
         }
 
+        public void Start()
+        {
+            if (Status != RoomServiceStatus.Planned)
+            {
+                throw new InvalidRoomServiceOperationException("Can start only a planned room service.");
+
+            }
+
+            Apply(new ServiceStarted(Id, DateTime.UtcNow));
+        }
+
+        public void SubmitComment(string text, EmployeeId employeeId)
+        {
+            Apply(new CommentSubmitted(employeeId.GetValue(), Id.GetValue(), text));
+        }
 
         protected override void When(object @event)
         {
@@ -79,13 +97,29 @@ namespace UOCHotels.RoomServiceManagement.Domain
                     Status = RoomServiceStatus.Planned;
 
                     break;
+
+                case ServiceFinished e:
+
+                    EndTimeStamp = e.Timestamp;
+                    Status = RoomServiceStatus.Completed;
+                    break;
+
+                case ServiceStarted e:
+
+                    StartTimeStamp = e.StartTimestamp;
+                    Status = RoomServiceStatus.Started;
+
+                    break;
             }
         }
 
         public override void EnsureValidState()
         {
-            throw new NotImplementedException();
-        }
+            if (this.Status == RoomServiceStatus.Inactive)
+            {
 
+
+            }
+        }
     }
 }

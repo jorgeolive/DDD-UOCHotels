@@ -8,17 +8,8 @@ namespace UOCHotels.RoomServiceManagement.Domain.DomainServices
 {
     public class EstimateRoomServiceCalculator : IEstimateRoomServiceCalculator
     {
-        public EstimateRoomServiceCalculator(IRoomRepository roomRepository, IEmployeeRepository employeeRepository)
-        {
-            _roomRepository = roomRepository ?? throw new ArgumentNullException(nameof(roomRepository));
-            _employeeRepository = employeeRepository ?? throw new ArgumentNullException(nameof(employeeRepository));
-        }
-
         public int Calculate(Room room, Employee employee)
         {
-            var room = await _roomRepository.GetById(roomId);
-            var employee = await _roomRepository.GetById(roomId);
-
             int estimate = 0;
 
             if (room.RoomType == RoomType.Simple) estimate += 45;

@@ -21,12 +21,12 @@ namespace UOCHotels.RoomServiceManagement.Domain
 
         protected override void When(object @event)
         {
-            throw new NotImplementedException();
+            //Do nothing as of now :)
         }
 
         public override void EnsureValidState()
         {
-            throw new NotImplementedException();
+            //Do nothing as of now :)
         }
     }
 }

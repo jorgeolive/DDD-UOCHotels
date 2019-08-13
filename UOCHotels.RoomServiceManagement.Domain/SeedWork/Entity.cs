@@ -5,8 +5,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
 {
     public abstract class Entity
     {
-
-        private readonly List<object> _events;
+        private readonly List<object> _events = new List<object>();
 
         protected abstract void When(object @event);
 

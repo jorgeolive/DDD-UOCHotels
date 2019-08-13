@@ -1,10 +1,11 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
 using UOCHotels.RoomServiceManagement.Application.Infraestructure;
+using UOCHotels.RoomServiceManagement.Domain;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers
 {
@@ -13,28 +14,27 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
         private readonly IRoomServiceManagementContext dbContext;
         private readonly IMediator mediator;
 
-
         public StartRoomServiceCommandHandler(IRoomServiceManagementContext context, IMediator mediator)
         {
             dbContext = context;
+            this.mediator = mediator;
         }
 
         protected override async Task Handle(StartRoomServiceCommand request, CancellationToken cancellationToken)
         {
-            var room = this.dbContext.RoomContext.Any(x =>
-                                                        x.Id == request.RoomId &&
-                                                        x.RoomServices.Any(rs => rs.Id == request.RoomServiceId))
-                ? this.dbContext.RoomContext.Where(x =>
-                                                        x.Id == request.RoomId &&
-                                                        x.RoomServices.Any(rs => rs.Id == request.RoomServiceId))
-                                            .Single()
-                : throw new RoomServiceNotFoundException();
+            RoomService room = null;
 
-            room.StartService(request.RoomServiceId);
+            try
+            {
+                room = await this.dbContext.RoomServiceContext.FindAsync(new RoomServiceId(request.RoomServiceId));
+            }
+            catch
+            {
+                throw new RoomServiceNotFoundException();
+            }
 
-            await this.dbContext.SaveChangesAsync(cancellationToken);
-            await mediator.Publish(room.);
-            //raise events. 
+            room.Start();
+            //Here we might want to notify other services through the messaging queue. 
         }
     }
 }

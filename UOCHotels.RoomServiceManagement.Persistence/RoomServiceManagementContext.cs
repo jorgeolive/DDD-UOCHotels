@@ -4,11 +4,11 @@ using UOCHotels.RoomServiceManagement.Domain;
 
 namespace UOCHotels.RoomServiceManagement.Persistence
 {
-    public class RoomServiceManagementContext : DbContext , I
+    public class RoomServiceManagementContext : DbContext
     {
         public RoomServiceManagementContext(DbContextOptions<RoomServiceManagementContext> options)
-            : base(options) {}
-        
+            : base(options) { }
+
         public DbSet<RoomService> RoomServices { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Employee> Employees { get; set; }

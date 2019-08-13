@@ -14,7 +14,7 @@ namespace UOCHotels.RoomServiceManagement.Domain
     {
         public DateTime AccomodationEndDate { get; internal set; }
         public Address Address;
-        public bool IsOccupied { get; internal set; }
+        public bool BeingServiced { get; internal set; }
         public List<RoomComplement> RoomComplements { get; internal set; }
         public List<RoomService> RoomServices { get; internal set; }
         public RoomType RoomType { get; internal set; }
@@ -38,29 +38,16 @@ namespace UOCHotels.RoomServiceManagement.Domain
             RoomComplements.Add(roomComplement);
         }
 
-        public void StartService(Guid roomServiceId)
-        {
-            if (this.GetRoomService(roomServiceId).Status != RoomServiceStatus.Started)
-            {
-                throw new InvalidRoomServiceOperationException("Room service is not started");
-            }
+        public void Service() => this.BeingServiced = true;
 
-            if (this.IsOccupied)
-            {
-                throw new InvalidRoomServiceOperationException("Can't start a room service with hosts in the room.");
-            }
+        public void EndService() => this.BeingServiced = false;
 
-            Apply(new ServiceStarted(roomServiceId, DateTime.Now));
-        }
-
-
-
-        protected override void When(object @event)
+        public override void EnsureValidState()
         {
             throw new NotImplementedException();
         }
 
-        public override void EnsureValidState()
+        protected override void When(object @event)
         {
             throw new NotImplementedException();
         }

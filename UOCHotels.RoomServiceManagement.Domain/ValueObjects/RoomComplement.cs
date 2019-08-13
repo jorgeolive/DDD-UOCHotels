@@ -1,11 +1,11 @@
 ﻿using System;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {
     public class RoomComplement : ValueObject<RoomComplement>
     {
-        public string Description { get; internal set; } 
+        public string Description { get; internal set; }
         internal int RoomServiceEffortMinutes;
 
         public RoomComplement(string description, int roomServiceEffortMinutes)
