@@ -1,9 +1,10 @@
 ﻿using System;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Domain
 {
-    public class Employee : Entity
+    public class Employee : AggregateRoot<EmployeeId>
     {
         public string Name { get; internal set; }
         public string SurName { get; internal set; }

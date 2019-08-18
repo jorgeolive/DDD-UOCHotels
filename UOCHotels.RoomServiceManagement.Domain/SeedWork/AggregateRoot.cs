@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
 {
-    public abstract class AggregateRoot<TId> where TId : ValueObject<TId>
+    public abstract class AggregateRoot<TId> : IInternalEventHandler where TId : ValueObject<TId>
     {
         public TId Id { get; protected set; }
         private readonly List<object> _changes;
 
         protected AggregateRoot()
         => _changes = new List<object>();
-
 
         protected abstract void When(object @event);
 
@@ -23,6 +23,13 @@ namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
             _changes.Add(@event);
         }
 
+        //Need to understand this concept a bit better.
+        protected void ApplyToEntity(IInternalEventHandler entity, object @event) => entity?.Handle(@event);
+
+        public IEnumerable<object> GetChanges() => _changes.AsEnumerable();
+
         public void ClearChanges() => _changes.Clear();
+
+        public void Handle(object @event) => When(@event);
     }
 }

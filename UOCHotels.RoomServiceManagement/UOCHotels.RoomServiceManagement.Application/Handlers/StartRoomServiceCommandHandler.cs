@@ -3,20 +3,20 @@ using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
-using UOCHotels.RoomServiceManagement.Application.Infraestructure;
 using UOCHotels.RoomServiceManagement.Domain;
+using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers
 {
     public class StartRoomServiceCommandHandler : AsyncRequestHandler<StartRoomServiceCommand>
     {
-        private readonly IRoomServiceManagementContext dbContext;
+        private readonly IRoomServiceRepository _roomServiceRepository;
         private readonly IMediator mediator;
 
-        public StartRoomServiceCommandHandler(IRoomServiceManagementContext context, IMediator mediator)
+        public StartRoomServiceCommandHandler(IRoomServiceRepository context, IMediator mediator)
         {
-            dbContext = context;
+            _roomServiceRepository = context;
             this.mediator = mediator;
         }
 
@@ -26,7 +26,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
 
             try
             {
-                room = await this.dbContext.RoomServiceContext.FindAsync(new RoomServiceId(request.RoomServiceId));
+                room = await this._roomServiceRepository.GetById(new RoomServiceId(request.RoomServiceId));
             }
             catch
             {
