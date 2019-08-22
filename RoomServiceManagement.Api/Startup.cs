@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +12,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Raven.Client.Documents;
+using Raven.Client.Documents.Session;
+using UOCHotels.RoomServiceManagement.Application.Commands;
+using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Persistence;
 
 namespace RoomServiceManagement.Api
 {
@@ -25,7 +32,27 @@ namespace RoomServiceManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMediatR(Assembly.LoadFrom("UOCHotels.RoomServiceManagement.Application.dll"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //TODO OBTAIN THE DB PARAMS FROM CONFIG ;)
+            services.AddSingleton(provider =>
+            {
+                var store = new DocumentStore
+                {
+                    Urls = new[] { "http://localhost:8080" },
+                    Database = "RoomServiceManagement",
+                    Conventions =
+                    {
+                        FindIdentityProperty = x => x.Name == "DbId"
+                    }
+                };
+
+                return store.Initialize();
+            });
+            services.AddScoped(provider => provider.GetService<IDocumentStore>().OpenAsyncSession());
+            services.AddScoped<IRoomServiceRepository, RoomServiceRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

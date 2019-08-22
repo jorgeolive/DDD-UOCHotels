@@ -11,6 +11,12 @@
       <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="RavenDB.Client" Version="4.2.2" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj" />
+    <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Persistence\UOCHotels.RoomServiceManagement.Persistence.csproj" />
+  </ItemGroup>
 </Project>
