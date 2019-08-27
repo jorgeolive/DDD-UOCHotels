@@ -54,10 +54,10 @@ namespace RoomServiceManagement.Api.Controllers
         {
             //var roomService = await _roomServiceRepository.GetByRoomId(new RoomId(roomId));
 
-            if (roomService.Any())
-            {
-                return roomService.ToList();
-            }
+            //if (roomService.Any())
+            //{
+            //    return roomService.ToList();
+            //}
 
             return NotFound();
         }

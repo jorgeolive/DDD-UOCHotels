@@ -30,7 +30,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
             }
             catch
             {
-                throw new RoomServiceNotFoundException();
+                throw new RoomServiceNotFoundException("");
             }
 
             room.Start();

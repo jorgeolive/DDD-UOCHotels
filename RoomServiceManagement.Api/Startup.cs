@@ -17,6 +17,8 @@ using Raven.Client.Documents.Session;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
 using UOCHotels.RoomServiceManagement.Persistence;
+using Swashbuckle.AspNetCore.Swagger;
+using UOCHotels.RoomServiceManagement.Application.Handlers;
 
 namespace RoomServiceManagement.Api
 {
@@ -32,8 +34,21 @@ namespace RoomServiceManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(Assembly.LoadFrom("UOCHotels.RoomServiceManagement.Application.dll"));
+            services.AddMediatR(Assembly.GetAssembly(typeof(CreateRoomServiceCommandHandler)));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "UOC RoomServiceManagement API",
+                    Description = "Room Management Service Web API",
+                    TermsOfService = "None",
+                    Contact = new Contact() { Name = "Talking Dotnet", Email = "contact@talkingdotnet.com", Url = "www.talkingdotnet.com" }
+                });
+            });
+
 
             //TODO OBTAIN THE DB PARAMS FROM CONFIG ;)
             services.AddSingleton(provider =>
@@ -69,6 +84,11 @@ namespace RoomServiceManagement.Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
         }
     }
 }
