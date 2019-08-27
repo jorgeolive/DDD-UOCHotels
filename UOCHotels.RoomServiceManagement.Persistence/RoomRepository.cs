@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
 using UOCHotels.RoomServiceManagement.Domain;
 using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
@@ -11,7 +12,7 @@ namespace UOCHotels.RoomServiceManagement.Persistence
     {
         readonly IAsyncDocumentSession _session;
 
-        public RoomRepository(IAsyncDocumentSession session) => _session = session;
+        public RoomRepository(IDocumentStore documentStore) => _session = documentStore.OpenAsyncSession();
 
         public Task<Room> GetById(RoomId roomId)
         {

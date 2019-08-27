@@ -18,7 +18,7 @@ namespace UOCHotels.RoomServiceManagement.Domain
         {
             DoorNumber = doorNumber;
             Building = building;
-            Floor = Floor;
+            Floor = roomFloor;
         }
 
         public override string ToString()

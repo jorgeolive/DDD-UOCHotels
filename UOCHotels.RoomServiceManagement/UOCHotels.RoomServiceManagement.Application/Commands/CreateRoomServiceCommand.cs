@@ -7,8 +7,6 @@ namespace UOCHotels.RoomServiceManagement.Application.Commands
     {
         public Guid RoomId;
 
-        public CreateRoomServiceCommand()
-        {
-        }
+        public CreateRoomServiceCommand(Guid roomId) => this.RoomId = roomId == default ? throw new ArgumentNullException(nameof(roomId)) : roomId;
     }
 }

@@ -20,9 +20,9 @@ namespace UOCHotels.RoomServiceManagement.Domain
         public RoomType RoomType { get; internal set; }
         public bool ServicedToday => RoomServices.Any(x => x.EndTimeStamp?.Date == DateTime.UtcNow.Date);
 
-        public Room(RoomId id, Address address)
+        public Room(Address address)
         {
-            Id = id ?? throw new ArgumentNullException(nameof(id));
+            Id = new RoomId(Guid.NewGuid());
             Address = address ?? throw new ArgumentNullException(nameof(address));
             RoomComplements = new List<RoomComplement>();
             RoomServices = new List<RoomService>();

@@ -117,8 +117,6 @@ namespace UOCHotels.RoomServiceManagement.Domain
         {
             if (this.Status == RoomServiceStatus.Inactive)
             {
-
-
             }
         }
     }

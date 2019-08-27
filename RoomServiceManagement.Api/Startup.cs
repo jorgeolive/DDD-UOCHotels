@@ -50,7 +50,6 @@ namespace RoomServiceManagement.Api
 
                 return store.Initialize();
             });
-            services.AddScoped(provider => provider.GetService<IDocumentStore>().OpenAsyncSession());
             services.AddScoped<IRoomServiceRepository, RoomServiceRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
         }
