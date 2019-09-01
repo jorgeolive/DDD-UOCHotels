@@ -20,6 +20,8 @@ namespace UOCHotels.RoomServiceManagement.Domain
             Building = building;
             Floor = roomFloor;
         }
+        //For serialization.
+        protected Address() { }
 
         public override string ToString()
         {

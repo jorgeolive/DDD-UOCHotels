@@ -7,6 +7,8 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
     {
         private Guid _id;
 
+        protected RoomServiceId() { }
+
         public RoomServiceId(Guid id) =>
             _id = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
 

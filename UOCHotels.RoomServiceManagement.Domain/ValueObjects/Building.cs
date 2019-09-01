@@ -17,6 +17,8 @@ namespace UOCHotels.RoomServiceManagement.Domain
             Name = buildingName;
         }
 
+        protected Building() { }
+
         public override string ToString()
         {
             return Name;

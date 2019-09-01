@@ -7,6 +7,8 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
     {
         private Guid _id;
 
+        protected RoomId() { }
+
         public RoomId(Guid id) =>
             _id = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
 
@@ -25,6 +27,11 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
         public static bool operator !=(RoomId id1, RoomId id2)
         {
             return id1.GetValue() != id2.GetValue();
+        }
+
+        public override string ToString()
+        {
+            return _id.ToString();
         }
     }
 }

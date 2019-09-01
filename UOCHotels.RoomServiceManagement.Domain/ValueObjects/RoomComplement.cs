@@ -14,6 +14,8 @@ namespace UOCHotels.RoomServiceManagement.Domain
             RoomServiceEffortMinutes = (roomServiceEffortMinutes < 0) ? roomServiceEffortMinutes : throw new ArgumentOutOfRangeException(nameof(roomServiceEffortMinutes));
         }
 
+        protected RoomComplement() { }
+
         protected override bool EqualsCore(RoomComplement other)
         {
             return Description == other.Description;

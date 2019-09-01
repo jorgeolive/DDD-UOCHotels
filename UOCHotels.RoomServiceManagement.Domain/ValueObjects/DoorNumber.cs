@@ -6,26 +6,29 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 
     public class DoorNumber : ValueObject<DoorNumber>
     {
-        private int _doorNumber;
+        public int Value { get; internal set; }
 
         public static DoorNumber CreateFor(int doorNumber)
         {
             return new DoorNumber(doorNumber);
         }
 
+        //For serialization.
+        protected DoorNumber() { }
+
         private DoorNumber(int doorNumber)
         {
-            _doorNumber = doorNumber;
+            Value = doorNumber;
         }
 
         protected override bool EqualsCore(DoorNumber other)
         {
-            return _doorNumber == other._doorNumber;
+            return Value == other.Value;
         }
 
         public override string ToString()
         {
-            return _doorNumber.ToString();
+            return Value.ToString();
         }
     }
 }

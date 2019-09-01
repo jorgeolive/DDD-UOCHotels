@@ -5,26 +5,28 @@ namespace UOCHotels.RoomServiceManagement.Domain
 {
     public class Floor : ValueObject<Floor>
     {
-        private int _floor;
+        public int Value { get; internal set; }
 
         public static Floor CreateFor(int floorNumber)
         {
             return new Floor(floorNumber);
         }
 
+        protected Floor() { }
+
         private Floor(int floor)
         {
-            _floor = floor;
+            Value = floor;
         }
 
         protected override bool EqualsCore(Floor other)
         {
-            return _floor == other._floor;
+            return Value == other.Value;
         }
 
         public override string ToString()
         {
-            return _floor.ToString();
+            return Value.ToString();
         }
     }
 }
