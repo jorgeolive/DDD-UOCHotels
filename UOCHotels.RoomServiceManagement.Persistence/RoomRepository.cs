@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
@@ -19,7 +21,22 @@ namespace UOCHotels.RoomServiceManagement.Persistence
             return _session.LoadAsync<Room>(EntityId(roomId));
         }
 
+        public Task Add(Room room)
+        {
+            return _session.StoreAsync(room, EntityId(room.Id));
+        }
+
+        public Task Commit()
+        {
+            return _session.SaveChangesAsync();
+        }
+
         private static string EntityId(RoomId id)
-        => $"RoomService/{id.ToString()}";
+        => $"Room/{id.ToString()}";
+
+        public Task<Room> GetByAddress(Address address)
+        {
+            return _session.Query<Room>().Where(x => x.Address == address).FirstOrDefaultAsync();
+        }
     }
 }

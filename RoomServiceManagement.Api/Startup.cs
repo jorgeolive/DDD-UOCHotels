@@ -34,7 +34,6 @@ namespace RoomServiceManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(Assembly.GetAssembly(typeof(CreateRoomServiceCommandHandler)));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSwaggerGen(c =>
@@ -55,7 +54,9 @@ namespace RoomServiceManagement.Api
             {
                 var store = new DocumentStore
                 {
-                    Urls = new[] { "http://localhost:8080" },
+                    Urls = new[] {
+                        "http://host.docker.internal:8080"
+                    },
                     Database = "RoomServiceManagement",
                     Conventions =
                     {
@@ -67,6 +68,7 @@ namespace RoomServiceManagement.Api
             });
             services.AddScoped<IRoomServiceRepository, RoomServiceRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddMediatR(Assembly.GetAssembly(typeof(CreateRoomServiceCommandHandler)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,6 +11,12 @@ namespace UOCHotels.RoomServiceManagement.Domain
         public DateTime OnboardingDate { get; internal set; }
         public int ExperienceMonths => Math.Abs((DateTime.UtcNow.Month - OnboardingDate.Date.Month) + 12 * (DateTime.UtcNow.Year - OnboardingDate.Date.Year));
 
+        private string DbId
+        {
+            get => $"Employee/{Id.ToString()}";
+            set { }
+        }
+
         public Employee(DateTime onBoarding, string name, string surname)
         {
             if (onBoarding == DateTime.MinValue) throw new ArgumentOutOfRangeException(nameof(onBoarding));

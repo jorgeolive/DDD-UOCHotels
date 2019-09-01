@@ -7,5 +7,6 @@ namespace UOCHotels.RoomServiceManagement.Domain.Infraestructure
     public interface IEmployeeRepository
     {
         Task<Employee> GetById(EmployeeId employeeId);
+        Task Commit();
     }
 }

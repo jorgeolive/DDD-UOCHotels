@@ -10,5 +10,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.Infraestructure
         Task<RoomService> GetById(RoomServiceId id);
         Task<IEnumerable<RoomService>> GetByEmployeeId(EmployeeId id);
         Task<IEnumerable<RoomService>> GetByRoomId(RoomId roomId);
+        Task Commit();
+        Task Add(RoomService roomService);
     }
 }

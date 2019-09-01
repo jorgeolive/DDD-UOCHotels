@@ -34,6 +34,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
             }
 
             room.Start();
+            await _roomServiceRepository.Commit();
             //Here we might want to notify other services through the messaging queue. 
         }
     }

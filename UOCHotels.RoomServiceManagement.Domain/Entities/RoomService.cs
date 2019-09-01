@@ -11,6 +11,11 @@ namespace UOCHotels.RoomServiceManagement.Domain
 {
     public class RoomService : AggregateRoot<RoomServiceId>
     {
+        private string DbId
+        {
+            get => $"RoomService/{Id.ToString()}";
+            set { }
+        }
         public RoomId AssociatedRoomId { get; private set; }
         public EmployeeId ServicedById { get; private set; }
         public RoomServiceStatus Status { get; private set; } = RoomServiceStatus.NotSet;

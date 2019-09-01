@@ -5,6 +5,12 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 {
     public class Comment : Entity<CommentId>
     {
+        private string DbId
+        {
+            get => $"Comment/{Id.ToString()}";
+            set { }
+        }
+
         public Comment(Action<object> applier, CommentId id, string text, EmployeeId commentBy) : base(applier)
         {
 

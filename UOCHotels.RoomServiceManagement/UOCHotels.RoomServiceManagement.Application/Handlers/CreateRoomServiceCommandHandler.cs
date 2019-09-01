@@ -6,7 +6,6 @@ using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
 using UOCHotels.RoomServiceManagement.Domain;
 using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
-using UOCHotels.RoomServiceManagement.Domain.Interfaces;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers
@@ -16,18 +15,14 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
         readonly IMediator _mediator;
         readonly IRoomRepository _roomRepository;
         readonly IRoomServiceRepository _roomServiceRepository;
-        readonly IUnitOfWork _unitOfWork;
-
 
         public CreateRoomServiceCommandHandler(
                             IMediator mediator,
                             IRoomRepository roomRepository,
-                            IRoomServiceRepository roomServiceRepository,
-                            IUnitOfWork unitOfWork)
+                            IRoomServiceRepository roomServiceRepository)
         {
             _roomRepository = roomRepository;
             _roomServiceRepository = roomServiceRepository;
-            _unitOfWork = unitOfWork;
             _mediator = mediator;
         }
 
@@ -37,13 +32,14 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
                 throw new RoomNotFoundException($"RoomId {request.RoomId.ToString()} does not exist.");
 
             var roomService = RoomService.Create(new RoomServiceId(Guid.NewGuid()), new RoomId(request.RoomId));
+            await _roomServiceRepository.Add(roomService);
 
             foreach (var @event in roomService.GetChanges())
             {
                 await _mediator.Publish(@event);
             }
 
-            await _unitOfWork.Commit();
+            await _roomServiceRepository.Commit();
         }
     }
 }

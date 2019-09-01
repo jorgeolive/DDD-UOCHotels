@@ -20,6 +20,12 @@ namespace UOCHotels.RoomServiceManagement.Domain
         public RoomType RoomType { get; internal set; }
         public bool ServicedToday => RoomServices.Any(x => x.EndTimeStamp?.Date == DateTime.UtcNow.Date);
 
+        private string DbId
+        {
+            get => $"Room/{Id.ToString()}";
+            set { }
+        }
+
         public Room(Address address)
         {
             Id = new RoomId(Guid.NewGuid());

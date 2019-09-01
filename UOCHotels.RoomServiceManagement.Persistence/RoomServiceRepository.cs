@@ -35,6 +35,11 @@ namespace UOCHotels.RoomServiceManagement.Persistence
             throw new NotImplementedException();
         }
 
+        public Task Commit()
+        {
+            return _session.SaveChangesAsync();
+        }
+
         public void Dispose() => _session.Dispose();
 
         private static string EntityId(RoomServiceId id)
