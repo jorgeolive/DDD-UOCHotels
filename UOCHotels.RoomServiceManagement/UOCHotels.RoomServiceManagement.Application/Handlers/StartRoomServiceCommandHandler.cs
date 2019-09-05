@@ -9,18 +9,18 @@ using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers
 {
-    public class StartRoomServiceCommandHandler : AsyncRequestHandler<StartRoomServiceCommand>
+    public class StartRoomServiceRequestHandler : AsyncRequestHandler<StartRoomServiceRequest>
     {
         private readonly IRoomServiceRepository _roomServiceRepository;
         private readonly IMediator mediator;
 
-        public StartRoomServiceCommandHandler(IRoomServiceRepository context, IMediator mediator)
+        public StartRoomServiceRequestHandler(IRoomServiceRepository context, IMediator mediator)
         {
             _roomServiceRepository = context;
             this.mediator = mediator;
         }
 
-        protected override async Task Handle(StartRoomServiceCommand request, CancellationToken cancellationToken)
+        protected override async Task Handle(StartRoomServiceRequest request, CancellationToken cancellationToken)
         {
             RoomService room = null;
 

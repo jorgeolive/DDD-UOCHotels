@@ -2,15 +2,15 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using UOCHotels.RoomServiceManagement.Application.Dto;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
 using UOCHotels.RoomServiceManagement.Application.Queries;
+using UOCHotels.RoomServiceManagement.Application.ReadModel;
 using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers
 {
-    public class GetRoomServiceByIdQueryHandler : IRequestHandler<GetRoomServiceByIdQuery, RoomServiceDto>
+    public class GetRoomServiceByIdQueryHandler : IRequestHandler<GetRoomServiceByIdQuery, RoomServiceModel>
     {
         readonly IRoomServiceRepository _roomServiceRepository;
         readonly IRoomRepository _roomRepository;
@@ -21,7 +21,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
             _roomRepository = roomRepository;
         }
 
-        public async Task<RoomServiceDto> Handle(GetRoomServiceByIdQuery request, CancellationToken cancellationToken)
+        public async Task<RoomServiceModel> Handle(GetRoomServiceByIdQuery request, CancellationToken cancellationToken)
         {
             var roomService = await _roomServiceRepository.GetById(new RoomServiceId(request.RoomServiceId));
 
@@ -29,7 +29,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
             {
                 var room = await _roomRepository.GetById(roomService.AssociatedRoomId);
 
-                return new RoomServiceDto()
+                return new RoomServiceModel()
                 {
                     PlannedOn = roomService.PlannedOn,
                     Floor = room.Address.Floor.ToString(),

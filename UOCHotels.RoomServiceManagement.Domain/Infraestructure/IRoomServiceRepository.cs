@@ -8,8 +8,8 @@ namespace UOCHotels.RoomServiceManagement.Domain.Infraestructure
     public interface IRoomServiceRepository
     {
         Task<RoomService> GetById(RoomServiceId id);
-        Task<IEnumerable<RoomService>> GetByEmployeeId(EmployeeId id);
-        Task<IEnumerable<RoomService>> GetByRoomId(RoomId roomId);
+        Task<List<RoomService>> GetByEmployeeId(EmployeeId id);
+        Task<List<RoomService>> GetByRoomId(RoomId roomId);
         Task Commit();
         Task Add(RoomService roomService);
     }

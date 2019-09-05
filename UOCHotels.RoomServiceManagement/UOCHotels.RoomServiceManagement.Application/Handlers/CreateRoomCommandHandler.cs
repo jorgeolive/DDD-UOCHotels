@@ -10,7 +10,7 @@ using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers
 {
-    public class CreateRoomCommandHandler : AsyncRequestHandler<CreateRoomCommand>
+    public class CreateRoomCommandHandler : AsyncRequestHandler<CreateRoomRequest>
     {
         readonly IMediator _mediator;
         readonly IRoomRepository _roomRepository;
@@ -23,7 +23,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
             _mediator = mediator;
         }
 
-        protected override async Task Handle(CreateRoomCommand request, CancellationToken cancellationToken)
+        protected override async Task Handle(CreateRoomRequest request, CancellationToken cancellationToken)
         {
             var requestedAddress = Address.CreateFor(
                                  DoorNumber.CreateFor(request.RoomNumber),

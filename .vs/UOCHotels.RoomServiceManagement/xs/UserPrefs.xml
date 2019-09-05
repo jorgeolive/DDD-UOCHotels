@@ -1,0 +1,80 @@
+﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="Multiple Projects">
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="RoomServiceManagement.Api/Startup.cs" Line="41" Column="20" />
+      <File FileName="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/CreateRoomCommandHandler.cs" Line="22" Column="46" />
+      <File FileName="UOCHotels.RoomServiceManagement.Persistence/RoomServiceRepository.cs" Line="19" Column="25" />
+      <File FileName="UOCHotels.RoomServiceManagement.Domain/Infraestructure/IRoomServiceRepository.cs" Line="17" Column="1" />
+      <File FileName="RoomServiceManagement.Api/Controllers/RoomServiceController.cs" Line="53" Column="80" />
+      <File FileName="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/GetRoomServicesByRoomIdQueryHandler.cs" Line="28" Column="1" />
+      <File FileName="RoomServiceManagement.Api/Controllers/RoomController.cs" Line="33" Column="16" />
+      <File FileName="UOCHotels.RoomServiceManagement.Domain/ValueObjects/CommentId.cs" Line="9" Column="1" />
+      <File FileName="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/CreateRoomServiceCommandHandler.cs" Line="46" Column="1" />
+      <File FileName="UOCHotels.RoomServiceManagement.Domain/ValueObjects/RoomId.cs" Line="9" Column="1" />
+      <File FileName="UOCHotels.RoomServiceManagement.Persistence/RoomRepository.cs" Line="31" Column="1" />
+      <File FileName="UOCHotels.RoomServiceManagement.Persistence/RavenDbRepository.cs" Line="21" Column="9" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="UOCHotels.RoomServiceManagement" expanded="True">
+            <Node name="src" expanded="True">
+              <Node name="Api" expanded="True">
+                <Node name="RoomServiceManagement.Api" expanded="True">
+                  <Node name="Dependencies" expanded="True" />
+                  <Node name="Controllers" expanded="True" />
+                  <Node name="Properties" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Core" expanded="True">
+                <Node name="UOCHotels.RoomServiceManagement.Application" expanded="True">
+                  <Node name="Commands" expanded="True" />
+                  <Node name="Handlers" expanded="True" />
+                  <Node name="Queries" expanded="True" />
+                  <Node name="ReadModel" expanded="True" />
+                  <Node name="Services" expanded="True" />
+                </Node>
+                <Node name="UOCHotels.RoomServiceManagement.Domain" expanded="True">
+                  <Node name="Entities" expanded="True" />
+                  <Node name="Infraestructure" expanded="True" />
+                  <Node name="Interfaces" expanded="True" />
+                  <Node name="SeedWork" expanded="True" />
+                  <Node name="ValueObjects" expanded="True">
+                    <Node name="RoomId.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Infrastructure" expanded="True">
+                <Node name="UOCHotels.RoomServiceManagement.Persistence" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="docker-compose" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../RoomServiceManagement.Api/Controllers/RoomServiceController.cs" line="66" offsetX="-1" offsetY="-1" expression="StatusCodes.Status400BadRequest" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.ItemProperties.src.Api.RoomServiceManagement.Api PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/RoomServiceManagement.Api/Controllers/RoomServiceController.cs" relfile="RoomServiceManagement.Api/Controllers/RoomServiceController.cs" line="70" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/CreateRoomServiceCommandHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/CreateRoomServiceCommandHandler.cs" line="31" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/CreateRoomServiceCommandHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/CreateRoomServiceCommandHandler.cs" line="34" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/CreateRoomServiceCommandHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/CreateRoomServiceCommandHandler.cs" line="32" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/GetRoomServicesByRoomIdQueryHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/GetRoomServicesByRoomIdQueryHandler.cs" line="27" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/RavenDbRepository.cs" relfile="UOCHotels.RoomServiceManagement.Persistence/RavenDbRepository.cs" line="21" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
+      <Items>
+        <StartupItem ItemId="{BFC28F39-9378-4465-BDCC-E6C422031BDB}" ItemName="docker-compose" ConfigurationId="Default" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+</Properties>

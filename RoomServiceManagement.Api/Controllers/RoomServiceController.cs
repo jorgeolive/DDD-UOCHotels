@@ -5,14 +5,11 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Raven.Client.Documents.Session;
 using UOCHotels.RoomServiceManagement.Application.Commands;
-using UOCHotels.RoomServiceManagement.Application.Dto;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
 using UOCHotels.RoomServiceManagement.Application.Queries;
+using UOCHotels.RoomServiceManagement.Application.ReadModel;
 using UOCHotels.RoomServiceManagement.Domain;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
-using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace RoomServiceManagement.Api.Controllers
 {
@@ -33,44 +30,44 @@ namespace RoomServiceManagement.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("[controller]/{id}")]
+        [HttpGet("{serviceId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<RoomServiceDto>> Get(Guid serviceId)
+        public async Task<ActionResult<RoomServiceModel>> Get(Guid serviceId)
         {
-            var roomServiceDto = await _mediator.Send<RoomServiceDto>(new GetRoomServiceByIdQuery(serviceId));
+            var RoomServiceModel = await _mediator.Send<RoomServiceModel>(new GetRoomServiceByIdQuery(serviceId));
 
-            if (roomServiceDto != null)
+            if (RoomServiceModel != null)
             {
-                return roomServiceDto;
+                return RoomServiceModel;
             }
 
             return NotFound();
         }
 
-        [HttpGet("[controller]/")]
+        [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<RoomService>>> GetByRoomId([FromQuery]Guid roomId)
+        public async Task<ActionResult<IEnumerable<RoomServiceModel>>> GetByRoomId([FromQuery]Guid roomId)
         {
-            //var roomService = await _roomServiceRepository.GetByRoomId(new RoomId(roomId));
+            var results = await _mediator.Send(new GetRoomServicesByRoomIdQuery(roomId));
 
-            //if (roomService.Any())
-            //{
-            //    return roomService.ToList();
-            //}
+            if (results.Any())
+            {
+                return results.ToList();
+            }
 
             return NotFound();
         }
 
-        [HttpPost("[controller]/")]
+        [HttpPost()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> CreateRoomService([FromBody] Guid roomId)
+        public async Task<ActionResult> CreateRoomService([FromBody] CreateRoomServiceRequest request)
         {
             try
             {
-                await _mediator.Send(new CreateRoomServiceCommand(roomId));
+                await _mediator.Send(request);
                 return Ok();
             }
             catch (Exception ex)

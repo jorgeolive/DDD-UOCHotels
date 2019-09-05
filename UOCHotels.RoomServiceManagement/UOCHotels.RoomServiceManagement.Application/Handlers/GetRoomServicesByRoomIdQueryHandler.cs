@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using UOCHotels.RoomServiceManagement.Application.Dto;
+using UOCHotels.RoomServiceManagement.Application.ReadModel;
 using UOCHotels.RoomServiceManagement.Application.Queries;
 using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers
 {
-    public class GetRoomServicesByRoomIdQueryHandler : IRequestHandler<GetRoomServicesByRoomIdQuery, IEnumerable<RoomServiceDto>>
+    public class GetRoomServicesByRoomIdQueryHandler : IRequestHandler<GetRoomServicesByRoomIdQuery, IEnumerable<RoomServiceModel>>
     {
         readonly IRoomServiceRepository _roomServiceRepository;
         readonly IRoomRepository _roomRepository;
@@ -21,10 +22,10 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
             _roomRepository = roomRepository;
         }
 
-        public async Task<IEnumerable<RoomServiceDto>> Handle(GetRoomServicesByRoomIdQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<RoomServiceModel>> Handle(GetRoomServicesByRoomIdQuery request, CancellationToken cancellationToken)
         {
-            var roomServicesDto = new List<RoomServiceDto>();
-            var results = await _roomServiceRepository.GetByRoomId(new Domain.ValueObjects.RoomId(request.RoomId));
+            var roomServicesModels = new List<RoomServiceModel>();
+            var results = await _roomServiceRepository.GetByRoomId(new RoomId(request.RoomId));
 
             if (results.Any())
             {
@@ -33,8 +34,8 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
                 {
                     var room = await _roomRepository.GetById(roomService.AssociatedRoomId);
 
-                    roomServicesDto.Add(
-                        new RoomServiceDto()
+                    roomServicesModels.Add(
+                        new RoomServiceModel()
                         {
                             PlannedOn = roomService.PlannedOn,
                             Floor = room.Address.Floor.ToString(),
@@ -44,7 +45,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
                 }
             }
 
-            return roomServicesDto;
+            return roomServicesModels;
         }
     }
 }

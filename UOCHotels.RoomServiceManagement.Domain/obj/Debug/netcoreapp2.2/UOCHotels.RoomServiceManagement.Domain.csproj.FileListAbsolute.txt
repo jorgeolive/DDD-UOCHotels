@@ -1,0 +1,8 @@
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/bin/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.deps.json
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/bin/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.dll
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/bin/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.pdb
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.csproj.CoreCompileInputs.cache
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.AssemblyInfoInputs.cache
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.AssemblyInfo.cs
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.dll
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.pdb

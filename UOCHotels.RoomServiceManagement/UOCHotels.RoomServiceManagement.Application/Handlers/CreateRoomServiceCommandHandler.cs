@@ -10,7 +10,7 @@ using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers
 {
-    public class CreateRoomServiceCommandHandler : AsyncRequestHandler<CreateRoomServiceCommand>
+    public class CreateRoomServiceCommandHandler : AsyncRequestHandler<CreateRoomServiceRequest>
     {
         readonly IMediator _mediator;
         readonly IRoomRepository _roomRepository;
@@ -26,7 +26,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
             _mediator = mediator;
         }
 
-        protected override async Task Handle(CreateRoomServiceCommand request, CancellationToken cancellationToken)
+        protected override async Task Handle(CreateRoomServiceRequest request, CancellationToken cancellationToken)
         {
             if (await _roomRepository.GetById(new Domain.ValueObjects.RoomId(request.RoomId)) == null)
                 throw new RoomNotFoundException($"RoomId {request.RoomId.ToString()} does not exist.");

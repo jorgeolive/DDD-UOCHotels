@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Raven.Client.Documents.Session;
 using UOCHotels.RoomServiceManagement.Application.Commands;
-using UOCHotels.RoomServiceManagement.Application.Dto;
-using UOCHotels.RoomServiceManagement.Application.Exceptions;
-using UOCHotels.RoomServiceManagement.Application.Queries;
-using UOCHotels.RoomServiceManagement.Domain;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
-using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
+
 
 namespace RoomServiceManagement.Api.Controllers
 {
@@ -36,7 +28,7 @@ namespace RoomServiceManagement.Api.Controllers
         [HttpPost("[controller]/")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> CreateRoom([FromBody] CreateRoomCommand command)
+        public async Task<ActionResult> CreateRoom([FromBody] CreateRoomRequest command)
         {
             try
             {

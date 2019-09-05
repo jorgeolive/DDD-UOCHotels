@@ -1,0 +1,12 @@
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/bin/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.deps.json
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/bin/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.dll
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/bin/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.pdb
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/bin/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.dll
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/bin/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.pdb
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.csprojAssemblyReference.cache
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.csproj.CoreCompileInputs.cache
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.AssemblyInfoInputs.cache
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.AssemblyInfo.cs
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.csproj.CopyComplete
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.dll
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Persistence/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Persistence.pdb

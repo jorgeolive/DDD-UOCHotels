@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj": {}
+  },
+  "projects": {
+    "/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj",
+        "projectName": "UOCHotels.RoomServiceManagement.Domain",
+        "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj",
+        "packagesPath": "/Users/jorgeoliverodriguez/.nuget/packages/",
+        "outputPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/jorgeoliverodriguez/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
