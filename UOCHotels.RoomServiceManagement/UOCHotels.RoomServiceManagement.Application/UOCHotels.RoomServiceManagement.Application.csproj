@@ -14,6 +14,8 @@
     <Folder Include="Services\" />
     <Folder Include="Queries\" />
     <Folder Include="ReadModel\" />
+    <Folder Include="Handlers\Commands\" />
+    <Folder Include="Handlers\Queries\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\UOCHotels.RoomServiceManagement.Domain\UOCHotels.RoomServiceManagement.Domain.csproj" />

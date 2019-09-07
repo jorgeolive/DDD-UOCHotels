@@ -5,12 +5,14 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 {
     public class EmployeeId : ValueObject<EmployeeId>
     {
-        private Guid _id;
+        public Guid Value { get; private set; }
+
+        protected EmployeeId() { }
 
         public EmployeeId(Guid id) =>
-            _id = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
+            Value = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
 
-        public Guid GetValue() => _id;
+        public Guid GetValue() => Value;
 
         protected override bool EqualsCore(EmployeeId other)
         {
@@ -25,6 +27,11 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
         public static bool operator !=(EmployeeId id1, EmployeeId id2)
         {
             return id1.GetValue() != id2.GetValue();
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
 }

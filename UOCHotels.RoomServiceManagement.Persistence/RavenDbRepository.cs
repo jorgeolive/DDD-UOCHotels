@@ -13,7 +13,7 @@ namespace UOCHotels.RoomServiceManagement.Persistence
             _entityId = entityId;
         }
 
-        readonly IAsyncDocumentSession _session;
+        protected readonly IAsyncDocumentSession _session;
         readonly Func<Tid, string> _entityId;
 
         public Task<bool> Exists(Tid id) => _session.Advanced.ExistsAsync(_entityId(id));
@@ -21,5 +21,9 @@ namespace UOCHotels.RoomServiceManagement.Persistence
         public Task<T> GetById(Tid id) => _session.LoadAsync<T>(_entityId(id));
 
         public Task Add(T entity) => _session.StoreAsync(entity, _entityId(entity.Id));
+
+        public Task Commit() => _session.SaveChangesAsync();
+
+        public void Dispose() => _session.Dispose();
     }
 }

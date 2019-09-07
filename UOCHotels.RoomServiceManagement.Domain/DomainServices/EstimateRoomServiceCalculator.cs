@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
-using UOCHotels.RoomServiceManagement.Domain.Interfaces;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Domain.DomainServices
 {
-    public class EstimateRoomServiceCalculator : IEstimateRoomServiceCalculator
+    public class EstimateRoomServiceCalculator
     {
         public int Calculate(Room room, Employee employee)
         {

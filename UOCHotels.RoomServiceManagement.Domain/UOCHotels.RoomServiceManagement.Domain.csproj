@@ -9,7 +9,6 @@
     <Folder Include="SeedWork\" />
     <Folder Include="ValueObjects\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="DomainServices\" />
     <Folder Include="Entities\" />
     <Folder Include="Events\" />

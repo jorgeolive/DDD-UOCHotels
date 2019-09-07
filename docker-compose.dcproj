@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>{BFC28F39-9378-4465-BDCC-E6C422031BDB}</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>roomservicemanagement.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

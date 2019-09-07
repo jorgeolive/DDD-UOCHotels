@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
-using UOCHotels.RoomServiceManagement.Domain.Events;
 using UOCHotels.RoomServiceManagement.Domain.Exceptions;
-using UOCHotels.RoomServiceManagement.Domain.Extensions;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
@@ -44,18 +42,23 @@ namespace UOCHotels.RoomServiceManagement.Domain
             RoomComplements.Add(roomComplement);
         }
 
+        public static Room Create(Address address)
+        {
+            return new Room(address);
+        }
+
         public void Service() => this.BeingServiced = true;
 
         public void EndService() => this.BeingServiced = false;
 
         public override void EnsureValidState()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void When(object @event)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

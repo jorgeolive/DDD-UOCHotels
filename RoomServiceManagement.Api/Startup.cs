@@ -68,6 +68,7 @@ namespace RoomServiceManagement.Api
             });
             services.AddScoped<IRoomServiceRepository, RoomServiceRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddMediatR(Assembly.GetAssembly(typeof(CreateRoomServiceCommandHandler)));
         }
 

@@ -5,14 +5,14 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 {
     public class RoomId : ValueObject<RoomId>
     {
-        private Guid _id;
+        public Guid Value { get; private set; }
 
-        protected RoomId() { }
+        public RoomId() { }
 
         public RoomId(Guid id) =>
-            _id = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
+            Value = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
 
-        public Guid GetValue() => _id;
+        public Guid GetValue() => Value;
 
         protected override bool EqualsCore(RoomId other)
         {
@@ -31,7 +31,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 
         public override string ToString()
         {
-            return _id.ToString();
+            return Value.ToString();
         }
     }
 }

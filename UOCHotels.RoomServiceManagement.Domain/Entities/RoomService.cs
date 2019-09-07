@@ -2,7 +2,6 @@
 using UOCHotels.RoomServiceManagement.Domain.Enums;
 using UOCHotels.RoomServiceManagement.Domain.Events;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
-using UOCHotels.RoomServiceManagement.Domain.Interfaces;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 using UOCHotels.RoomServiceManagement.Domain.Exceptions;
 using System.Collections.Generic;
@@ -24,12 +23,14 @@ namespace UOCHotels.RoomServiceManagement.Domain
         public DateTime? EndTimeStamp { get; private set; }
         public List<Comment> Comments { get; private set; }
 
-        protected RoomService(RoomServiceId id, RoomId roomId)
+        internal RoomService(RoomServiceId id, RoomId roomId)
         {
             Id = id;
             AssociatedRoomId = roomId;
             Comments = new List<Comment>();
         }
+
+        protected RoomService() { }
 
         public static RoomService Create(RoomServiceId serviceId, RoomId roomId)
         {

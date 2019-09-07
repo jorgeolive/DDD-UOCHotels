@@ -11,14 +11,8 @@ namespace UOCHotels.RoomServiceManagement.Persistence
 {
     public class RoomRepository : RavenDbRepository<Room, RoomId>, IRoomRepository, IDisposable
     {
-        readonly IAsyncDocumentSession _session;
+        public RoomRepository(IDocumentStore documentStore) : base(documentStore.OpenAsyncSession(), EntityId) { }
 
-        public RoomRepository(IDocumentStore documentStore) : base(documentStore.OpenAsyncSession(), EntityId) => _session = documentStore.OpenAsyncSession();
-
-        public Task Commit()
-        {
-            return _session.SaveChangesAsync();
-        }
 
         protected static string EntityId(RoomId id)
         => $"Room/{id.ToString()}";
@@ -28,6 +22,5 @@ namespace UOCHotels.RoomServiceManagement.Persistence
             return _session.Query<Room>().Where(x => x.Address == address).FirstOrDefaultAsync();
         }
 
-        public void Dispose() => _session.Dispose();
     }
 }

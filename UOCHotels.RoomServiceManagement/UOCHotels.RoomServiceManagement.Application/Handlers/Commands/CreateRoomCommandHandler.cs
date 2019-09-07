@@ -36,7 +36,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
             }
 
             //Refactor to factory method like RoomService class
-            var room = new Room(requestedAddress);
+            var room = Room.Create(requestedAddress);
 
             await _roomRepository.Add(room);
 

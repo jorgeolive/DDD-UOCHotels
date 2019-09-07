@@ -30,12 +30,12 @@ namespace RoomServiceManagement.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{serviceId}")]
+        [HttpGet("{roomServiceId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<RoomServiceModel>> Get(Guid serviceId)
+        public async Task<ActionResult<RoomServiceModel>> Get(Guid roomServiceId)
         {
-            var RoomServiceModel = await _mediator.Send<RoomServiceModel>(new GetRoomServiceByIdQuery(serviceId));
+            var RoomServiceModel = await _mediator.Send<RoomServiceModel>(new GetRoomServiceByIdQuery(roomServiceId));
 
             if (RoomServiceModel != null)
             {
@@ -60,10 +60,28 @@ namespace RoomServiceManagement.Api.Controllers
             return NotFound();
         }
 
+        //Server assigns identity, so it's a post(NOT idempotent)
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> CreateRoomService([FromBody] CreateRoomServiceRequest request)
+        {
+            try
+            {
+                await _mediator.Send(request);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            //Review : how to handle when the domain layer throws an exception?      
+        }
+
+        [HttpPatch("{roomServiceId:Guid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> PlanRoomService(Guid roomServiceId, [FromBody] PlanRoomServiceRequest request)
         {
             try
             {

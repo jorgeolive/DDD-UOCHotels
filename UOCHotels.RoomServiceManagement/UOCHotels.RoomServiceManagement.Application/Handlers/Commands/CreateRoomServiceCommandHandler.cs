@@ -28,7 +28,8 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
 
         protected override async Task Handle(CreateRoomServiceRequest request, CancellationToken cancellationToken)
         {
-            if (await _roomRepository.GetById(new Domain.ValueObjects.RoomId(request.RoomId)) == null)
+            var room = await _roomRepository.GetById(new Domain.ValueObjects.RoomId(request.RoomId));
+            if (room == null)
                 throw new RoomNotFoundException($"RoomId {request.RoomId.ToString()} does not exist.");
 
             var roomService = RoomService.Create(new RoomServiceId(Guid.NewGuid()), new RoomId(request.RoomId));
