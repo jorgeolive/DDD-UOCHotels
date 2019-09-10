@@ -12,5 +12,6 @@ namespace UOCHotels.RoomServiceManagement.Domain.Infraestructure
         Task<List<RoomService>> GetByRoomId(RoomId roomId);
         Task Commit();
         Task Add(RoomService roomService);
+        Task<List<RoomService>> GetAll();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Raven.Client.Documents;
@@ -21,6 +22,8 @@ namespace UOCHotels.RoomServiceManagement.Persistence
         {
             return _session.Query<Room>().Where(x => x.Address == address).FirstOrDefaultAsync();
         }
+
+        public Task<List<Room>> GetAll() => _session.Query<Room>().ToListAsync();
 
     }
 }

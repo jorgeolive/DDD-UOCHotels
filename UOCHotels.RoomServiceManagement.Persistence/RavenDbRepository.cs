@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 
@@ -25,5 +27,7 @@ namespace UOCHotels.RoomServiceManagement.Persistence
         public Task Commit() => _session.SaveChangesAsync();
 
         public void Dispose() => _session.Dispose();
+
+        public Task<List<T>> GetAll() => _session.Query<T>().ToListAsync();
     }
 }

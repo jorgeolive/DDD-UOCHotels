@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Domain.Infraestructure
@@ -9,5 +10,6 @@ namespace UOCHotels.RoomServiceManagement.Domain.Infraestructure
         Task<Room> GetByAddress(Address address);
         Task Commit();
         Task Add(Room room);
+        Task<List<Room>> GetAll();
     }
 }
