@@ -296,6 +296,7 @@
       "UOCHotels.RoomServiceManagement.Application/1.0.0": {
         "dependencies": {
           "MediatR": "7.0.0",
+          "Microsoft.Extensions.Hosting": "2.2.0",
           "UOCHotels.RoomServiceManagement.Domain": "1.0.0"
         },
         "runtime": {

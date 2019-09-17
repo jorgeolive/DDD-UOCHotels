@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
+using UOCHotels.RoomServiceManagement.Domain.Events;
 using UOCHotels.RoomServiceManagement.Domain.Exceptions;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
@@ -10,7 +11,7 @@ namespace UOCHotels.RoomServiceManagement.Domain
 {
     public class Room : AggregateRoot<RoomId>
     {
-        public DateTime AccomodationEndDate { get; internal set; }
+        public DateTime OccupationEndDate { get; internal set; }
         public Address Address;
         public bool BeingServiced { get; internal set; }
         public List<RoomComplement> RoomComplements { get; internal set; }
@@ -18,6 +19,7 @@ namespace UOCHotels.RoomServiceManagement.Domain
         public RoomType RoomType { get; internal set; }
         public bool ServicedToday => RoomServices.Any(x => x.EndTimeStamp?.Date == DateTime.UtcNow.Date);
 
+        //This is due to database impedance. RavenDb needs this. 
         private string DbId
         {
             get => $"Room/{Id.ToString()}";
@@ -47,6 +49,14 @@ namespace UOCHotels.RoomServiceManagement.Domain
             return new Room(address);
         }
 
+        public void StartOccupation(DateTime endDate)
+        {
+            if (endDate.Date < DateTime.Now.Date)
+                throw new ArgumentOutOfRangeException(nameof(endDate));
+
+            Apply(new RoomOccupationDateChanged(this.Id.Value, endDate));
+        }
+
         public void Service() => this.BeingServiced = true;
 
         public void EndService() => this.BeingServiced = false;
@@ -58,7 +68,15 @@ namespace UOCHotels.RoomServiceManagement.Domain
 
         protected override void When(object @event)
         {
-            //throw new NotImplementedException();
+            switch (@event)
+            {
+                case RoomOccupationDateChanged roomOccupied:
+                    {
+                        this.OccupationEndDate = roomOccupied.OccupationEndDate;
+                    }
+
+                    break;
+            }
         }
     }
 }

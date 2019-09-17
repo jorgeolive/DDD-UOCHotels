@@ -21,5 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj" />
     <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Persistence\UOCHotels.RoomServiceManagement.Persistence.csproj" />
+    <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Messaging\UOCHotels.RoomServiceManagement.Messaging.csproj" />
   </ItemGroup>
 </Project>

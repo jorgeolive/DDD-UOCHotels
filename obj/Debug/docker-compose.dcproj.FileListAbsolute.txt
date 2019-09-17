@@ -1,8 +1,10 @@
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/RoomServiceManagement.Api.dll
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/UOCHotels.RoomServiceManagement.Messaging.dll
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/UOCHotels.RoomServiceManagement.Application.dll
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/UOCHotels.RoomServiceManagement.Domain.dll
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/UOCHotels.RoomServiceManagement.Persistence.dll
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/RoomServiceManagement.Api.pdb
+/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/UOCHotels.RoomServiceManagement.Messaging.pdb
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/UOCHotels.RoomServiceManagement.Application.pdb
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/UOCHotels.RoomServiceManagement.Domain.pdb
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/bin/Debug/UOCHotels.RoomServiceManagement.Persistence.pdb

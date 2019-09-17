@@ -19,6 +19,10 @@ using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
 using UOCHotels.RoomServiceManagement.Persistence;
 using Swashbuckle.AspNetCore.Swagger;
 using UOCHotels.RoomServiceManagement.Application.Handlers;
+using UOCHotels.RoomServiceManagement.Application.Services;
+using UOCHotels.RoomServiceManagement.Application.HostedServices;
+using UOCHotels.RoomServiceManagement.Messaging.Configuration;
+using UOCHotels.RoomServiceManagement.Messaging;
 
 namespace RoomServiceManagement.Api
 {
@@ -35,7 +39,6 @@ namespace RoomServiceManagement.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
@@ -44,10 +47,9 @@ namespace RoomServiceManagement.Api
                     Title = "UOC RoomServiceManagement API",
                     Description = "Room Management Service Web API",
                     TermsOfService = "None",
-                    Contact = new Contact() { Name = "Talking Dotnet", Email = "contact@talkingdotnet.com", Url = "www.talkingdotnet.com" }
+                    Contact = new Contact() { Name = "Jorge Olivé", Email = "j.olive.rodriguez@gmail.com" }
                 });
             });
-
 
             //TODO OBTAIN THE DB PARAMS FROM CONFIG ;)
             services.AddSingleton(provider =>
@@ -66,10 +68,18 @@ namespace RoomServiceManagement.Api
 
                 return store.Initialize();
             });
+
+            var rabbitMQconfig = new RabbitMqSubscriberConfiguration();
+            Configuration.Bind("RabbitMQ", rabbitMQconfig);
+            services.AddSingleton(rabbitMQconfig);
+
             services.AddScoped<IRoomServiceRepository, RoomServiceRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddMediatR(Assembly.GetAssembly(typeof(CreateRoomServiceCommandHandler)));
+            services.AddScoped<HouseKeepingPlanner>();
+            //services.AddHostedService<HouseKeepingPlannerService>();
+            services.AddHostedService<RabbitMqListener>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

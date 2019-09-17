@@ -1,7 +1,7 @@
 ﻿using System;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 
-namespace UOCHotels.RoomServiceManagement.Domain
+namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 {
     public class Floor : ValueObject<Floor>
     {

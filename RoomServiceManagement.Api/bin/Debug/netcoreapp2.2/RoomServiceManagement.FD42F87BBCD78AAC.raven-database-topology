@@ -1,1 +1,1 @@
-{"Nodes":[{"Url":"http://host.docker.internal:8080","Database":"RoomServiceManagement","ClusterTag":"A","ServerRole":"Member"}],"Etag":7,"PersistedAt":"2019-09-01T21:31:13.1046641+00:00"}
+{"Nodes":[{"Url":"http://host.docker.internal:8080","Database":"RoomServiceManagement","ClusterTag":"A","ServerRole":"Member"}],"Etag":9,"PersistedAt":"2019-09-13T13:24:29.2514973+00:00"}

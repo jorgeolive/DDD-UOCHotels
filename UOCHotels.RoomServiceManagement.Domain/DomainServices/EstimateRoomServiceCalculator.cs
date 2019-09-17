@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
-using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Domain.DomainServices
 {
-    public class EstimateRoomServiceCalculator
+    public class EstimateHouseKeepingService
     {
-        public static int Calculate(Room room, Employee employee, bool fullService)
+        public static int Calculate(Room room, Employee employee)
         {
             int estimate = 0;
 
@@ -25,7 +24,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.DomainServices
 
             if (employee.ExperienceMonths < 12) estimate += 25;
 
-            if (fullService) estimate += 25;
+            if (room.OccupationEndDate.Date == DateTime.Now.Date) estimate += 25;
 
             return estimate;
         }

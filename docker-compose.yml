@@ -15,3 +15,13 @@ services:
 
       - RAVEN_Security_UnsecuredAccessAllowed=PublicNetwork
       - RAVEN_ARGS="--Setup.Mode=None"
+  rabbitmq:
+    image: rabbitmq:3.8-rc-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    container_name: rabbitmq
+    hostname: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmquser
+      - RABBITMQ_DEFAULT_PASS=some_password

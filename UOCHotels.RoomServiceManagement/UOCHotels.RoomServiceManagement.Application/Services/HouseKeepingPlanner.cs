@@ -1,27 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using UOCHotels.RoomServiceManagement.Domain;
+using UOCHotels.RoomServiceManagement.Domain.DomainServices;
+using UOCHotels.RoomServiceManagement.Application.IntegrationEvents;
 using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Services
 {
-    public class DailyServicePlanner
+    public class HouseKeepingPlanner
     {
         readonly IRoomRepository _roomRepository;
         readonly IRoomServiceRepository _roomServiceRepository;
         readonly IEmployeeRepository _employeeRepository;
+        readonly IMediator _mediator;
 
         private const int ServicingStartsAt = 9;
-        private const int RoomLeavesAt = 12;
         private const int dailyShift = 8 * 60;
 
-        public DailyServicePlanner(
+        private int _createdServices = 0;
+        private int _totalHouseKeepers;
+        private int _houseKeepersWithAssignment;
+
+        public HouseKeepingPlanner(
+            IMediator mediator,
             IRoomRepository roomRepository,
             IEmployeeRepository employeeRepository,
-            IRoomServiceRepository roomServiceRepository)
+            IRoomServiceRepository roomServiceRepository
+            )
         {
+            _mediator = mediator;
             _employeeRepository = employeeRepository;
             _roomRepository = roomRepository;
             _roomServiceRepository = roomServiceRepository;
@@ -33,50 +44,69 @@ namespace UOCHotels.RoomServiceManagement.Application.Services
             // If the available employess are not enough push an event to the HotelManagement Bounded Context.  
         }
 
-        public async Task Execute(Func<Room, Employee, bool, int> estimateDomainService)
+        public async Task Execute(object state)
         {
             var allRooms = await _roomRepository.GetAll();
             var allEmployees = await _employeeRepository.GetAll();
 
             //Gets the list of rooms per building and floor, ordered by these respectively.
             var groupedRoomsByFloorAndBuilding = allRooms.
-                Where(x => (x.AccomodationEndDate.Date == DateTime.Today.Date) || (x.AccomodationEndDate.Date > DateTime.Today.Date && !x.ServicedToday)).
+                Where(x => (x.OccupationEndDate.Date == DateTime.Today.Date) || (x.OccupationEndDate.Date > DateTime.Today.Date && !x.ServicedToday)).
                 GroupBy(x => new { building = x.Address.Building, floor = x.Address.Floor }).
                 OrderBy(x => x.Key.building).ThenBy(x => x.Key.floor);
 
             var availableEmployees = allEmployees.Where(x => !x.OnLeave);
-            var availableEmployeeCount = availableEmployees.Count();
+            _totalHouseKeepers = availableEmployees.Count();
 
             int index = 0;
+            _houseKeepersWithAssignment = index + 1;
 
             for (int i = 0; i < groupedRoomsByFloorAndBuilding.Count(); i++)
             {
                 var group = groupedRoomsByFloorAndBuilding.ElementAt(i);
                 var roomsByFloor = group.ToList();
                 var employee = availableEmployees.ElementAt(index);
-                int totalPendingWorkMinutes = 0;
+                int assignedMinutes = 0;
+                DateTime start = DateTime.Now.Date.AddHours(ServicingStartsAt);
 
                 foreach (var room in roomsByFloor)
                 {
-                    if (totalPendingWorkMinutes < dailyShift)
+                    if (assignedMinutes < dailyShift)
                     {
-                        totalPendingWorkMinutes += estimateDomainService(room, employee, room.AccomodationEndDate.Date == DateTime.Today.Date);
+                        var serviceEstimation = EstimateHouseKeepingService.Calculate(room, employee);
+                        assignedMinutes += serviceEstimation;
+
                         var roomService = RoomService.Create(new RoomServiceId(Guid.NewGuid()), room.Id);
-                        roomService.Plan()
+                        _createdServices++;
+                        roomService.Plan(start.AddMinutes(assignedMinutes), employee.Id);
+                        await _roomServiceRepository.Add(roomService);
                     }
                     else
                     {
-                        if (index < availableEmployeeCount - 1)
+                        if (index < _totalHouseKeepers - 1)
                         {
                             index++;
-                            totalPendingWorkMinutes = 0;
+                            assignedMinutes = 0;
                             employee = availableEmployees.ElementAt(index);
                         }
+                        else
+                        {
+                            await _roomServiceRepository.Commit();
 
+                            await _mediator.Publish<DailyRoomServicesCreated>(
+                                new DailyRoomServicesCreated(
+                                                        allRoomsCovered: false,
+                                                        numberOfServices: _createdServices,
+                                                        new List<Guid>(),
+                                                        _houseKeepersWithAssignment
+                                                        ));
+                            break;
+                        }
                         //stuff that could be done here.. raise event stating
                         //no enough employees to service
                     }
                 }
+
             }
         }
     }

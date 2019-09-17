@@ -1,4 +1,16 @@
 services:
+  rabbitmq:
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_PASS: some_password
+      RABBITMQ_DEFAULT_USER: rabbitmquser
+    hostname: rabbitmq
+    image: rabbitmq:3.8-rc-management
+    ports:
+    - published: 5672
+      target: 5672
+    - published: 15672
+      target: 15672
   ravendb:
     container_name: roomservicemanagementravendb
     environment:
