@@ -709,28 +709,30 @@
     ]
   },
   "packageFolders": {
-    "/Users/jorgeoliverodriguez/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\j.olive\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\j.olive\\source\\repos\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj",
       "projectName": "UOCHotels.RoomServiceManagement.Domain",
-      "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj",
-      "packagesPath": "/Users/jorgeoliverodriguez/.nuget/packages/",
-      "outputPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Domain/obj/",
+      "projectPath": "C:\\Users\\j.olive\\source\\repos\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj",
+      "packagesPath": "C:\\Users\\j.olive\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\j.olive\\source\\repos\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/jorgeoliverodriguez/.config/NuGet/NuGet.Config"
+        "C:\\Users\\j.olive\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

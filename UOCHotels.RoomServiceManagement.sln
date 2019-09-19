@@ -1,19 +1,20 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UOCHotels.RoomServiceManagement.Domain", "UOCHotels.RoomServiceManagement.Domain\UOCHotels.RoomServiceManagement.Domain.csproj", "{7C938946-1C54-4A45-9CEA-213EA9F156FF}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UOCHotels.RoomServiceManagement.Domain", "UOCHotels.RoomServiceManagement.Domain\UOCHotels.RoomServiceManagement.Domain.csproj", "{7C938946-1C54-4A45-9CEA-213EA9F156FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6CD4AB3A-1C55-4CFD-AB15-BEFBE4CA6227}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UOCHotels.RoomServiceManagement.Application", "UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj", "{F713D456-28B9-46FF-B02A-9FD4CFB0A0A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UOCHotels.RoomServiceManagement.Application", "UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj", "{F713D456-28B9-46FF-B02A-9FD4CFB0A0A2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{45484FB4-378D-43FA-9631-6E94217D9D50}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{DE25E4FA-54F2-4737-8099-2BB5864F20C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UOCHotels.RoomServiceManagement.Persistence", "UOCHotels.RoomServiceManagement.Persistence\UOCHotels.RoomServiceManagement.Persistence.csproj", "{274FE3C1-A1FD-4E22-82B5-58DE3F4C4C8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UOCHotels.RoomServiceManagement.Persistence", "UOCHotels.RoomServiceManagement.Persistence\UOCHotels.RoomServiceManagement.Persistence.csproj", "{274FE3C1-A1FD-4E22-82B5-58DE3F4C4C8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomServiceManagement.Api", "RoomServiceManagement.Api\RoomServiceManagement.Api.csproj", "{11ECC6AF-42E3-44C7-BB6E-DF80FDC50AFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RoomServiceManagement.Api", "RoomServiceManagement.Api\RoomServiceManagement.Api.csproj", "{11ECC6AF-42E3-44C7-BB6E-DF80FDC50AFF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{20A6A09F-8CD2-4410-ACE9-14C114364580}"
 EndProject
@@ -21,7 +22,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3090AC99
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BFC28F39-9378-4465-BDCC-E6C422031BDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UOCHotels.RoomServiceManagement.Messaging", "UOCHotels.RoomServiceManagement.Messaging\UOCHotels.RoomServiceManagement.Messaging.csproj", "{3B123E66-572D-481D-A5B1-A557662A7C7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UOCHotels.RoomServiceManagement.Messaging", "UOCHotels.RoomServiceManagement.Messaging\UOCHotels.RoomServiceManagement.Messaging.csproj", "{3B123E66-572D-481D-A5B1-A557662A7C7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4A37A30F-C393-456D-88EF-E77F76FAFD00}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,14 +60,20 @@ Global
 		{3B123E66-572D-481D-A5B1-A557662A7C7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B123E66-572D-481D-A5B1-A557662A7C7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7C938946-1C54-4A45-9CEA-213EA9F156FF} = {45484FB4-378D-43FA-9631-6E94217D9D50}
 		{F713D456-28B9-46FF-B02A-9FD4CFB0A0A2} = {45484FB4-378D-43FA-9631-6E94217D9D50}
 		{45484FB4-378D-43FA-9631-6E94217D9D50} = {6CD4AB3A-1C55-4CFD-AB15-BEFBE4CA6227}
 		{DE25E4FA-54F2-4737-8099-2BB5864F20C8} = {6CD4AB3A-1C55-4CFD-AB15-BEFBE4CA6227}
 		{274FE3C1-A1FD-4E22-82B5-58DE3F4C4C8F} = {DE25E4FA-54F2-4737-8099-2BB5864F20C8}
-		{20A6A09F-8CD2-4410-ACE9-14C114364580} = {6CD4AB3A-1C55-4CFD-AB15-BEFBE4CA6227}
 		{11ECC6AF-42E3-44C7-BB6E-DF80FDC50AFF} = {20A6A09F-8CD2-4410-ACE9-14C114364580}
+		{20A6A09F-8CD2-4410-ACE9-14C114364580} = {6CD4AB3A-1C55-4CFD-AB15-BEFBE4CA6227}
 		{3B123E66-572D-481D-A5B1-A557662A7C7F} = {DE25E4FA-54F2-4737-8099-2BB5864F20C8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {042B2F43-041E-4C70-9814-74708C52BB93}
 	EndGlobalSection
 EndGlobal

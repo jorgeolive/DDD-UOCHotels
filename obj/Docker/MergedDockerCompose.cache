@@ -1,10 +1,10 @@
 services:
   rabbitmq:
-    container_name: rabbitmq
+    container_name: rabbit
     environment:
       RABBITMQ_DEFAULT_PASS: some_password
       RABBITMQ_DEFAULT_USER: rabbitmquser
-    hostname: rabbitmq
+    hostname: localhost
     image: rabbitmq:3.8-rc-management
     ports:
     - published: 5672
@@ -22,7 +22,7 @@ services:
       target: 8080
   roomservicemanagement.api:
     build:
-      context: /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement
+      context: C:\Users\j.olive\source\repos\UOCHotels
       dockerfile: RoomServiceManagement.Api/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -35,6 +35,6 @@ services:
     - published: 44386
       target: 443
     volumes:
-    - /Users/jorgeoliverodriguez/.aspnet/https:/root/.aspnet/https:ro
-    - /Users/jorgeoliverodriguez/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\j.olive\.aspnet\https:/root/.aspnet/https:ro
+    - C:\Users\j.olive\.microsoft\usersecrets:/root/.microsoft/usersecrets:ro
 version: '3.4'

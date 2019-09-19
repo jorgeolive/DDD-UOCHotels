@@ -6,22 +6,24 @@ services:
     build:
       context: .
       dockerfile: RoomServiceManagement.Api/Dockerfile
+  
   ravendb:
     container_name: roomservicemanagementravendb
     image: ravendb/ravendb
     ports:
       - 8080:8080
     environment:
-
       - RAVEN_Security_UnsecuredAccessAllowed=PublicNetwork
       - RAVEN_ARGS="--Setup.Mode=None"
+
   rabbitmq:
     image: rabbitmq:3.8-rc-management
     ports:
       - "5672:5672"
       - "15672:15672"
-    container_name: rabbitmq
-    hostname: rabbitmq
+    container_name: rabbit
+    hostname: localhost
     environment:
       - RABBITMQ_DEFAULT_USER=rabbitmquser
       - RABBITMQ_DEFAULT_PASS=some_password
+   
