@@ -1,7 +1,9 @@
 ﻿using System;
+using UOCHotels.RoomServiceManagement.Domain.Events;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
+using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
+namespace UOCHotels.RoomServiceManagement.Domain.Entities
 {
     public class Comment : Entity<CommentId>
     {
@@ -11,14 +13,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
             set { }
         }
 
-        public Comment(Action<object> applier, CommentId id, string text, EmployeeId commentBy) : base(applier)
-        {
-
-            Text = string.IsNullOrEmpty(text) ? throw new ArgumentNullException(nameof(text)) : text;
-            CommentBy = commentBy;
-            CreatedOn = DateTime.Now;
-            Id = id;
-        }
+        public Comment(Action<object> applier) : base(applier) {}
 
         public string Text { get; internal set; }
         public EmployeeId CommentBy { get; private set; }
@@ -26,12 +21,21 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 
         public override void EnsureValidState()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override void When(object @event)
         {
-            throw new NotImplementedException();
+            switch (@event)
+            {
+                case CommentSubmitted e:
+
+                    this.CommentBy = new EmployeeId(e.SubmmitedBy);
+                    Text = e.Text;
+                    CreatedOn = DateTime.UtcNow;
+
+                    break;
+            } ;
         }
     }
 }

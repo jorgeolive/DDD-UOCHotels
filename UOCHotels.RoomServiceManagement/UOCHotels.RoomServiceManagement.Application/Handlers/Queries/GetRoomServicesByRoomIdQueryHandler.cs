@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using UOCHotels.RoomServiceManagement.Application.ReadModel;
 using UOCHotels.RoomServiceManagement.Application.Queries;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Application.ReadModel;
+using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Application.Handlers
+namespace UOCHotels.RoomServiceManagement.Application.Handlers.Queries
 {
     public class GetRoomServicesByRoomIdQueryHandler : IRequestHandler<GetRoomServicesByRoomIdQuery, IEnumerable<RoomServiceModel>>
     {

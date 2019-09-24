@@ -3,12 +3,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
-using UOCHotels.RoomServiceManagement.Application.Exceptions;
-using UOCHotels.RoomServiceManagement.Domain;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Domain.Entities;
+using UOCHotels.RoomServiceManagement.Domain.Enums;
+using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Application.Handlers
+namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
 {
     public class CreateRoomCommandHandler : AsyncRequestHandler<CreateRoomRequest>
     {
@@ -36,7 +36,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
             }
 
             //Refactor to factory method like RoomService class
-            var room = Room.Create(requestedAddress);
+            var room = new Room(new RoomId(Guid.NewGuid()), RoomType.Other, requestedAddress);
 
             await _roomRepository.Add(room);
 

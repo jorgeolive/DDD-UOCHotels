@@ -10,3 +10,15 @@
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Application.csproj.CopyComplete
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Application.dll
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Application.pdb
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.csprojAssemblyReference.cache
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.csproj.CoreCompileInputs.cache
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.AssemblyInfoInputs.cache
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.AssemblyInfo.cs
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.deps.json
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.dll
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.pdb
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.dll
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.pdb
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.csproj.CopyComplete
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.dll
+C:\Users\j.olive\source\repos\UOCHotels\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.pdb

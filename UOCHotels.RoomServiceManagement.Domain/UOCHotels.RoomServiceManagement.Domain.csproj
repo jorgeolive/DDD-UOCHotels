@@ -11,9 +11,7 @@
     <Folder Include="Exceptions\" />
     <Folder Include="DomainServices\" />
     <Folder Include="Entities\" />
-    <Folder Include="Events\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Infraestructure\" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="7.0.0" />

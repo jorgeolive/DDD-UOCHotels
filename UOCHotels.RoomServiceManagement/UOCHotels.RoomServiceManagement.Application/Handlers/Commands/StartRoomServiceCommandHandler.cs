@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
-using UOCHotels.RoomServiceManagement.Domain;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Domain.Entities;
+using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Application.Handlers
+namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
 {
     public class StartRoomServiceRequestHandler : AsyncRequestHandler<StartRoomServiceRequest>
     {

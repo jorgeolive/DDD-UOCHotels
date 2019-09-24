@@ -19,6 +19,7 @@ mono_crash.*
 
 # Build results
 [Dd]ebug/
+[Dd]ebug/netcoreapp2.2
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/

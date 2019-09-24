@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
 using UOCHotels.RoomServiceManagement.Domain.Events;
+using UOCHotels.RoomServiceManagement.Domain.Exceptions;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
-using UOCHotels.RoomServiceManagement.Domain.Exceptions;
-using System.Collections.Generic;
 
-namespace UOCHotels.RoomServiceManagement.Domain
+namespace UOCHotels.RoomServiceManagement.Domain.Entities
 {
     public class RoomService : AggregateRoot<RoomServiceId>
     {
@@ -15,32 +15,21 @@ namespace UOCHotels.RoomServiceManagement.Domain
             get => $"RoomService/{Id.ToString()}";
             set { }
         }
+
         public RoomId AssociatedRoomId { get; private set; }
         public EmployeeId ServicedById { get; private set; }
-        public RoomServiceStatus Status { get; private set; } = RoomServiceStatus.NotSet;
+        public RoomServiceStatus Status { get; private set; } = RoomServiceStatus.Inactive;
         public DateTime? PlannedOn { get; private set; }
         public DateTime? StartTimeStamp { get; private set; }
         public DateTime? EndTimeStamp { get; private set; }
-        public List<Comment> Comments { get; private set; }
+        public List<Comment> Comments { get; } = new List<Comment>();
 
-        internal RoomService(RoomServiceId id, RoomId roomId)
+        public RoomService(RoomServiceId id, RoomId roomId, EmployeeId employeeId)
         {
-            Id = id;
-            AssociatedRoomId = roomId;
-            Comments = new List<Comment>();
+            Apply(new ServiceCreated(id, roomId, employeeId));
         }
 
-        protected RoomService() { }
-
-        public static RoomService Create(RoomServiceId serviceId, RoomId roomId)
-        {
-            var service = new RoomService(serviceId, roomId) { Status = RoomServiceStatus.Inactive };
-
-            service.Apply(
-                      new ServiceCreated(serviceId, roomId));
-
-            return service;
-        }
+        protected RoomService(){ }
 
         public TimeSpan GetCompletionTimeDeviation(int calculatedDeviation)
         {
@@ -52,10 +41,12 @@ namespace UOCHotels.RoomServiceManagement.Domain
             var actualDif = this.EndTimeStamp - this.StartTimeStamp;
             var estimatedDif = new TimeSpan(0, calculatedDeviation, 0);
 
-            return actualDif.Value - estimatedDif;
+            if (actualDif != null) return actualDif.Value - estimatedDif;
+
+            return new TimeSpan();
         }
 
-        public void Plan(DateTime timeStamp, EmployeeId employeeId)
+        public void Plan(DateTime timeStamp)
         {
             if (Status != RoomServiceStatus.Inactive)
             {
@@ -63,7 +54,7 @@ namespace UOCHotels.RoomServiceManagement.Domain
             }
 
             Apply(
-            new ServicePlanned(this.Id, employeeId, timeStamp));
+            new ServicePlanned(this.Id, timeStamp));
         }
 
         public void Complete()
@@ -81,24 +72,31 @@ namespace UOCHotels.RoomServiceManagement.Domain
             if (Status != RoomServiceStatus.Planned)
             {
                 throw new InvalidRoomServiceOperationException("Can start only a planned room service.");
-
             }
 
             Apply(new ServiceStarted(Id, DateTime.UtcNow));
         }
 
-        public void SubmitComment(string text, EmployeeId employeeId)
+        public void AddComment(string text, EmployeeId addedBy)
         {
-            Apply(new CommentSubmitted(employeeId.GetValue(), Id.GetValue(), text));
+            if(string.IsNullOrWhiteSpace(text)) throw new ArgumentNullException(nameof(text));
+            Apply(new CommentSubmitted(addedBy.Value, this.Id.Value, text));
         }
 
         protected override void When(object @event)
         {
             switch (@event)
             {
+                case ServiceCreated e:
+
+                    Id = new RoomServiceId(e.ServiceId);
+                    AssociatedRoomId = new RoomId(e.RoomId);
+                    ServicedById = new EmployeeId(e.EmployeeId);
+
+                    break;
+
                 case ServicePlanned e:
 
-                    ServicedById = new EmployeeId(e.ServiceOwnerId);
                     PlannedOn = e.PlannedOn;
                     Status = RoomServiceStatus.Planned;
 
@@ -115,6 +113,13 @@ namespace UOCHotels.RoomServiceManagement.Domain
                     StartTimeStamp = e.StartTimestamp;
                     Status = RoomServiceStatus.Started;
 
+                    break;
+
+                case CommentSubmitted e:
+                
+                    var comment = new Comment(Apply);
+                    ApplyToEntity(comment, e);
+                
                     break;
             }
         }

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
 using UOCHotels.RoomServiceManagement.Application.Queries;
 using UOCHotels.RoomServiceManagement.Application.ReadModel;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Application.Handlers
+namespace UOCHotels.RoomServiceManagement.Application.Handlers.Queries
 {
     public class GetRoomServiceByIdQueryHandler : IRequestHandler<GetRoomServiceByIdQuery, RoomServiceModel>
     {

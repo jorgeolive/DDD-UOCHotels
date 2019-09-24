@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using UOCHotels.RoomServiceManagement.Domain.Entities;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Domain.Infraestructure
+namespace UOCHotels.RoomServiceManagement.Domain.Infrastructure
 {
     //Domain layer defines the IRepository objects.
     public interface IRoomServiceRepository

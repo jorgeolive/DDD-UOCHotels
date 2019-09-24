@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
-using UOCHotels.RoomServiceManagement.Domain;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Domain.Entities;
+using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 
-namespace UOCHotels.RoomServiceManagement.Application.Handlers
+namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
 {
     public class AddEmployeeRequestHandler : AsyncRequestHandler<AddEmployeeRequest>
     {

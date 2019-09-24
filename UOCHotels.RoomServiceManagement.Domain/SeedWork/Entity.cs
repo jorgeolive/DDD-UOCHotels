@@ -7,10 +7,10 @@ namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
     //So this means, always attack point of Application Services is an AggregateRoot.
     public abstract class Entity<TId> : IInternalEventHandler
     {
-        private readonly Action<object> _applier;
+        protected readonly Action<object> Applier;
         public TId Id { get; protected set; }
 
-        public Entity(Action<object> applier) => _applier = applier;
+        protected Entity(Action<object> applier) => Applier = applier;
 
         protected abstract void When(object @event);
 
@@ -19,7 +19,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
         protected void Apply(object @event)
         {
             When(@event);
-            _applier(@event);
+            Applier(@event);
         }
 
         public void Handle(object @event)

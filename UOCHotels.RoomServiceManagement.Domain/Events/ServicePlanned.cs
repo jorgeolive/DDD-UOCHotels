@@ -8,13 +8,11 @@ namespace UOCHotels.RoomServiceManagement.Domain.Events
     {
         public Guid Id { get; private set; }
         public DateTime PlannedOn { get; private set; }
-        public Guid ServiceOwnerId { get; private set; }
 
-        public ServicePlanned(RoomServiceId roomId, EmployeeId ownerId, DateTime plannedOn)
+        public ServicePlanned(RoomServiceId roomServiceId, DateTime plannedOn)
         {
-            Id = roomId.GetValue();
+            Id = roomServiceId.GetValue();
             PlannedOn = plannedOn;
-            ServiceOwnerId = ownerId.GetValue();
         }
     }
 }

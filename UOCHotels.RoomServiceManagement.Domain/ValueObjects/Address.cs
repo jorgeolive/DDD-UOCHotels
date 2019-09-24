@@ -1,7 +1,6 @@
 ﻿using UOCHotels.RoomServiceManagement.Domain.SeedWork;
-using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Domain
+namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 {
     public class Address : ValueObject<Address>
     {

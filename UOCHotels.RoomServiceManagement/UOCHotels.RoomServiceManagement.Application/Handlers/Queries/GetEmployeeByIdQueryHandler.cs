@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Queries;
 using UOCHotels.RoomServiceManagement.Application.ReadModel;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Queries
 {

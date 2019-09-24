@@ -9,13 +9,9 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Handlers\" />
-    <Folder Include="Exceptions\" />
     <Folder Include="Services\" />
     <Folder Include="Queries\" />
     <Folder Include="ReadModel\" />
-    <Folder Include="Handlers\Commands\" />
     <Folder Include="Handlers\Queries\" />
     <Folder Include="HostedServices\" />
     <Folder Include="Handlers\Events\" />

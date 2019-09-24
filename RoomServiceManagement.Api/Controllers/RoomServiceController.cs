@@ -9,7 +9,6 @@ using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
 using UOCHotels.RoomServiceManagement.Application.Queries;
 using UOCHotels.RoomServiceManagement.Application.ReadModel;
-using UOCHotels.RoomServiceManagement.Domain;
 
 namespace RoomServiceManagement.Api.Controllers
 {
@@ -82,6 +81,25 @@ namespace RoomServiceManagement.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> PlanRoomService(Guid roomServiceId, [FromBody] PlanRoomServiceRequest request)
+        {
+            try
+            {
+                await _mediator.Send(request);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            //Review : how to handle when the domain layer throws an exception?      
+        }
+
+        [HttpPost("{roomServiceId:Guid}/comments")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+        public async Task<ActionResult> AddComment(Guid roomServiceId, [FromBody] AddCommentRequest request)
         {
             try
             {

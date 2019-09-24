@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
-using UOCHotels.RoomServiceManagement.Domain;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Domain.Entities;
+using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Application.Handlers
+namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
 {
     public class PlanRoomServiceRequestHandler : AsyncRequestHandler<PlanRoomServiceRequest>
     {
@@ -28,29 +28,18 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers
 
         protected override async Task Handle(PlanRoomServiceRequest request, CancellationToken cancellationToken)
         {
-            RoomService room = null;
+            RoomService roomService = null;
 
             try
             {
-                room = await this._roomServiceRepository.GetById(new RoomServiceId(request.RoomServiceId));
+                roomService = await this._roomServiceRepository.GetById(new RoomServiceId(request.RoomServiceId));
             }
             catch (Exception e)
             {
                 throw new RoomServiceNotFoundException(e.Message);
             }
 
-            Employee employee = null;
-
-            try
-            {
-                employee = await this._employeeRepository.GetById(new EmployeeId(request.EmployeeId));
-            }
-            catch
-            {
-                throw new RoomServiceNotFoundException("");
-            }
-
-            room.Plan(request.PlanDate, employee.Id);
+            roomService.Plan(request.PlanDate);
             await _roomServiceRepository.Commit();
             //Here we might want to notify other services through the messaging queue. 
         }

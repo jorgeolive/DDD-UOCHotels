@@ -2,7 +2,7 @@
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Domain
+namespace UOCHotels.RoomServiceManagement.Domain.Entities
 {
     public class Employee : AggregateRoot<EmployeeId>
     {

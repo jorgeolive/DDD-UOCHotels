@@ -6,7 +6,8 @@ using MediatR;
 using UOCHotels.RoomServiceManagement.Domain;
 using UOCHotels.RoomServiceManagement.Domain.DomainServices;
 using UOCHotels.RoomServiceManagement.Application.IntegrationEvents;
-using UOCHotels.RoomServiceManagement.Domain.Infraestructure;
+using UOCHotels.RoomServiceManagement.Domain.Entities;
+using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Services
@@ -76,9 +77,9 @@ namespace UOCHotels.RoomServiceManagement.Application.Services
                         var serviceEstimation = EstimateHouseKeepingService.Calculate(room, employee);
                         assignedMinutes += serviceEstimation;
 
-                        var roomService = RoomService.Create(new RoomServiceId(Guid.NewGuid()), room.Id);
+                        var roomService = new RoomService(new RoomServiceId(Guid.NewGuid()), room.Id, employee.Id);
                         _createdServices++;
-                        roomService.Plan(start.AddMinutes(assignedMinutes), employee.Id);
+                        roomService.Plan(start.AddMinutes(assignedMinutes));
                         await _roomServiceRepository.Add(roomService);
                     }
                     else
