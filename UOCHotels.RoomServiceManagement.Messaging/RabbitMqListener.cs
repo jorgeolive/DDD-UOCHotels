@@ -16,7 +16,7 @@ namespace UOCHotels.RoomServiceManagement.Messaging
     public class RabbitMqListener : IHostedService
     {
         private RabbitMqSubscriberConfiguration _messagingConfig;
-        public IServiceScopeFactory _scopeFactory { get; }
+        private IServiceScopeFactory _scopeFactory { get; }
 
         public RabbitMqListener(IServiceScopeFactory scopeFactory)
         {

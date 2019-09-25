@@ -7,12 +7,6 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
 {
     public class Comment : Entity<CommentId>
     {
-        private string DbId
-        {
-            get => $"Comment/{Id.ToString()}";
-            set { }
-        }
-
         public Comment(Action<object> applier) : base(applier) {}
 
         public string Text { get; internal set; }
@@ -33,6 +27,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
                     this.CommentBy = new EmployeeId(e.SubmmitedBy);
                     Text = e.Text;
                     CreatedOn = DateTime.UtcNow;
+                    this.Id = new CommentId(Guid.NewGuid());
 
                     break;
             } ;

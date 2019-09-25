@@ -11,13 +11,15 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Queries
 {
     public class GetRoomServiceByIdQueryHandler : IRequestHandler<GetRoomServiceByIdQuery, RoomServiceModel>
     {
-        readonly IRoomServiceRepository _roomServiceRepository;
-        readonly IRoomRepository _roomRepository;
+        private readonly IRoomServiceRepository _roomServiceRepository;
+        private readonly IRoomRepository _roomRepository;
+        private readonly IEmployeeRepository _employeeRepository; 
 
-        public GetRoomServiceByIdQueryHandler(IRoomServiceRepository roomServiceRepository, IRoomRepository roomRepository)
+        public GetRoomServiceByIdQueryHandler(IRoomServiceRepository roomServiceRepository, IRoomRepository roomRepository, IEmployeeRepository employeeRepository)
         {
             _roomServiceRepository = roomServiceRepository;
             _roomRepository = roomRepository;
+            _employeeRepository = employeeRepository;
         }
 
         public async Task<RoomServiceModel> Handle(GetRoomServiceByIdQuery request, CancellationToken cancellationToken)
@@ -27,12 +29,14 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Queries
             if (roomService != null)
             {
                 var room = await _roomRepository.GetById(roomService.AssociatedRoomId);
+                var employee = await _employeeRepository.GetById((roomService.ServicedById));
 
                 return new RoomServiceModel()
                 {
                     PlannedOn = roomService.PlannedOn,
                     Floor = room.Address.Floor.ToString(),
-                    RoomNumber = room.Address.DoorNumber.ToString()
+                    RoomNumber = room.Address.DoorNumber.ToString(),
+                    Owner =  string.Concat(employee.Name," ",employee.SurName)
                 };
             }
 

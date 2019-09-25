@@ -34,11 +34,11 @@ namespace RoomServiceManagement.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<RoomServiceModel>> Get(Guid roomServiceId)
         {
-            var RoomServiceModel = await _mediator.Send<RoomServiceModel>(new GetRoomServiceByIdQuery(roomServiceId));
+            var roomService = await _mediator.Send<RoomServiceModel>(new GetRoomServiceByIdQuery(roomServiceId));
 
-            if (RoomServiceModel != null)
+            if (roomService != null)
             {
-                return RoomServiceModel;
+                return roomService;
             }
 
             return NotFound();
@@ -77,10 +77,27 @@ namespace RoomServiceManagement.Api.Controllers
             //Review : how to handle when the domain layer throws an exception?      
         }
 
-        [HttpPatch("{roomServiceId:Guid}")]
+        [HttpPost("{roomServiceId:Guid}/plan")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> PlanRoomService(Guid roomServiceId, [FromBody] PlanRoomServiceRequest request)
+        {
+            try
+            {
+                await _mediator.Send(request);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            //Review : how to handle when the domain layer throws an exception?      
+        }
+
+        [HttpPost("{roomServiceId:Guid}/start")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> StartRoomService(Guid roomServiceId, [FromBody] StartRoomServiceRequest request)
         {
             try
             {

@@ -5,9 +5,9 @@ namespace UOCHotels.RoomServiceManagement.Application.Commands
 {
     public class AddCommentRequest : IRequest
     {
-        public readonly string Text;
-        public readonly Guid RoomServiceId;
-        public readonly Guid EmployeeId;
+        public string Text;
+        public Guid RoomServiceId;
+        public Guid EmployeeId;
 
         public AddCommentRequest(Guid roomServiceId, Guid employeeId, string text)
         {

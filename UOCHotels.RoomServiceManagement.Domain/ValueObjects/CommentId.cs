@@ -5,12 +5,14 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 {
     public class CommentId : ValueObject<CommentId>
     {
-        private Guid _id;
+        public Guid Value;
+
+        internal CommentId() { }
 
         public CommentId(Guid id) =>
-            _id = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
+            Value = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
 
-        public Guid GetValue() => _id;
+        public Guid GetValue() => Value;
 
         protected override bool EqualsCore(CommentId other)
         {

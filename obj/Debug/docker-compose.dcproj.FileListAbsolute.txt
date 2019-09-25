@@ -12,7 +12,6 @@
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/obj/Debug/docker-compose.dcproj.CoreCompileInputs.cache
 /Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/obj/Debug/docker-compose.dcproj.CopyComplete
 C:\Users\j.olive\source\repos\UOCHotels\bin\Debug\RoomServiceManagement.Api.dll
-C:\Users\j.olive\source\repos\UOCHotels\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\j.olive\source\repos\UOCHotels\bin\Debug\UOCHotels.RoomServiceManagement.Messaging.dll
 C:\Users\j.olive\source\repos\UOCHotels\bin\Debug\UOCHotels.RoomServiceManagement.Application.dll
 C:\Users\j.olive\source\repos\UOCHotels\bin\Debug\UOCHotels.RoomServiceManagement.Domain.dll
@@ -23,4 +22,5 @@ C:\Users\j.olive\source\repos\UOCHotels\bin\Debug\UOCHotels.RoomServiceManagemen
 C:\Users\j.olive\source\repos\UOCHotels\bin\Debug\UOCHotels.RoomServiceManagement.Domain.pdb
 C:\Users\j.olive\source\repos\UOCHotels\bin\Debug\UOCHotels.RoomServiceManagement.Persistence.pdb
 C:\Users\j.olive\source\repos\UOCHotels\obj\Debug\docker-compose.dcprojAssemblyReference.cache
+C:\Users\j.olive\source\repos\UOCHotels\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\j.olive\source\repos\UOCHotels\obj\Debug\docker-compose.dcproj.CopyComplete

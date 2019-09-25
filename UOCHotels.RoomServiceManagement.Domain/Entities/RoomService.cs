@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
 using UOCHotels.RoomServiceManagement.Domain.Events;
 using UOCHotels.RoomServiceManagement.Domain.Exceptions;
@@ -119,7 +120,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
                 
                     var comment = new Comment(Apply);
                     ApplyToEntity(comment, e);
-                
+                    this.Comments.Add(comment);
                     break;
             }
         }

@@ -6,5 +6,7 @@ namespace UOCHotels.RoomServiceManagement.Application.ReadModel
         public DateTime? PlannedOn { get; set; }
         public string RoomNumber { get; set; }
         public string Floor { get; set; }
+
+        public string Owner { get; set; }
     }
 }

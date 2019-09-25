@@ -12,12 +12,12 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
     public class StartRoomServiceRequestHandler : AsyncRequestHandler<StartRoomServiceRequest>
     {
         private readonly IRoomServiceRepository _roomServiceRepository;
-        private readonly IMediator mediator;
+        private readonly IMediator _mediator;
 
         public StartRoomServiceRequestHandler(IRoomServiceRepository context, IMediator mediator)
         {
             _roomServiceRepository = context;
-            this.mediator = mediator;
+            this._mediator = mediator;
         }
 
         protected override async Task Handle(StartRoomServiceRequest request, CancellationToken cancellationToken)
