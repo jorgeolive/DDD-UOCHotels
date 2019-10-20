@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MediatR" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.2.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Services\" />
+        <Folder Include="Queries\" />
+        <Folder Include="ReadModel\" />
+        <Folder Include="Handlers\Queries\" />
+        <Folder Include="HostedServices\" />
+        <Folder Include="Handlers\Events\" />
+        <Folder Include="IntegrationEvents\" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
+            <HintPath>..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.hosting.abstractions\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Domain\UOCHotels.RoomServiceManagement.Domain.csproj" />
+    </ItemGroup>
+</Project>

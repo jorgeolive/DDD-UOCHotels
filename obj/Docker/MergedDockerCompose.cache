@@ -22,12 +22,13 @@ services:
       target: 8080
   roomservicemanagement.api:
     build:
-      context: C:\Users\j.olive\source\repos\UOCHotels
+      context: /Users/jorgeoliverodriguez/Projects/UOCHotels
       dockerfile: RoomServiceManagement.Api/Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_HTTPS_PORT: '44386'
       ASPNETCORE_URLS: https://+:443;http://+:80
+      AppSettings__JwtSecret: aasd3423423rji23jri23rj23jrj23rji23ii3
     image: roomservicemanagement
     ports:
     - published: 53838
@@ -35,6 +36,6 @@ services:
     - published: 44386
       target: 443
     volumes:
-    - C:\Users\j.olive\.aspnet\https:/root/.aspnet/https:ro
-    - C:\Users\j.olive\.microsoft\usersecrets:/root/.microsoft/usersecrets:ro
+    - /Users/jorgeoliverodriguez/.aspnet/https:/root/.aspnet/https:ro
+    - /Users/jorgeoliverodriguez/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
 version: '3.4'

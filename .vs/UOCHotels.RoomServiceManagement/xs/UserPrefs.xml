@@ -1,45 +1,51 @@
 ﻿<Properties GitUserInfo="UsingGIT" StartupConfiguration="Multiple Projects">
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Events/RoomOccupiedEventHandler.cs" Line="24" Column="193" />
-      <File FileName="UOCHotels.RoomServiceManagement.Domain/Entities/Room.cs" Line="66" Column="44" />
-      <File FileName="UOCHotels.RoomServiceManagement.Domain/SeedWork/AggregateRoot.cs" />
-      <File FileName="UOCHotels.RoomServiceManagement.Domain/Events/RoomOccupied.cs" Line="18" Column="1" />
-      <File FileName="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Services/HouseKeepingPlanner.cs" Line="19" Column="38" />
+      <File FileName="UOCHotels.RoomServiceManagement.Persistence/EmployeeRepository.cs" Line="1" Column="1" />
+      <File FileName="UOCHotels.RoomServiceManagement.Persistence/RavenDbRepository.cs" />
+      <File FileName="RoomServiceManagement.Api/Controllers/EmployeeController.cs" Line="18" Column="47" />
+      <File FileName="RoomServiceManagement.Api/Startup.cs" />
+      <File FileName="development.env" />
+      <File FileName="RoomServiceManagement.Api/Controllers/RoomServiceController.cs" />
+      <File FileName="RoomServiceManagement.Api/appsettings.json" />
+      <File FileName="RoomServiceManagement.Api/appsettings.Development.json" />
+      <File FileName="UOCHotels.RoomServiceManagement.Messaging/RabbitMqListener.cs" Line="60" Column="90" />
+      <File FileName="UOCHotels.RoomServiceManagement.Messaging/Configuration/RabbitMqSubscriberConfiguration.cs" />
+      <File FileName="../../../../Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.VisualStudio.Docker.Compose.targets" />
+      <File FileName="RoomServiceManagement.Api/Program.cs" />
+      <File FileName="RoomServiceManagement.Api/Dockerfile" />
+      <File FileName="docker-compose.override.yml" />
       <File FileName="docker-compose.yml" />
-      <File FileName="UOCHotels.RoomServiceManagement.Domain/DomainServices/EstimateRoomServiceCalculator.cs" />
-      <File FileName="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/HostedServices/HouseKeepingPlannerService.cs" />
-      <File FileName="UOCHotels.RoomServiceManagement.Messaging/Configuration/RabbitMqConfiguration.cs" Line="4" Column="49" />
-      <File FileName="RoomServiceManagement.Api/appsettings.json" Line="14" Column="14" />
-      <File FileName="UOCHotels.RoomServiceManagement.Messaging/Listener.cs" Line="21" Column="32" />
-      <File FileName="UOCHotels.RoomServiceManagement.Messaging/Configuration/Exchange.cs" Line="6" Column="41" />
-      <File FileName="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/IntegrationEvents/RoomOccupationStarted.cs" Line="11" Column="1" />
-      <File FileName="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/IntegrationEvents/DailyRoomServicesCreated.cs" Line="22" Column="32" />
-      <File FileName="UOCHotels.RoomServiceManagement.Domain/ValueObjects/Floor.cs" Line="16" Column="1" />
-      <File FileName="UOCHotels.RoomServiceManagement.Domain/ValueObjects/EmployeeId.cs" Line="1" Column="1" />
-      <File FileName="UOCHotels.RoomServiceManagement.Domain/ValueObjects/Building.cs" Line="4" Column="62" />
-      <File FileName="RoomServiceManagement.Api/Startup.cs" Line="72" Column="13" />
+      <File FileName="UOCHotels.RoomServiceManagement.Application/IntegrationEvents/RoomOccupationStarted.cs" />
+      <File FileName="UOCHotels.RoomServiceManagement.Application/IntegrationEvents/DailyRoomServicesCreated.cs" />
+      <File FileName="UOCHotels.RoomServiceManagement.Application/Handlers/Commands/AddCommentRequestHandler.cs" Line="12" Column="45" />
+      <File FileName="UOCHotels.RoomServiceManagement.Application/Handlers/Queries/GetRoomServiceByIdQueryHandler.cs" />
+      <File FileName="UOCHotels.RoomServiceManagement.Application/Handlers/Events/RoomOccupiedEventHandler.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="UOCHotels.RoomServiceManagement" expanded="True">
+            <Node name="Solution Items" expanded="True" />
             <Node name="src" expanded="True">
               <Node name="Api" expanded="True">
-                <Node name="RoomServiceManagement.Api" expanded="True" />
+                <Node name="RoomServiceManagement.Api" expanded="True" selected="True">
+                  <Node name="Controllers" expanded="True" />
+                </Node>
               </Node>
               <Node name="Core" expanded="True">
-                <Node name="UOCHotels.RoomServiceManagement.Application" expanded="True">
-                  <Node name="IntegrationEvents" expanded="True" />
-                  <Node name="Services" expanded="True" />
+                <Node name="UOCHotels.RoomServiceManagement.Domain" expanded="True">
+                  <Node name="Entities" expanded="True" />
                 </Node>
               </Node>
               <Node name="Infrastructure" expanded="True">
-                <Node name="UOCHotels.RoomServiceManagement.Messaging" expanded="True" selected="True" />
+                <Node name="UOCHotels.RoomServiceManagement.Messaging" expanded="True">
+                  <Node name="Dependencies" expanded="True">
+                    <Node name="ProjectDependencies" expanded="True" />
+                    <Node name="SdkDependencies" expanded="True" />
+                  </Node>
+                </Node>
               </Node>
-            </Node>
-            <Node name="docker-compose" expanded="True">
-              <Node name="docker-compose.yml" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -54,14 +60,17 @@
   <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Queries/GetRoomServicesByRoomIdQueryHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Queries/GetRoomServicesByRoomIdQueryHandler.cs" line="27" column="1" />
-      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Commands/CreateRoomServiceCommandHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Commands/CreateRoomServiceCommandHandler.cs" line="31" column="1" />
-      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Commands/PlanRoomServiceRequestHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Commands/PlanRoomServiceRequestHandler.cs" line="46" column="1" />
-      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/HostedServices/HouseKeepingPlannerService.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/HostedServices/HouseKeepingPlannerService.cs" line="31" column="1" />
-      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Services/HouseKeepingPlanner.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Services/HouseKeepingPlanner.cs" line="49" column="1" />
-      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Services/HouseKeepingPlanner.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Services/HouseKeepingPlanner.cs" line="50" column="1" />
-      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/HostedServices/HouseKeepingPlannerService.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/HostedServices/HouseKeepingPlannerService.cs" line="25" column="1" />
-      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels.RoomServiceManagement/RoomServiceManagement.Api/Startup.cs" relfile="RoomServiceManagement.Api/Startup.cs" line="72" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Queries/GetRoomServicesByRoomIdQueryHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Queries/GetRoomServicesByRoomIdQueryHandler.cs" line="27" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Commands/CreateRoomServiceCommandHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Commands/CreateRoomServiceCommandHandler.cs" line="31" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Commands/PlanRoomServiceRequestHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Commands/PlanRoomServiceRequestHandler.cs" line="46" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/HostedServices/HouseKeepingPlannerService.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/HostedServices/HouseKeepingPlannerService.cs" line="31" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Services/HouseKeepingPlanner.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Services/HouseKeepingPlanner.cs" line="49" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Services/HouseKeepingPlanner.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Services/HouseKeepingPlanner.cs" line="50" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/HostedServices/HouseKeepingPlannerService.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/HostedServices/HouseKeepingPlannerService.cs" line="25" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Messaging/RabbitMqListener.cs" relfile="UOCHotels.RoomServiceManagement.Messaging/RabbitMqListener.cs" line="53" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/RoomServiceManagement.Api/Startup.cs" relfile="RoomServiceManagement.Api/Startup.cs" line="141" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Queries/GetEmployeeByIdQueryHandler.cs" relfile="UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/Handlers/Queries/GetEmployeeByIdQueryHandler.cs" line="24" column="1" />
+      <Breakpoint file="/Users/jorgeoliverodriguez/Projects/UOCHotels/RoomServiceManagement.Api/Controllers/EmployeeController.cs" relfile="RoomServiceManagement.Api/Controllers/EmployeeController.cs" line="57" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations>

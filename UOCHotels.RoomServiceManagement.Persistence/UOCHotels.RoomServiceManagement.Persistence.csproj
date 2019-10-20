@@ -16,4 +16,7 @@
     <Compile Remove="RoomServiceManagementContext.cs" />
     <Compile Remove="Configuration\RoomServiceConfiguration.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
 </Project>

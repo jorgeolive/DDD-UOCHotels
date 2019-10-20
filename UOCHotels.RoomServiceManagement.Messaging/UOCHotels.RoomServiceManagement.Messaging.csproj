@@ -16,6 +16,6 @@
     <Folder Include="Configuration\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UOCHotels.RoomServiceManagement\UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj" />
+    <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj" />
   </ItemGroup>
 </Project>

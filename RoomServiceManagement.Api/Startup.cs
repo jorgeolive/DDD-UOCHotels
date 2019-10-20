@@ -24,14 +24,23 @@ using UOCHotels.RoomServiceManagement.Application.Services;
 using UOCHotels.RoomServiceManagement.Application.HostedServices;
 using UOCHotels.RoomServiceManagement.Messaging.Configuration;
 using UOCHotels.RoomServiceManagement.Messaging;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using UOCHotels.RoomServiceManagement.Persistence.Configuration;
 
 namespace RoomServiceManagement.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var cfgBuilder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+            .AddEnvironmentVariables();
+
+            Configuration = cfgBuilder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -39,6 +48,31 @@ namespace RoomServiceManagement.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RabbitMqSubscriberConfiguration>(options => Configuration.GetSection("RabbitMQ").Bind(options));
+            services.Configure<RavenDbConfiguration>(options => Configuration.GetSection("RavenDb").Bind(options));
+
+            services.AddSingleton<RabbitMqSubscriberConfiguration>(
+                provider =>
+                provider.GetService<IOptions<RabbitMqSubscriberConfiguration>>().Value);
+
+            services.AddSingleton<RavenDbConfiguration>(
+                provider =>
+                provider.GetService<IOptions<RavenDbConfiguration>>().Value);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
+            AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    IssuerSigningKey = GetApiSecret(),
+                    RequireSignedTokens = true,
+                    RequireExpirationTime = true,
+                    ValidateLifetime = true,
+                    ValidateAudience = false,
+                    ValidateIssuer = false
+                };
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>
             {
@@ -52,15 +86,14 @@ namespace RoomServiceManagement.Api
                 });
             });
 
-            //TODO OBTAIN THE DB PARAMS FROM CONFIG ;)
             services.AddSingleton(provider =>
             {
                 var store = new DocumentStore
                 {
                     Urls = new[] {
-                        "http://host.docker.internal:8080"
+                        provider.GetService<RavenDbConfiguration>().Url
                     },
-                    Database = "RoomServiceManagement",
+                    Database = provider.GetService<RavenDbConfiguration>().Database,
                     Conventions =
                     {
                         FindIdentityProperty = x => x.Name == "DbId"
@@ -69,10 +102,6 @@ namespace RoomServiceManagement.Api
 
                 return store.Initialize();
             });
-
-            var rabbitMQconfig = new RabbitMqSubscriberConfiguration();
-            Configuration.Bind("RabbitMQ", rabbitMQconfig);
-            services.AddSingleton(rabbitMQconfig);
 
             services.AddScoped<IRoomServiceRepository, RoomServiceRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
@@ -97,6 +126,7 @@ namespace RoomServiceManagement.Api
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -104,5 +134,12 @@ namespace RoomServiceManagement.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
+
+        public SecurityKey GetApiSecret()
+         =>
+               //For future me: This is taken from environment variable :)
+               string.IsNullOrEmpty(Configuration["AppSettings:JwtSecret"]) ?
+               throw new ApplicationException("The API client secret is not setup")
+               : new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(Configuration["AppSettings:JwtSecret"]));
     }
 }

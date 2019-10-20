@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Queries;
 using UOCHotels.RoomServiceManagement.Application.ReadModel;
-using UOCHotels.RoomServiceManagement.Domain;
 
 namespace RoomServiceManagement.Api.Controllers
 {
@@ -45,16 +46,17 @@ namespace RoomServiceManagement.Api.Controllers
             //Review : how to handle when the domain layer throws an exception?      
         }
 
+        [Authorize]
         [HttpGet("{employeeId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EmployeeModel>> Get(Guid employeeId)
         {
-            var RoomServiceModel = await _mediator.Send<EmployeeModel>(new GetEmployeeByIdQuery(employeeId));
+            var employeeModel = await _mediator.Send<EmployeeModel>(new GetEmployeeByIdQuery(employeeId));
 
-            if (RoomServiceModel != null)
+            if (employeeModel != null)
             {
-                return RoomServiceModel;
+                return employeeModel;
             }
 
             return NotFound();

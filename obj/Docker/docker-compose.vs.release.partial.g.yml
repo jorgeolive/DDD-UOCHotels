@@ -7,9 +7,7 @@ services:
         com.microsoft.created-by: "visual-studio"
         com.microsoft.visual-studio.project-name: "RoomServiceManagement.Api"
     volumes:
-      - C:\Users\j.olive\vsdbg\vs2017u5:/remote_debugger:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - /Users/jorgeoliverodriguez/vsdbg/vs2017u5:/remote_debugger:rw
 
     entrypoint: tail -f /dev/null
     labels:
@@ -17,3 +15,4 @@ services:
       com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /root/.nuget/packages --additionalProbingPath /root/.nuget/fallbackpackages  \"RoomServiceManagement.Api.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
+    tty: true
