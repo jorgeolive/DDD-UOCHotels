@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Queries;
 using UOCHotels.RoomServiceManagement.Application.ReadModel;
 
 namespace RoomServiceManagement.Api.Controllers
 {
+    [Authorize]
     [Route("api/rooms/")]
     [ApiController]
     public class RoomController : ControllerBase
@@ -29,11 +32,11 @@ namespace RoomServiceManagement.Api.Controllers
         [HttpPut()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> CreateRoom([FromBody] CreateRoomRequest command)
+        public async Task<ActionResult> CreateRoom([FromBody] CreateRoomRequest request)
         {
             try
             {
-                await _mediator.Send(command);
+                await _mediator.Send(request);
                 return Ok();
             }
             catch (Exception ex)

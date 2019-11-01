@@ -9,6 +9,8 @@ namespace UOCHotels.RoomServiceManagement.Application.Commands
         public int RoomNumber;
         public int Floor;
 
+        private CreateRoomRequest() { }
+
         public CreateRoomRequest(string buildingName, int roomNumber, int floor)
         {
             BuildingName = buildingName;

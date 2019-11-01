@@ -1,14 +1,14 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim AS base 
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 WORKDIR /src
 COPY RoomServiceManagement.Api/RoomServiceManagement.Api.csproj RoomServiceManagement.Api/
-COPY UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj UOCHotels.RoomServiceManagement/UOCHotels.RoomServiceManagement.Application/
+COPY UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj UOCHotels.RoomServiceManagement.Application/
 COPY UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj UOCHotels.RoomServiceManagement.Domain/
 COPY UOCHotels.RoomServiceManagement.Persistence/UOCHotels.RoomServiceManagement.Persistence.csproj UOCHotels.RoomServiceManagement.Persistence/
+COPY UOCHotels.RoomServiceManagement.Messaging/UOCHotels.RoomServiceManagement.Messaging.csproj UOCHotels.RoomServiceManagement.Messaging/
+
 RUN dotnet restore "RoomServiceManagement.Api/RoomServiceManagement.Api.csproj"
 COPY . .
 WORKDIR "/src/RoomServiceManagement.Api"

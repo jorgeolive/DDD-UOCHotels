@@ -1,5 +1,6 @@
 ﻿using System;
 using MediatR;
+using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 
 namespace UOCHotels.RoomServiceManagement.Domain.Events
 {

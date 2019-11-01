@@ -23,7 +23,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Events
         {
             var room = await _roomRepository.GetByAddress(Address.CreateFor(DoorNumber.CreateFor(@event.RoomNumber), Floor.CreateFor(@event.Floor), Building.CreateFor(@event.Building)));
             if (room == null)
-                throw new RoomNotFoundException(nameof(@event));
+                return;
             //Not sure if this exception belongs to the application layer
 
             room.StartOccupation(@event.OccupationEndDate);

@@ -22,7 +22,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ROOMSERVICEAPP_SECRET": "aef3423423f23f#@#¢ef2e243423422",
+        "AppSettings__JwtSecret": "aef3423423f23f#@#¢ef2e243423422",
         "ASPNETCORE_ENVIRONMENT": "Production"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"

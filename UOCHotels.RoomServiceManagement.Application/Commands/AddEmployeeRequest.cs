@@ -9,6 +9,8 @@ namespace UOCHotels.RoomServiceManagement.Application.Commands
         public string Name;
         public string SurName;
 
+        private AddEmployeeRequest() { }
+
         public AddEmployeeRequest(string name, string surName, DateTime onBoarding)
         {
             this.Name = name;

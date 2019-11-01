@@ -9,6 +9,8 @@ namespace UOCHotels.RoomServiceManagement.Application.Commands
         public Guid RoomServiceId;
         public Guid EmployeeId;
 
+        private AddCommentRequest() { }
+
         public AddCommentRequest(Guid roomServiceId, Guid employeeId, string text)
         {
             this.RoomServiceId = roomServiceId;

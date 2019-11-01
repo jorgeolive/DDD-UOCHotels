@@ -15,6 +15,7 @@ namespace UOCHotels.RoomServiceManagement.Messaging
 {
     public class RabbitMqListener : IHostedService
     {
+        private int _connectionRetries = 5;
         private RabbitMqSubscriberConfiguration _messagingConfig;
         private IServiceScopeFactory _scopeFactory { get; }
 
@@ -38,7 +39,7 @@ namespace UOCHotels.RoomServiceManagement.Messaging
                 Port = _messagingConfig.Port
             };
 
-            var connection = factory.CreateConnection();
+            var connection = CreateConnection(factory);
             var channel = connection.CreateModel();
 
             channel.ExchangeDeclare(exchange: _messagingConfig.Exchange.Name,
@@ -86,6 +87,47 @@ namespace UOCHotels.RoomServiceManagement.Messaging
         public Task StopAsync(CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+
+        private IConnection CreateConnection(ConnectionFactory connectionFactory)
+        {
+            IConnection connection = null;
+
+            try
+            {
+                connection = connectionFactory.CreateConnection();
+
+                if (connection.IsOpen)
+                {
+                    return connection;
+                }
+                else
+                {
+                    if (_connectionRetries > 0)
+                    {
+                        Thread.Sleep(10000);
+                        _connectionRetries--;
+                        return CreateConnection(connectionFactory);
+                    }
+                    else
+                    {
+                        throw new ApplicationException("Message Broker Unavailable.");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                if (_connectionRetries > 0)
+                {
+                    Thread.Sleep(10000);
+                    _connectionRetries--;
+                    return CreateConnection(connectionFactory);
+                }
+                else
+                {
+                    throw new ApplicationException(e.Message);
+                }
+            }
         }
     }
 }

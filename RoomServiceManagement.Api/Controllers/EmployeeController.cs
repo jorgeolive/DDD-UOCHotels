@@ -11,6 +11,7 @@ using UOCHotels.RoomServiceManagement.Application.ReadModel;
 
 namespace RoomServiceManagement.Api.Controllers
 {
+    [Authorize]
     [Route("api/employees/")]
     [ApiController]
     public class EmployeeController : ControllerBase
@@ -46,7 +47,6 @@ namespace RoomServiceManagement.Api.Controllers
             //Review : how to handle when the domain layer throws an exception?      
         }
 
-        [Authorize]
         [HttpGet("{employeeId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

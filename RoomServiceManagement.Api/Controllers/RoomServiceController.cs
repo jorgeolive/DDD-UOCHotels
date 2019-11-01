@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UOCHotels.RoomServiceManagement.Application.Commands;
@@ -12,6 +13,7 @@ using UOCHotels.RoomServiceManagement.Application.ReadModel;
 
 namespace RoomServiceManagement.Api.Controllers
 {
+    [Authorize]
     [Route("api/roomservices/")]
     [ApiController]
     public class RoomServicesController : ControllerBase

@@ -13,6 +13,9 @@ namespace UOCHotels.RoomServiceManagement.Application.Commands
             this.RoomServiceId = roomServiceId == default ? throw new ArgumentNullException(nameof(roomServiceId)) : roomServiceId;
             this.PlanDate = planDate == default ? throw new ArgumentNullException(nameof(planDate)) : planDate;
         }
+
+        private PlanRoomServiceRequest() { }
+
     }
 }
 

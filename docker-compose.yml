@@ -2,8 +2,16 @@ version: '3.4'
 
 services:
   roomservicemanagement.api:
-    env_file: development.env
+    depends_on:
+      - ravendb
+      - rabbitmq
+    env_file: netcoreapi.env
     image: ${DOCKER_REGISTRY-}roomservicemanagement
+    ports:
+      - target: 443
+        published: 5000
+        protocol: tcp
+        mode: host
     build:
       context: .
       dockerfile: RoomServiceManagement.Api/Dockerfile

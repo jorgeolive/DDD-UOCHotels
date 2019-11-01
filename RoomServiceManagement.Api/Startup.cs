@@ -4,35 +4,31 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Session;
-using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 using UOCHotels.RoomServiceManagement.Persistence;
 using Swashbuckle.AspNetCore.Swagger;
-using UOCHotels.RoomServiceManagement.Application.Handlers;
 using UOCHotels.RoomServiceManagement.Application.Handlers.Commands;
 using UOCHotels.RoomServiceManagement.Application.Services;
-using UOCHotels.RoomServiceManagement.Application.HostedServices;
 using UOCHotels.RoomServiceManagement.Messaging.Configuration;
 using UOCHotels.RoomServiceManagement.Messaging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using UOCHotels.RoomServiceManagement.Persistence.Configuration;
+using UOCHotels.RoomServiceManagement.Application.Hubs;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.OpenApi.Models;
 
 namespace RoomServiceManagement.Api
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var cfgBuilder = new ConfigurationBuilder()
             .SetBasePath(env.ContentRootPath)
@@ -73,16 +69,24 @@ namespace RoomServiceManagement.Api
                 };
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddCors(options =>
+            {
+                options.AddPolicy("SignalRClients",
+                builder =>
+                {
+                    builder.WithOrigins("https://localhost:5001",
+                                        "https://localhost:5000");
+                });
+            });
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
                     Title = "UOC RoomServiceManagement API",
                     Description = "Room Management Service Web API",
-                    TermsOfService = "None",
-                    Contact = new Contact() { Name = "Jorge Olivé", Email = "j.olive.rodriguez@gmail.com" }
+                    Contact = new OpenApiContact() { Name = "Jorge Olivé", Email = "j.olive.rodriguez@gmail.com" }
                 });
             });
 
@@ -108,14 +112,16 @@ namespace RoomServiceManagement.Api
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddMediatR(Assembly.GetAssembly(typeof(CreateRoomServiceCommandHandler)));
             services.AddScoped<HouseKeepingPlanner>();
-            //services.AddHostedService<HouseKeepingPlannerService>();
             services.AddHostedService<RabbitMqListener>();
+            services.AddSignalR();
+            services.AddMvcCore().AddApiExplorer();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.EnvironmentName == "Development")
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -125,13 +131,30 @@ namespace RoomServiceManagement.Api
                 app.UseHsts();
             }
 
+            app.UseRouting();
             app.UseHttpsRedirection();
+
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseAuthorization();
+
+            app.UseCors("SignalRClients");
+
+            app.UseStaticFiles();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            /*app.UseSignalR(routes =>
+            {
+                routes.MapHub<RoomServiceHub>("/RoomServiceHub");
+            });*/
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<RoomServiceHub>("/RoomServiceHub");
             });
         }
 

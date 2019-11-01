@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="MediatR" Version="7.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Services\" />
@@ -15,6 +16,7 @@
         <Folder Include="HostedServices\" />
         <Folder Include="Handlers\Events\" />
         <Folder Include="IntegrationEvents\" />
+        <Folder Include="Hubs\" />
     </ItemGroup>
     <ItemGroup>
         <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
