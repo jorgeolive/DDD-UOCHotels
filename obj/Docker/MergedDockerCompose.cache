@@ -22,7 +22,7 @@ services:
       target: 8080
   roomservicemanagement.api:
     build:
-      context: /Users/jorgeoliverodriguez/Projects/UOCHotels
+      context: C:\src\jorge\UOCHotels
       dockerfile: RoomServiceManagement.Api/Dockerfile
     depends_on:
     - rabbitmq
@@ -45,6 +45,7 @@ services:
     - published: 44386
       target: 443
     volumes:
-    - /Users/jorgeoliverodriguez/.aspnet/https:/root/.aspnet/https:ro
-    - /Users/jorgeoliverodriguez/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    - C:\Users\JorgeOlivÚRodrÝguez\.aspnet\https:/root/.aspnet/https:ro
+    - C:\Users\JorgeOlivÚRodrÝguez\AppData\Roaming\ASP.NET\https:/root/.aspnet/https/:rw
+    - C:\Users\JorgeOlivÚRodrÝguez\.microsoft\usersecrets:/root/.microsoft/usersecrets:ro
 version: '3.4'

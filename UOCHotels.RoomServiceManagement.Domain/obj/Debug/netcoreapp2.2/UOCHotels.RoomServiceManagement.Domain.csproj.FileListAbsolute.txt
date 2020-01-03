@@ -21,3 +21,11 @@ C:/Users/j.olive/source/repos/UOCHotels/UOCHotels.RoomServiceManagement.Domain/o
 /Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.AssemblyInfo.cs
 /Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.dll
 /Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/obj/Debug/netcoreapp2.2/UOCHotels.RoomServiceManagement.Domain.pdb
+C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Domain\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.deps.json
+C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Domain\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.dll
+C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Domain\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.pdb
+C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Domain\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.csprojAssemblyReference.cache
+C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Domain\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.AssemblyInfoInputs.cache
+C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Domain\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.AssemblyInfo.cs
+C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Domain\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.dll
+C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Domain\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.pdb

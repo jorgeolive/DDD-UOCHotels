@@ -1,41 +1,44 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jorgeoliverodriguez/Projects/UOCHotels/RoomServiceManagement.Api/RoomServiceManagement.Api.csproj": {}
+    "C:\\src\\jorge\\UOCHotels\\RoomServiceManagement.Api\\RoomServiceManagement.Api.csproj": {}
   },
   "projects": {
-    "/Users/jorgeoliverodriguez/Projects/UOCHotels/RoomServiceManagement.Api/RoomServiceManagement.Api.csproj": {
+    "C:\\src\\jorge\\UOCHotels\\RoomServiceManagement.Api\\RoomServiceManagement.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jorgeoliverodriguez/Projects/UOCHotels/RoomServiceManagement.Api/RoomServiceManagement.Api.csproj",
+        "projectUniqueName": "C:\\src\\jorge\\UOCHotels\\RoomServiceManagement.Api\\RoomServiceManagement.Api.csproj",
         "projectName": "RoomServiceManagement.Api",
-        "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/RoomServiceManagement.Api/RoomServiceManagement.Api.csproj",
-        "packagesPath": "/Users/jorgeoliverodriguez/.nuget/packages/",
-        "outputPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/RoomServiceManagement.Api/obj/",
+        "projectPath": "C:\\src\\jorge\\UOCHotels\\RoomServiceManagement.Api\\RoomServiceManagement.Api.csproj",
+        "packagesPath": "C:\\Users\\JorgeOlivéRodríguez\\.nuget\\packages\\",
+        "outputPath": "C:\\src\\jorge\\UOCHotels\\RoomServiceManagement.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/jorgeoliverodriguez/.config/NuGet/NuGet.Config"
+          "C:\\Users\\JorgeOlivéRodríguez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\src\\localnugetfeed": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj": {
-                "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj"
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj"
               },
-              "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Messaging/UOCHotels.RoomServiceManagement.Messaging.csproj": {
-                "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Messaging/UOCHotels.RoomServiceManagement.Messaging.csproj"
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj"
               },
-              "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Persistence/UOCHotels.RoomServiceManagement.Persistence.csproj": {
-                "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Persistence/UOCHotels.RoomServiceManagement.Persistence.csproj"
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\UOCHotels.RoomServiceManagement.Persistence.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\UOCHotels.RoomServiceManagement.Persistence.csproj"
               }
             }
           }
@@ -96,6 +99,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -104,36 +125,39 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj": {
+    "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj",
+        "projectUniqueName": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj",
         "projectName": "UOCHotels.RoomServiceManagement.Application",
-        "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj",
-        "packagesPath": "/Users/jorgeoliverodriguez/.nuget/packages/",
-        "outputPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Application/obj/",
+        "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj",
+        "packagesPath": "C:\\Users\\JorgeOlivéRodríguez\\.nuget\\packages\\",
+        "outputPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/jorgeoliverodriguez/.config/NuGet/NuGet.Config"
+          "C:\\Users\\JorgeOlivéRodríguez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\src\\localnugetfeed": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj": {
-                "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj"
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj"
               }
             }
           }
@@ -170,34 +194,51 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj": {
+    "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj",
+        "projectUniqueName": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj",
         "projectName": "UOCHotels.RoomServiceManagement.Domain",
-        "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj",
-        "packagesPath": "/Users/jorgeoliverodriguez/.nuget/packages/",
-        "outputPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/obj/",
+        "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj",
+        "packagesPath": "C:\\Users\\JorgeOlivéRodríguez\\.nuget\\packages\\",
+        "outputPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/jorgeoliverodriguez/.config/NuGet/NuGet.Config"
+          "C:\\Users\\JorgeOlivéRodríguez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\src\\localnugetfeed": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -235,36 +276,39 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Messaging/UOCHotels.RoomServiceManagement.Messaging.csproj": {
+    "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Messaging/UOCHotels.RoomServiceManagement.Messaging.csproj",
+        "projectUniqueName": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj",
         "projectName": "UOCHotels.RoomServiceManagement.Messaging",
-        "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Messaging/UOCHotels.RoomServiceManagement.Messaging.csproj",
-        "packagesPath": "/Users/jorgeoliverodriguez/.nuget/packages/",
-        "outputPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Messaging/obj/",
+        "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj",
+        "packagesPath": "C:\\Users\\JorgeOlivéRodríguez\\.nuget\\packages\\",
+        "outputPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/jorgeoliverodriguez/.config/NuGet/NuGet.Config"
+          "C:\\Users\\JorgeOlivéRodríguez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\src\\localnugetfeed": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj": {
-                "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj"
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj"
               }
             }
           }
@@ -313,41 +357,58 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Persistence/UOCHotels.RoomServiceManagement.Persistence.csproj": {
+    "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\UOCHotels.RoomServiceManagement.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Persistence/UOCHotels.RoomServiceManagement.Persistence.csproj",
+        "projectUniqueName": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\UOCHotels.RoomServiceManagement.Persistence.csproj",
         "projectName": "UOCHotels.RoomServiceManagement.Persistence",
-        "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Persistence/UOCHotels.RoomServiceManagement.Persistence.csproj",
-        "packagesPath": "/Users/jorgeoliverodriguez/.nuget/packages/",
-        "outputPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Persistence/obj/",
+        "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\UOCHotels.RoomServiceManagement.Persistence.csproj",
+        "packagesPath": "C:\\Users\\JorgeOlivéRodríguez\\.nuget\\packages\\",
+        "outputPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/jorgeoliverodriguez/.config/NuGet/NuGet.Config"
+          "C:\\Users\\JorgeOlivéRodríguez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\src\\localnugetfeed": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj": {
-                "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj"
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj"
               }
             }
           }
@@ -390,7 +451,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

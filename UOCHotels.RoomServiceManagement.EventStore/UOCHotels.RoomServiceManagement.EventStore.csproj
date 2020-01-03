@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EventStore.Client" Version="5.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj" />
+    <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Domain\UOCHotels.RoomServiceManagement.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

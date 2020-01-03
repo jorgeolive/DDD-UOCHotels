@@ -1,28 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj": {}
+    "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj": {}
   },
   "projects": {
-    "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj": {
+    "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj",
+        "projectUniqueName": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj",
         "projectName": "UOCHotels.RoomServiceManagement.Domain",
-        "projectPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj",
-        "packagesPath": "/Users/jorgeoliverodriguez/.nuget/packages/",
-        "outputPath": "/Users/jorgeoliverodriguez/Projects/UOCHotels/UOCHotels.RoomServiceManagement.Domain/obj/",
+        "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj",
+        "packagesPath": "C:\\Users\\JorgeOlivéRodríguez\\.nuget\\packages\\",
+        "outputPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/jorgeoliverodriguez/.config/NuGet/NuGet.Config"
+          "C:\\Users\\JorgeOlivéRodríguez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.2"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\src\\localnugetfeed": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -60,7 +63,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

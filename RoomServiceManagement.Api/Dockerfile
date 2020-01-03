@@ -1,7 +1,7 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim AS base 
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base 
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
 COPY RoomServiceManagement.Api/RoomServiceManagement.Api.csproj RoomServiceManagement.Api/
 COPY UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj UOCHotels.RoomServiceManagement.Application/
@@ -15,7 +15,7 @@ WORKDIR "/src/RoomServiceManagement.Api"
 RUN dotnet build "RoomServiceManagement.Api.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "RoomServiceManagement.Api.csproj" -c Release -o /app
+RUN dotnet publish "RoomServiceManagement.Api.csproj" -c Release  -o /app
 
 FROM base AS final
 WORKDIR /app
