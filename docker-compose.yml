@@ -7,16 +7,23 @@ services:
       - rabbitmq
     env_file: netcoreapi.env
     image: ${DOCKER_REGISTRY-}roomservicemanagement
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=44386
     ports:
-      - target: 443
-        published: 5000
-        protocol: tcp
-        mode: host
+      - "53838:80"
+      - "44386:443"
+    #ports
+      #- "5001:80"
+      #- "5000:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets/:/root/.microsoft/usersecrets     
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https
     build:
       context: .
       dockerfile: RoomServiceManagement.Api/Dockerfile
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+
   ravendb: 
     container_name: roomservicemanagementravendb
     image: ravendb/ravendb

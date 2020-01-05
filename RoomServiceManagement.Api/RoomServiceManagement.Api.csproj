@@ -5,8 +5,10 @@
         <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
         <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
         <UserSecretsId>289c5e54-2b7d-49f8-869d-587ada4ab842</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
         <PackageReference Include="RavenDB.Client" Version="4.2.4" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
         <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
