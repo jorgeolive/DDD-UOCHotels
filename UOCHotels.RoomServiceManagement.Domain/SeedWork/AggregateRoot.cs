@@ -6,6 +6,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
 {
     public abstract class AggregateRoot<TId> : IInternalEventHandler where TId : ValueObject<TId>
     {
+        public long Version = 0;
         public TId Id { get; protected set; }
         private readonly List<object> _changes;
 
@@ -15,6 +16,15 @@ namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
         protected abstract void When(object @event);
 
         public abstract void EnsureValidState();
+
+        public void Load(IEnumerable<object> history)
+        {
+            foreach (var e in history)
+            {
+                When(e);
+                Version++;
+            }
+        }
 
         protected void Apply(object @event)
         {

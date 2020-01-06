@@ -10,6 +10,8 @@ COPY UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement
 COPY UOCHotels.RoomServiceManagement.Domain/UOCHotels.RoomServiceManagement.Domain.csproj UOCHotels.RoomServiceManagement.Domain/
 COPY UOCHotels.RoomServiceManagement.Persistence/UOCHotels.RoomServiceManagement.Persistence.csproj UOCHotels.RoomServiceManagement.Persistence/
 COPY UOCHotels.RoomServiceManagement.Messaging/UOCHotels.RoomServiceManagement.Messaging.csproj UOCHotels.RoomServiceManagement.Messaging/
+COPY UOCHotels.RoomServiceManagement.EventStore/UOCHotels.RoomServiceManagement.EventStore.csproj UOCHotels.RoomServiceManagement.EventStore/
+
 
 RUN dotnet restore "RoomServiceManagement.Api/RoomServiceManagement.Api.csproj"
 COPY . .

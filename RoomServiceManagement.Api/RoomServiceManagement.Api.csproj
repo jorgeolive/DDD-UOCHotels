@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
         <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
         <UserSecretsId>289c5e54-2b7d-49f8-869d-587ada4ab842</UserSecretsId>
@@ -20,6 +20,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\UOCHotels.RoomServiceManagement.EventStore\UOCHotels.RoomServiceManagement.EventStore.csproj" />
         <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Persistence\UOCHotels.RoomServiceManagement.Persistence.csproj" />
         <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Messaging\UOCHotels.RoomServiceManagement.Messaging.csproj" />
         <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj">

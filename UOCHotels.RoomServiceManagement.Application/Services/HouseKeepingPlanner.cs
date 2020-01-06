@@ -7,8 +7,8 @@ using UOCHotels.RoomServiceManagement.Domain;
 using UOCHotels.RoomServiceManagement.Domain.DomainServices;
 using UOCHotels.RoomServiceManagement.Application.IntegrationEvents;
 using UOCHotels.RoomServiceManagement.Domain.Entities;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
+using UOCHotels.RoomServiceManagement.Application.Repositories;
 
 namespace UOCHotels.RoomServiceManagement.Application.Services
 {

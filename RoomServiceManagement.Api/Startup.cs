@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Raven.Client.Documents;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
-using UOCHotels.RoomServiceManagement.Persistence;
-using Swashbuckle.AspNetCore.Swagger;
 using UOCHotels.RoomServiceManagement.Application.Handlers.Commands;
 using UOCHotels.RoomServiceManagement.Application.Services;
 using UOCHotels.RoomServiceManagement.Messaging.Configuration;
 using UOCHotels.RoomServiceManagement.Messaging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using UOCHotels.RoomServiceManagement.Persistence.Configuration;
 using UOCHotels.RoomServiceManagement.Application.Hubs;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
+using UOCHotels.RoomServiceManagement.Application.Repositories;
+using UOCHotels.RoomServiceManagement.Persistence.Configuration;
+using UOCHotels.RoomServiceManagement.Persistence;
+using UOCHotels.RoomServiceManagement.EventStore.Configuration;
+using UOCHotels.RoomServiceManagement.EventStore;
+using EventStore.ClientAPI;
+using UOCHotels.RoomServiceManagement.Application.Repositories;
 
 namespace RoomServiceManagement.Api
 {
@@ -46,6 +45,7 @@ namespace RoomServiceManagement.Api
         {
             services.Configure<RabbitMqSubscriberConfiguration>(options => Configuration.GetSection("RabbitMQ").Bind(options));
             services.Configure<RavenDbConfiguration>(options => Configuration.GetSection("RavenDb").Bind(options));
+            services.Configure<EventStoreConfiguration>(options => Configuration.GetSection("EventStore").Bind(options));
 
             services.AddSingleton<RabbitMqSubscriberConfiguration>(
                 provider =>
@@ -54,6 +54,10 @@ namespace RoomServiceManagement.Api
             services.AddSingleton<RavenDbConfiguration>(
                 provider =>
                 provider.GetService<IOptions<RavenDbConfiguration>>().Value);
+
+            services.AddSingleton<EventStoreConfiguration>(
+                provider =>
+                provider.GetService<IOptions<EventStoreConfiguration>>().Value);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(options =>
@@ -68,6 +72,12 @@ namespace RoomServiceManagement.Api
                     ValidateIssuer = false
                 };
             });
+
+            var esConnection = EventStoreConnection.Create(Configuration["EventStore:ConnectionString"], ConnectionSettings.Create().KeepReconnecting());
+            var store = new AggregateStore(esConnection);
+
+            services.AddSingleton(esConnection);
+            services.AddSingleton<IAggregateStore>(store);
 
             services.AddCors(options =>
             {
@@ -113,6 +123,7 @@ namespace RoomServiceManagement.Api
             services.AddMediatR(Assembly.GetAssembly(typeof(CreateRoomServiceCommandHandler)));
             services.AddScoped<HouseKeepingPlanner>();
             services.AddHostedService<RabbitMqListener>();
+            services.AddHostedService<ServiceStartUp>();
             services.AddSignalR();
             services.AddMvcCore().AddApiExplorer();
             services.AddControllers().AddNewtonsoftJson();

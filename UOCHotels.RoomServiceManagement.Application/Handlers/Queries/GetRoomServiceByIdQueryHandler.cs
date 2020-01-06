@@ -4,7 +4,7 @@ using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
 using UOCHotels.RoomServiceManagement.Application.Queries;
 using UOCHotels.RoomServiceManagement.Application.ReadModel;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Application.Repositories;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Queries

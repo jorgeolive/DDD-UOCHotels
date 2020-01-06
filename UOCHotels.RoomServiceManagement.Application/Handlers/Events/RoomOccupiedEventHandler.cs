@@ -5,7 +5,7 @@ using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
 using UOCHotels.RoomServiceManagement.Application.IntegrationEvents;
 using UOCHotels.RoomServiceManagement.Domain.Events;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Application.Repositories;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Events

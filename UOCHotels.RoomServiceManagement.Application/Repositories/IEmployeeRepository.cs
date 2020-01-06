@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UOCHotels.RoomServiceManagement.Domain.Entities;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Application.Repository
+namespace UOCHotels.RoomServiceManagement.Application.Repositories
 {
     public interface IEmployeeRepository
     {

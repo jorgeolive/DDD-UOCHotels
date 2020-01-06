@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.SignalR;
 using UOCHotels.RoomServiceManagement.Application.Hubs;
 using UOCHotels.RoomServiceManagement.Application.ReadModel;
 using UOCHotels.RoomServiceManagement.Domain.Events;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Application.Repositories;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Events
 {

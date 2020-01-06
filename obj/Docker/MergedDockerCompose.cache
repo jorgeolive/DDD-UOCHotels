@@ -1,4 +1,15 @@
 services:
+  eventstore:
+    container_name: eventstore
+    environment:
+      EVENTSTORE_EXT_HTTP_PORT: '2113'
+      EVENTSTORE_EXT_TCP_PORT: '1113'
+    image: eventstore/eventstore
+    ports:
+    - published: 2113
+      target: 2113
+    - published: 1113
+      target: 1113
   rabbitmq:
     container_name: rabbit
     environment:
@@ -25,18 +36,23 @@ services:
       context: C:\src\jorge\UOCHotels
       dockerfile: RoomServiceManagement.Api/Dockerfile
     depends_on:
+    - eventstore
     - rabbitmq
     - ravendb
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_HTTPS_PORT: '5001'
+      ASPNETCORE_HTTPS_PORT: '44386'
+      ASPNETCORE_URLS: https://+:443;http://+:80
       AppSettings__JwtSecret: aasd3423423rji23jri23rj23jrj23rji23ii3
+      EventStore__ConnectionString: ConnectTo=tcp://admin:changeit@localhost:1113;     DefaultUserCredentials=admin:changeit;
       RabbitMQ__Password: some_password
       RabbitMQ__User: rabbitmquser
     image: roomservicemanagement
     ports:
-    - published: 5001
-      target: 5001
+    - published: 53838
+      target: 80
+    - published: 44386
+      target: 443
     volumes:
     - C:\Users\JorgeOlivÚRodrÝguez\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:rw
     - C:\Users\JorgeOlivÚRodrÝguez\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:rw

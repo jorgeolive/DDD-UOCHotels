@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
+using UOCHotels.RoomServiceManagement.Application.Repositories;
 using UOCHotels.RoomServiceManagement.Domain;
 using UOCHotels.RoomServiceManagement.Domain.Entities;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Persistence

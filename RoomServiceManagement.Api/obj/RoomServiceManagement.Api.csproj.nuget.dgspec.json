@@ -21,7 +21,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.0"
+          "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -29,10 +29,13 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.0": {
+          "netcoreapp3.1": {
             "projectReferences": {
               "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj": {
                 "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj"
+              },
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\UOCHotels.RoomServiceManagement.EventStore.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\UOCHotels.RoomServiceManagement.EventStore.csproj"
               },
               "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj": {
                 "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj"
@@ -50,7 +53,7 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.0": {
+        "netcoreapp3.1": {
           "dependencies": {
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -103,24 +106,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.0.1, 3.0.1]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.0.1, 3.0.1]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -150,7 +135,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.0"
+          "netcoreapp2.2"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -158,7 +143,7 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.0": {
+          "netcoreapp2.2": {
             "projectReferences": {
               "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj": {
                 "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj"
@@ -173,7 +158,7 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.0": {
+        "netcoreapp2.2": {
           "dependencies": {
             "MediatR": {
               "target": "Package",
@@ -186,6 +171,12 @@
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
             }
           },
           "imports": [
@@ -198,25 +189,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.0.1, 3.0.1]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[3.0.0, 3.0.0]"
-            }
-          ],
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
@@ -280,6 +252,93 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\UOCHotels.RoomServiceManagement.EventStore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\UOCHotels.RoomServiceManagement.EventStore.csproj",
+        "projectName": "UOCHotels.RoomServiceManagement.EventStore",
+        "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\UOCHotels.RoomServiceManagement.EventStore.csproj",
+        "packagesPath": "C:\\Users\\JorgeOlivéRodríguez\\.nuget\\packages\\",
+        "outputPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\JorgeOlivéRodríguez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\src\\localnugetfeed": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj"
+              },
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "EventStore.Client": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
@@ -411,6 +470,9 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
+              "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj": {
+                "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj"
+              },
               "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj": {
                 "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Domain\\UOCHotels.RoomServiceManagement.Domain.csproj"
               }

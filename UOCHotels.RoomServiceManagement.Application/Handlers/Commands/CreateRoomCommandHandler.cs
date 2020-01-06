@@ -5,7 +5,7 @@ using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Domain.Entities;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Application.Repositories;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands

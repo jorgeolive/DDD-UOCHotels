@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Domain.Entities;
-using UOCHotels.RoomServiceManagement.Domain.Infrastructure;
+using UOCHotels.RoomServiceManagement.Application.Repositories;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
 {

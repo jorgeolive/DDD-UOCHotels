@@ -27,7 +27,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UOCHotels.RoomServiceManagement.Application", "UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj", "{64CFCA7D-9691-4104-A3B4-D0DCD110268D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UOCHotels.RoomServiceManagement.Application", "UOCHotels.RoomServiceManagement.Application\UOCHotels.RoomServiceManagement.Application.csproj", "{64CFCA7D-9691-4104-A3B4-D0DCD110268D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UOCHotels.RoomServiceManagement.EventStore", "UOCHotels.RoomServiceManagement.EventStore\UOCHotels.RoomServiceManagement.EventStore.csproj", "{15ACFA9F-10F4-4066-B799-6107B69CA56E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{64CFCA7D-9691-4104-A3B4-D0DCD110268D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64CFCA7D-9691-4104-A3B4-D0DCD110268D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64CFCA7D-9691-4104-A3B4-D0DCD110268D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15ACFA9F-10F4-4066-B799-6107B69CA56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15ACFA9F-10F4-4066-B799-6107B69CA56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15ACFA9F-10F4-4066-B799-6107B69CA56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15ACFA9F-10F4-4066-B799-6107B69CA56E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{20A6A09F-8CD2-4410-ACE9-14C114364580} = {6CD4AB3A-1C55-4CFD-AB15-BEFBE4CA6227}
 		{3B123E66-572D-481D-A5B1-A557662A7C7F} = {DE25E4FA-54F2-4737-8099-2BB5864F20C8}
 		{64CFCA7D-9691-4104-A3B4-D0DCD110268D} = {45484FB4-378D-43FA-9631-6E94217D9D50}
+		{15ACFA9F-10F4-4066-B799-6107B69CA56E} = {DE25E4FA-54F2-4737-8099-2BB5864F20C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {042B2F43-041E-4C70-9814-74708C52BB93}
