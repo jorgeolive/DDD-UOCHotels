@@ -4,6 +4,7 @@ services:
     environment:
       EVENTSTORE_EXT_HTTP_PORT: '2113'
       EVENTSTORE_EXT_TCP_PORT: '1113'
+      EVENTSTORE_MEM_DB: "True"
     image: eventstore/eventstore
     ports:
     - published: 2113
@@ -25,15 +26,17 @@ services:
   ravendb:
     container_name: roomservicemanagementravendb
     environment:
-      RAVEN_ARGS: '"--Setup.Mode=None"'
+      RAVEN_License.Eula.Accepted: "true"
+      RAVEN_RunInMemory: "true"
       RAVEN_Security_UnsecuredAccessAllowed: PublicNetwork
+      RAVEN_Setup_Mode: None
     image: ravendb/ravendb
     ports:
     - published: 8080
       target: 8080
   roomservicemanagement.api:
     build:
-      context: C:\src\jorge\UOCHotels
+      context: C:\Users\joliv\source\UOCHotels
       dockerfile: RoomServiceManagement.Api/Dockerfile
     depends_on:
     - eventstore
@@ -44,8 +47,12 @@ services:
       ASPNETCORE_HTTPS_PORT: '44386'
       ASPNETCORE_URLS: https://+:443;http://+:80
       AppSettings__JwtSecret: aasd3423423rji23jri23rj23jrj23rji23ii3
-      EventStore__ConnectionString: ConnectTo=tcp://admin:changeit@localhost:1113;     DefaultUserCredentials=admin:changeit;
+      AzureStorage__ConnectionString: DefaultEndpointsProtocol=https;AccountName=storage203tests;AccountKey=D9eYPS1iyppBpcDadlpF63DL2DxWDYaPIQSd1zxB6jx2K0a2LrbozqjjYgauhVQnxhncGeMwUt625Fl10jL9bg==;EndpointSuffix=core.windows.net
+      COMPOSE_CONVERT_WINDOWS_PATHS: '1'
+      EventStore__ConnectionString: ConnectTo=tcp://admin:changeit@host.docker.internal:1113;     DefaultUserCredentials=admin:changeit;
+      RabbitMQ__HostName: host.docker.internal
       RabbitMQ__Password: some_password
+      RabbitMQ__Port: '5672'
       RabbitMQ__User: rabbitmquser
     image: roomservicemanagement
     ports:
@@ -54,6 +61,6 @@ services:
     - published: 44386
       target: 443
     volumes:
-    - C:\Users\JorgeOlivÚRodrÝguez\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:rw
-    - C:\Users\JorgeOlivÚRodrÝguez\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:rw
+    - C:\Users\joliv\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:rw
+    - C:\Users\joliv\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:rw
 version: '3.4'

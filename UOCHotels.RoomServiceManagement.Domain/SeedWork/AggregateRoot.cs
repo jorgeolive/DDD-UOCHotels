@@ -6,7 +6,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
 {
     public abstract class AggregateRoot<TId> : IInternalEventHandler where TId : ValueObject<TId>
     {
-        public long Version = 0;
+        public long Version = -1;
         public TId Id { get; protected set; }
         private readonly List<object> _changes;
 

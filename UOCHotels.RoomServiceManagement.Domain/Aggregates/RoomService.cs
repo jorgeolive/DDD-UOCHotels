@@ -7,16 +7,11 @@ using UOCHotels.RoomServiceManagement.Domain.Exceptions;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Domain.Entities
+namespace UOCHotels.RoomServiceManagement.Domain.Aggregates
 {
     public class RoomService : AggregateRoot<RoomServiceId>
     {
-        private string DbId
-        {
-            get => $"RoomService/{Id.ToString()}";
-            set { }
-        }
-
+        public RoomServiceType ServiceType { get; private set; }
         public RoomId AssociatedRoomId { get; private set; }
         public EmployeeId ServicedById { get; private set; }
         public RoomServiceStatus Status { get; private set; } = RoomServiceStatus.Inactive;
@@ -25,12 +20,23 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
         public DateTime? EndTimeStamp { get; private set; }
         public List<Comment> Comments { get; } = new List<Comment>();
 
-        public RoomService(RoomServiceId id, RoomId roomId, EmployeeId employeeId)
+        private RoomService(RoomServiceId id, RoomId roomId, EmployeeId employeeId)
         {
-            Apply(new ServiceCreated(id, roomId, employeeId));
+            Apply(new ServiceCreated(DateTime.UtcNow, id.Value, roomId.Value, employeeId.Value));
         }
 
-        protected RoomService(){ }
+        protected RoomService(){}
+
+        public static RoomService CreateFor(RoomId roomId, EmployeeId employeeId)
+        {
+            if (roomId == null || roomId.Value == default)
+                throw new InvalidRoomServiceOperationException("roomId cannot be null.");
+
+            if (employeeId == null || employeeId.Value == default)
+                throw new InvalidRoomServiceOperationException("employeeId cannot be null.");
+
+            return new RoomService(RoomServiceId.CreateFor(Guid.NewGuid()), roomId, employeeId);
+        }
 
         public TimeSpan GetCompletionTimeDeviation(int calculatedDeviation)
         {
@@ -54,8 +60,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
                 throw new InvalidRoomServiceOperationException("Room service is not started");
             }
 
-            Apply(
-            new ServicePlanned(this.Id, timeStamp));
+            Apply(new ServicePlanned(Id.Value, timeStamp));
         }
 
         public void Complete()
@@ -65,7 +70,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
                 throw new InvalidRoomServiceOperationException("Room service is not started");
             }
 
-            Apply(new ServiceFinished(Id, DateTime.Now));
+            Apply(new ServiceFinished(Id.Value, DateTime.Now));
         }
 
         public void Start()
@@ -75,13 +80,15 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
                 throw new InvalidRoomServiceOperationException("Can start only a planned room service.");
             }
 
-            Apply(new ServiceStarted(Id, DateTime.UtcNow));
+            Apply(new ServiceStarted(Id.Value, DateTime.UtcNow));
         }
 
         public void AddComment(string text, EmployeeId addedBy)
         {
-            if(string.IsNullOrWhiteSpace(text)) throw new ArgumentNullException(nameof(text));
-            Apply(new CommentSubmitted(addedBy.Value, this.Id.Value, text));
+            if(string.IsNullOrWhiteSpace(text)) 
+                throw new ArgumentNullException(nameof(text));
+
+            Apply(new CommentSubmitted(Guid.NewGuid(),addedBy.Value, this.Id.Value, text));
         }
 
         protected override void When(object @event)
@@ -92,15 +99,13 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
 
                     Id = new RoomServiceId(e.ServiceId);
                     AssociatedRoomId = new RoomId(e.RoomId);
-                    ServicedById = new EmployeeId(e.EmployeeId);
-
+                    ServicedById = EmployeeId.CreateFor(e.EmployeeId);
                     break;
 
                 case ServicePlanned e:
 
                     PlannedOn = e.PlannedOn;
                     Status = RoomServiceStatus.Planned;
-
                     break;
 
                 case ServiceFinished e:
@@ -113,13 +118,12 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
 
                     StartTimeStamp = e.StartTimestamp;
                     Status = RoomServiceStatus.Started;
-
                     break;
 
                 case CommentSubmitted e:
                 
                     var comment = new Comment(Apply);
-                    ApplyToEntity(comment, e);
+                    ApplyToEntity(comment, e); //
                     this.Comments.Add(comment);
                     break;
             }

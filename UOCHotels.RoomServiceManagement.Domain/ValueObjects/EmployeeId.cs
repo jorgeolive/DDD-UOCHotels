@@ -9,24 +9,14 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 
         protected EmployeeId() { }
 
-        public EmployeeId(Guid id) =>
-            Value = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
+        private EmployeeId(Guid id) => Value = id;
 
+        public static EmployeeId CreateFor(Guid id) => id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : new EmployeeId(id);
         public Guid GetValue() => Value;
 
         protected override bool EqualsCore(EmployeeId other)
         {
-            return this == other;
-        }
-
-        public static bool operator ==(EmployeeId id1, EmployeeId id2)
-        {
-            return id1.GetValue() == id2.GetValue();
-        }
-
-        public static bool operator !=(EmployeeId id1, EmployeeId id2)
-        {
-            return id1.GetValue() != id2.GetValue();
+            return this.Value == other.Value;
         }
 
         public override string ToString()

@@ -13,10 +13,10 @@ services:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages
     volumes:
-      - C:\src\jorge\UOCHotels\RoomServiceManagement.Api:/app
-      - C:\src\jorge\UOCHotels:/src
-      - C:\Users\JorgeOlivéRodríguez\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\JorgeOlivéRodríguez\.nuget\packages\:/root/.nuget/packages:ro
+      - C:\Users\joliv\source\UOCHotels\RoomServiceManagement.Api:/app
+      - C:\Users\joliv\source\UOCHotels:/src
+      - C:\Users\joliv\vsdbg\vs2017u5:/remote_debugger:rw
+      - C:\Users\joliv\.nuget\packages\:/root/.nuget/packages:ro
       - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro

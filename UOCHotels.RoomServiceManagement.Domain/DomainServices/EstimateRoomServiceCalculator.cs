@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using UOCHotels.RoomServiceManagement.Domain.Entities;
+using UOCHotels.RoomServiceManagement.Domain.Aggregates;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
 
 namespace UOCHotels.RoomServiceManagement.Domain.DomainServices

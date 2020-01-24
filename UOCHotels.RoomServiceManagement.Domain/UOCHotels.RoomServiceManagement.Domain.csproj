@@ -5,12 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Enums\" />
     <Folder Include="SeedWork\" />
-    <Folder Include="ValueObjects\" />
     <Folder Include="Exceptions\" />
     <Folder Include="DomainServices\" />
-    <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="7.0.0" />

@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Raven.Client.Documents;
 using UOCHotels.RoomServiceManagement.Application.Handlers.Commands;
-using UOCHotels.RoomServiceManagement.Application.Services;
 using UOCHotels.RoomServiceManagement.Messaging.Configuration;
 using UOCHotels.RoomServiceManagement.Messaging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,7 +20,12 @@ using UOCHotels.RoomServiceManagement.Persistence;
 using UOCHotels.RoomServiceManagement.EventStore.Configuration;
 using UOCHotels.RoomServiceManagement.EventStore;
 using EventStore.ClientAPI;
-using UOCHotels.RoomServiceManagement.Application.Repositories;
+using UOCHotels.RoomServiceManagement.Application.Projections;
+using Raven.Client.ServerWide.Operations;
+using Raven.Client.ServerWide;
+using UOCHotels.RoomServiceManagement.AzureStorage.Configuration;
+using UOCHotels.RoomServiceManagement.Application.Services;
+using UOCHotels.RoomServiceManagement.AzureStorage;
 
 namespace RoomServiceManagement.Api
 {
@@ -46,6 +50,7 @@ namespace RoomServiceManagement.Api
             services.Configure<RabbitMqSubscriberConfiguration>(options => Configuration.GetSection("RabbitMQ").Bind(options));
             services.Configure<RavenDbConfiguration>(options => Configuration.GetSection("RavenDb").Bind(options));
             services.Configure<EventStoreConfiguration>(options => Configuration.GetSection("EventStore").Bind(options));
+            services.Configure<AzureStorageConfiguration>(options => Configuration.GetSection("AzureStorage").Bind(options));
 
             services.AddSingleton<RabbitMqSubscriberConfiguration>(
                 provider =>
@@ -58,6 +63,10 @@ namespace RoomServiceManagement.Api
             services.AddSingleton<EventStoreConfiguration>(
                 provider =>
                 provider.GetService<IOptions<EventStoreConfiguration>>().Value);
+
+            services.AddSingleton<AzureStorageConfiguration>(
+                provider =>
+                provider.GetService<IOptions<AzureStorageConfiguration>>().Value);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).
             AddJwtBearer(options =>
@@ -73,21 +82,17 @@ namespace RoomServiceManagement.Api
                 };
             });
 
-            var esConnection = EventStoreConnection.Create(Configuration["EventStore:ConnectionString"], ConnectionSettings.Create().KeepReconnecting());
-            var store = new AggregateStore(esConnection);
+            //var esConnection = EventStoreConnection.Create(Configuration["EventStore:ConnectionString"], ConnectionSettings.Create().KeepReconnecting());
+            //var store = new AggregateStore(esConnection);
 
-            services.AddSingleton(esConnection);
-            services.AddSingleton<IAggregateStore>(store);
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("SignalRClients",
-                builder =>
+            services.AddSingleton<IEventStoreConnection>(
+                provider =>
                 {
-                    builder.WithOrigins("https://localhost:5001",
-                                        "https://localhost:5000");
+                    return EventStoreConnection.
+                        Create(
+                            Configuration["EventStore:ConnectionString"],
+                            ConnectionSettings.Create().KeepReconnecting());
                 });
-            });
 
             services.AddSwaggerGen(c =>
             {
@@ -102,8 +107,9 @@ namespace RoomServiceManagement.Api
 
             services.AddSingleton(provider =>
             {
-                var store = new DocumentStore
+                var ravenDb = new DocumentStore
                 {
+                    
                     Urls = new[] {
                         provider.GetService<RavenDbConfiguration>().Url
                     },
@@ -114,14 +120,36 @@ namespace RoomServiceManagement.Api
                     }
                 };
 
-                return store.Initialize();
+                var db = ravenDb.Initialize();
+
+                var record = ravenDb.Maintenance.Server.Send(
+                new GetDatabaseRecordOperation(ravenDb.Database));
+
+                if (record == null)
+                {
+                    ravenDb.Maintenance.Server.Send(
+                        new CreateDatabaseOperation(new DatabaseRecord(ravenDb.Database)));
+                }
+
+                return db;
             });
 
-            services.AddScoped<IRoomServiceRepository, RoomServiceRepository>();
-            services.AddScoped<IRoomRepository, RoomRepository>();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IRoomServiceRepository, RoomServiceRepository>();
+            services.AddTransient<IRoomRepository, RoomRepository>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IRoomIncidentRepository, RoomIncidentRepository>();
+
+            services.AddScoped<IFileStorageService, AzureStorageService>();
+
+            services.AddSingleton<IProjection, RoomProjection>();
+            services.AddSingleton<IProjection, RoomServiceProjection>();
+            services.AddSingleton<IProjection, EmployeeProjection>();
+            services.AddSingleton<IProjection, RoomIncidentProjection>();
+
+            services.AddSingleton<IAggregateStore, AggregateStore>();
+            services.AddSingleton<ProjectionManager>();
+
             services.AddMediatR(Assembly.GetAssembly(typeof(CreateRoomServiceCommandHandler)));
-            services.AddScoped<HouseKeepingPlanner>();
             services.AddHostedService<RabbitMqListener>();
             services.AddHostedService<ServiceStartUp>();
             services.AddSignalR();
@@ -144,7 +172,6 @@ namespace RoomServiceManagement.Api
 
             app.UseRouting();
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
             app.UseAuthorization();
 

@@ -20,6 +20,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\UOCHotels.RoomServiceManagement.AzureStorage\UOCHotels.RoomServiceManagement.AzureStorage.csproj" />
         <ProjectReference Include="..\UOCHotels.RoomServiceManagement.EventStore\UOCHotels.RoomServiceManagement.EventStore.csproj" />
         <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Persistence\UOCHotels.RoomServiceManagement.Persistence.csproj" />
         <ProjectReference Include="..\UOCHotels.RoomServiceManagement.Messaging\UOCHotels.RoomServiceManagement.Messaging.csproj" />

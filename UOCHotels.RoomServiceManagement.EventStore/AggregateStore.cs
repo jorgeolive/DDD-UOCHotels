@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UOCHotels.RoomServiceManagement.Application.Repositories;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
+using UOCHotels.RoomServiceManagement.EventStore.Extensions;
 
 namespace UOCHotels.RoomServiceManagement.EventStore
 {
@@ -31,17 +32,10 @@ namespace UOCHotels.RoomServiceManagement.EventStore
                GetStreamName<TAggregate, TId>(aggregate), 0, 1024, false);
 
             //TODO paging
-            TAggregate aggregateRoot = Activator.CreateInstance<TAggregate>();
+            TAggregate aggregateRoot = (TAggregate)Activator.CreateInstance(typeof(TAggregate), true);
 
             aggregateRoot.Load(eventSlice.Events.
-                Select(resolvedEvent =>
-                {
-                    var meta = JsonConvert.DeserializeObject<EventMetadata>(Encoding.UTF8.GetString(resolvedEvent.Event.Metadata));
-                    var dataType = Type.GetType(meta.ClrType);
-                    var jsonData = Encoding.UTF8.GetString(resolvedEvent.Event.Data);
-                    var data = JsonConvert.DeserializeObject(jsonData, dataType);
-                    return data;
-                }).
+                Select(resolvedEvent => resolvedEvent.Deserialize()).
                 ToArray());
 
             return aggregateRoot;
@@ -76,7 +70,6 @@ namespace UOCHotels.RoomServiceManagement.EventStore
         }
 
         private static byte[] Serialize(object data) => Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(data));
-        private class EventMetadata { public string ClrType { get; set; } }
         private static string GetStreamName<T, TId>(TId aggregateId) => $"{typeof(T).Name}-{aggregateId.ToString()}";
         private static string GetStreamName<T, TId>(T aggregate) where T : AggregateRoot<TId>
             where TId : ValueObject<TId> => $"{typeof(T).Name}-{aggregate.Id.ToString()}";

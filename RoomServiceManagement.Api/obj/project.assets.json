@@ -2677,6 +2677,19 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
+      "WindowsAzure.Storage/9.3.3": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.2"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
+        }
+      },
       "UOCHotels.RoomServiceManagement.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -2691,6 +2704,20 @@
         },
         "runtime": {
           "bin/placeholder/UOCHotels.RoomServiceManagement.Application.dll": {}
+        }
+      },
+      "UOCHotels.RoomServiceManagement.AzureStorage/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "UOCHotels.RoomServiceManagement.Application": "1.0.0",
+          "WindowsAzure.Storage": "9.3.3"
+        },
+        "compile": {
+          "bin/placeholder/UOCHotels.RoomServiceManagement.AzureStorage.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/UOCHotels.RoomServiceManagement.AzureStorage.dll": {}
         }
       },
       "UOCHotels.RoomServiceManagement.Domain/1.0.0": {
@@ -2838,6 +2865,7 @@
       "path": "microsoft.aspnetcore.authentication.core/2.0.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.xml",
         "microsoft.aspnetcore.authentication.core.2.0.0.nupkg.sha512",
@@ -3021,6 +3049,7 @@
       "path": "microsoft.aspnetcore.mvc.abstractions/2.0.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Abstractions.xml",
         "microsoft.aspnetcore.mvc.abstractions.2.0.0.nupkg.sha512",
@@ -3033,6 +3062,7 @@
       "path": "microsoft.aspnetcore.mvc.core/2.0.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Core.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Core.xml",
         "microsoft.aspnetcore.mvc.core.2.0.0.nupkg.sha512",
@@ -3058,6 +3088,7 @@
       "path": "microsoft.aspnetcore.responsecaching.abstractions/2.0.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.ResponseCaching.Abstractions.xml",
         "microsoft.aspnetcore.responsecaching.abstractions.2.0.0.nupkg.sha512",
@@ -3247,6 +3278,7 @@
       "path": "microsoft.dotnet.platformabstractions/2.0.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net45/Microsoft.DotNet.PlatformAbstractions.dll",
@@ -3490,6 +3522,7 @@
       "path": "microsoft.extensions.dependencymodel/2.0.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net451/Microsoft.Extensions.DependencyModel.dll",
@@ -8370,10 +8403,39 @@
         "system.xml.xdocument.nuspec"
       ]
     },
+    "WindowsAzure.Storage/9.3.3": {
+      "sha512": "VUV8j6dzkU/7vDgk5k+ob5g7nnch2fNByr0p9aOxMGFGk+tAnTehrZ4qnClF04CVozP1GNN2zrnbsxCmr+iZBg==",
+      "type": "package",
+      "path": "windowsazure.storage/9.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Microsoft.WindowsAzure.Storage.dll",
+        "lib/net45/Microsoft.WindowsAzure.Storage.pdb",
+        "lib/net45/Microsoft.WindowsAzure.Storage.xml",
+        "lib/netstandard1.0/Microsoft.WindowsAzure.Storage.dll",
+        "lib/netstandard1.0/Microsoft.WindowsAzure.Storage.pdb",
+        "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll",
+        "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.pdb",
+        "lib/win8/Microsoft.WindowsAzure.Storage.dll",
+        "lib/win8/Microsoft.WindowsAzure.Storage.pdb",
+        "lib/wp8/Microsoft.WindowsAzure.Storage.dll",
+        "lib/wp8/Microsoft.WindowsAzure.Storage.pdb",
+        "lib/wpa/Microsoft.WindowsAzure.Storage.dll",
+        "lib/wpa/Microsoft.WindowsAzure.Storage.pdb",
+        "windowsazure.storage.9.3.3.nupkg.sha512",
+        "windowsazure.storage.nuspec"
+      ]
+    },
     "UOCHotels.RoomServiceManagement.Application/1.0.0": {
       "type": "project",
       "path": "../UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj",
       "msbuildProject": "../UOCHotels.RoomServiceManagement.Application/UOCHotels.RoomServiceManagement.Application.csproj"
+    },
+    "UOCHotels.RoomServiceManagement.AzureStorage/1.0.0": {
+      "type": "project",
+      "path": "../UOCHotels.RoomServiceManagement.AzureStorage/UOCHotels.RoomServiceManagement.AzureStorage.csproj",
+      "msbuildProject": "../UOCHotels.RoomServiceManagement.AzureStorage/UOCHotels.RoomServiceManagement.AzureStorage.csproj"
     },
     "UOCHotels.RoomServiceManagement.Domain/1.0.0": {
       "type": "project",
@@ -8409,29 +8471,30 @@
       "Swashbuckle.AspNetCore.SwaggerGen >= 5.0.0-rc4",
       "Swashbuckle.AspNetCore.SwaggerUI >= 5.0.0-rc4",
       "UOCHotels.RoomServiceManagement.Application >= 1.0.0",
+      "UOCHotels.RoomServiceManagement.AzureStorage >= 1.0.0",
       "UOCHotels.RoomServiceManagement.EventStore >= 1.0.0",
       "UOCHotels.RoomServiceManagement.Messaging >= 1.0.0",
       "UOCHotels.RoomServiceManagement.Persistence >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\JorgeOlivéRodríguez\\.nuget\\packages\\": {},
+    "C:\\Users\\joliv\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\src\\jorge\\UOCHotels\\RoomServiceManagement.Api\\RoomServiceManagement.Api.csproj",
+      "projectUniqueName": "C:\\Users\\joliv\\source\\UOCHotels\\RoomServiceManagement.Api\\RoomServiceManagement.Api.csproj",
       "projectName": "RoomServiceManagement.Api",
-      "projectPath": "C:\\src\\jorge\\UOCHotels\\RoomServiceManagement.Api\\RoomServiceManagement.Api.csproj",
-      "packagesPath": "C:\\Users\\JorgeOlivéRodríguez\\.nuget\\packages\\",
-      "outputPath": "C:\\src\\jorge\\UOCHotels\\RoomServiceManagement.Api\\obj\\",
+      "projectPath": "C:\\Users\\joliv\\source\\UOCHotels\\RoomServiceManagement.Api\\RoomServiceManagement.Api.csproj",
+      "packagesPath": "C:\\Users\\joliv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\joliv\\source\\UOCHotels\\RoomServiceManagement.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\JorgeOlivéRodríguez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\joliv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8439,23 +8502,25 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\src\\localnugetfeed": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj": {
-              "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj"
+            "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj": {
+              "projectPath": "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.Application\\UOCHotels.RoomServiceManagement.Application.csproj"
             },
-            "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\UOCHotels.RoomServiceManagement.EventStore.csproj": {
-              "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\UOCHotels.RoomServiceManagement.EventStore.csproj"
+            "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.AzureStorage\\UOCHotels.RoomServiceManagement.AzureStorage.csproj": {
+              "projectPath": "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.AzureStorage\\UOCHotels.RoomServiceManagement.AzureStorage.csproj"
             },
-            "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj": {
-              "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj"
+            "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\UOCHotels.RoomServiceManagement.EventStore.csproj": {
+              "projectPath": "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.EventStore\\UOCHotels.RoomServiceManagement.EventStore.csproj"
             },
-            "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\UOCHotels.RoomServiceManagement.Persistence.csproj": {
-              "projectPath": "C:\\src\\jorge\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\UOCHotels.RoomServiceManagement.Persistence.csproj"
+            "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj": {
+              "projectPath": "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.Messaging\\UOCHotels.RoomServiceManagement.Messaging.csproj"
+            },
+            "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\UOCHotels.RoomServiceManagement.Persistence.csproj": {
+              "projectPath": "C:\\Users\\joliv\\source\\UOCHotels\\UOCHotels.RoomServiceManagement.Persistence\\UOCHotels.RoomServiceManagement.Persistence.csproj"
             }
           }
         }

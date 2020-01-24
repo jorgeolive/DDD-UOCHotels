@@ -9,9 +9,9 @@ namespace UOCHotels.RoomServiceManagement.Domain.Events
         public Guid ServiceId { get; private set; }
         public DateTime Timestamp { get; internal set; }
 
-        public ServiceFinished(RoomServiceId serviceId, DateTime closingTimestamp)
+        public ServiceFinished(Guid serviceId, DateTime closingTimestamp)
         {
-            ServiceId = serviceId.GetValue();
+            ServiceId = serviceId;
             Timestamp = closingTimestamp;
         }
     }

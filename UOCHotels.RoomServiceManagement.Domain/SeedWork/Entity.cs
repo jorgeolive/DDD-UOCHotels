@@ -9,7 +9,6 @@ namespace UOCHotels.RoomServiceManagement.Domain.SeedWork
     {
         protected readonly Action<object> Applier;
         public TId Id { get; protected set; }
-
         protected Entity(Action<object> applier) => Applier = applier;
 
         protected abstract void When(object @event);

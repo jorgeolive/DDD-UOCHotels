@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using UOCHotels.RoomServiceManagement.Domain.Entities;
-using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
+using UOCHotels.RoomServiceManagement.Application.ReadModel;
 
 namespace UOCHotels.RoomServiceManagement.Application.Repositories
 {
     public interface IRoomRepository
     {
-        Task<Room> GetById(RoomId roomId);
-        Task<Room> GetByAddress(Address address);
+        Task<RoomModel> GetById(Guid id);
+        Task<RoomModel> GetByAddress(string building, int floor, int number);
+        Task Add(RoomModel room);
         Task Commit();
-        Task Add(Room room);
-        Task<List<Room>> GetAll();
+        Task<List<RoomModel>> GetAll();
     }
 }

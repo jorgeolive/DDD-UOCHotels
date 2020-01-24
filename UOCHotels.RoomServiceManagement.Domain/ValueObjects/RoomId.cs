@@ -9,6 +9,10 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 
         public RoomId() { }
 
+        public static RoomId CreateFor(Guid id)
+        {
+            return new RoomId(id);
+        }
         public RoomId(Guid id) =>
             Value = id == Guid.Empty ? throw new ArgumentNullException(nameof(id)) : id;
 
@@ -16,17 +20,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.ValueObjects
 
         protected override bool EqualsCore(RoomId other)
         {
-            return this == other;
-        }
-
-        public static bool operator ==(RoomId id1, RoomId id2)
-        {
-            return id1.GetValue() == id2.GetValue();
-        }
-
-        public static bool operator !=(RoomId id1, RoomId id2)
-        {
-            return id1.GetValue() != id2.GetValue();
+            return this.GetValue() == other.GetValue();
         }
 
         public override string ToString()

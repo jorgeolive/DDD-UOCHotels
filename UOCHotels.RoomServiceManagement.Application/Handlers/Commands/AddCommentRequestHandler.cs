@@ -7,32 +7,33 @@ using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
 using UOCHotels.RoomServiceManagement.Application.Repositories;
+using UOCHotels.RoomServiceManagement.Domain.Aggregates;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
 {
     public class AddCommentRequestHandler : AsyncRequestHandler<AddCommentRequest>
     {
-        readonly IMediator _mediator;
-        readonly IRoomServiceRepository _roomServiceRepository;
+        private readonly IAggregateStore store;
+        private readonly IRoomServiceRepository _roomServiceRepository;
         private readonly IEmployeeRepository _employeeRepository;
 
-        public AddCommentRequestHandler(IMediator mediator, IRoomServiceRepository roomServiceRepository,
+        public AddCommentRequestHandler(IAggregateStore store, IRoomServiceRepository roomServiceRepository,
             IEmployeeRepository employeeRepository)
         {
+            this.store = store;
             _roomServiceRepository = roomServiceRepository;
             _employeeRepository = employeeRepository;
-            _mediator = mediator;
         }
 
         protected override async Task Handle(AddCommentRequest request, CancellationToken cancellationToken)
         {
-            var roomService = await _roomServiceRepository.GetById(new RoomServiceId(request.RoomServiceId));
+            if (!(await store.Load<RoomService, RoomServiceId>(RoomServiceId.CreateFor(request.RoomServiceId)) is RoomService roomService))
+                throw new RoomServiceNotFoundException(request.RoomServiceId.ToString());
 
-            if (roomService == null) throw new RoomServiceNotFoundException(request.RoomServiceId.ToString());
+            roomService.AddComment(request.Text, EmployeeId.CreateFor(request.EmployeeId));
 
-            roomService.AddComment(request.Text, new EmployeeId(request.EmployeeId));
-            await _roomServiceRepository.Commit();
+            await store.Save<RoomService, RoomServiceId>(roomService);
         }
     }
 }

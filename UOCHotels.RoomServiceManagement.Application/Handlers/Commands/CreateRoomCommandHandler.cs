@@ -3,10 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
-using UOCHotels.RoomServiceManagement.Domain.Entities;
+using UOCHotels.RoomServiceManagement.Domain.Aggregates;
 using UOCHotels.RoomServiceManagement.Domain.Enums;
 using UOCHotels.RoomServiceManagement.Application.Repositories;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
+using UOCHotels.RoomServiceManagement.Application.Exceptions;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
 {
@@ -14,38 +15,36 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
     {
         readonly IMediator _mediator;
         readonly IRoomRepository _roomRepository;
+        readonly IAggregateStore _eventStore;
 
         public CreateRoomCommandHandler(
                             IMediator mediator,
-                            IRoomRepository roomRepository)
+                            IRoomRepository roomRepository,
+                            IAggregateStore eventStore)
         {
             _roomRepository = roomRepository;
             _mediator = mediator;
+            _eventStore = eventStore;
         }
 
         protected override async Task Handle(CreateRoomRequest request, CancellationToken cancellationToken)
         {
+            if ((await _roomRepository.GetByAddress(request.BuildingName, request.Floor, request.RoomNumber)) != null)
+                throw new RoomExistsException("Room already exists.");
+
             var requestedAddress = Address.CreateFor(
                                  DoorNumber.CreateFor(request.RoomNumber),
                                  Floor.CreateFor(request.Floor),
                                  Building.CreateFor(request.BuildingName));
 
-            if (await _roomRepository.GetByAddress(requestedAddress) != null)
-            {
-                throw new InvalidOperationException($"Room with address {requestedAddress.ToString()} already exists in the system.");
-            }
-
-            //Refactor to factory method like RoomService class
             var room = new Room(new RoomId(Guid.NewGuid()), RoomType.Other, requestedAddress);
 
-            await _roomRepository.Add(room);
+            await _eventStore.Save<Room, RoomId>(room);
 
-            foreach (var @event in room.GetChanges())
-            {
+            var aggregate = await _eventStore.Load<Room, RoomId>(room.Id);
+            
+            foreach(var @event in room.GetChanges())            
                 await _mediator.Publish(@event);
-            }
-
-            await _roomRepository.Commit();
         }
     }
 }

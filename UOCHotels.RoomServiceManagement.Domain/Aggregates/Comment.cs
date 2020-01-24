@@ -3,7 +3,7 @@ using UOCHotels.RoomServiceManagement.Domain.Events;
 using UOCHotels.RoomServiceManagement.Domain.SeedWork;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
-namespace UOCHotels.RoomServiceManagement.Domain.Entities
+namespace UOCHotels.RoomServiceManagement.Domain.Aggregates
 {
     public class Comment : Entity<CommentId>
     {
@@ -24,7 +24,7 @@ namespace UOCHotels.RoomServiceManagement.Domain.Entities
             {
                 case CommentSubmitted e:
 
-                    this.CommentBy = new EmployeeId(e.SubmmitedBy);
+                    this.CommentBy = EmployeeId.CreateFor(e.SubmmitedBy);
                     Text = e.Text;
                     CreatedOn = DateTime.UtcNow;
                     this.Id = new CommentId(Guid.NewGuid());

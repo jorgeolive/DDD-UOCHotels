@@ -19,17 +19,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Queries
 
         public async Task<EmployeeModel> Handle(GetEmployeeByIdQuery request, CancellationToken cancellationToken)
         {
-            var employee = await _employeeRepository.GetById(new Domain.ValueObjects.EmployeeId(request.EmployeeId));
-
-            return
-                employee != null ?
-                new EmployeeModel()
-                {
-                    Name = employee.Name,
-                    SurName = employee.SurName,
-                    OnBoardDate = employee.OnboardingDate
-                }
-                : null;
+            return await _employeeRepository.GetById(request.EmployeeId);
         }
     }
 }

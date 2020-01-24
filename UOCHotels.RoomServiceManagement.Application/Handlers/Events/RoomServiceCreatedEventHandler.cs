@@ -28,9 +28,9 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Events
 
         public async Task Handle(ServiceCreated @event, CancellationToken cancellationToken)
         {
-            var room = await _roomRepository.GetById(new Domain.ValueObjects.RoomId(@event.RoomId));
-            var service = await _roomServiceRepository.GetById(new Domain.ValueObjects.RoomServiceId(@event.ServiceId));
-            var employee = await _employeeRepository.GetById(new Domain.ValueObjects.EmployeeId(@event.EmployeeId));
+            var room = await _roomRepository.GetById(@event.RoomId);
+            var service = await _roomServiceRepository.GetById(@event.ServiceId);
+            var employee = await _employeeRepository.GetById(@event.EmployeeId);
 
             if (room == null || service == null || employee == null)
                 throw new ApplicationException();
@@ -39,11 +39,11 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Events
                 "ReceiveMessage"
                 , new RoomServiceModel()
                 {
-                    RoomNumber = room.Address.DoorNumber.ToString(),
-                    Floor = room.Address.Floor.ToString(),
+                    RoomNumber = room.Number,
+                    Floor = room.Floor,
                     Owner = employee.Name,
                     PlannedOn = service.PlannedOn ?? null,
-                    CompletedOn = service.EndTimeStamp ?? null,
+                    CompletedOn = service.CompletedOn ?? null,
                     Status = service.Status.ToString()
                 });
         }

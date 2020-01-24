@@ -46,3 +46,16 @@ C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\bin\Debug\net
 C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.csproj.CopyComplete
 C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.dll
 C:\src\jorge\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.pdb
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.deps.json
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.dll
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.pdb
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.dll
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.dll
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Application.pdb
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\bin\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Domain.pdb
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.csprojAssemblyReference.cache
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.AssemblyInfoInputs.cache
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.AssemblyInfo.cs
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.csproj.CopyComplete
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.dll
+C:\Users\joliv\source\UOCHotels\UOCHotels.RoomServiceManagement.Persistence\obj\Debug\netcoreapp2.2\UOCHotels.RoomServiceManagement.Persistence.pdb

@@ -3,25 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Session;
+using UOCHotels.RoomServiceManagement.Application.ReadModel;
 using UOCHotels.RoomServiceManagement.Application.Repositories;
-using UOCHotels.RoomServiceManagement.Domain.Entities;
-using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Persistence
 {
-    public class RoomServiceRepository : RavenDbRepository<RoomService, RoomServiceId>, IRoomServiceRepository, IDisposable
+    public class RoomServiceRepository : RavenDbRepository<RoomServiceModel>, IRoomServiceRepository, IDisposable
     {
-        public RoomServiceRepository(IDocumentStore documentStore) : base(documentStore.OpenAsyncSession(), EntityId) { }
+        public RoomServiceRepository(IDocumentStore documentStore) : base(documentStore.OpenAsyncSession()) { }
 
-        public Task<List<RoomService>> GetByEmployeeId(EmployeeId id)
-         => _session.Query<RoomService>().Where(x => x.ServicedById == id).ToListAsync();
-
-        public Task<List<RoomService>> GetByRoomId(RoomId roomId) =>
-             _session.Query<RoomService>().Where(x => x.AssociatedRoomId == roomId).ToListAsync();
-
-        private static string EntityId(RoomServiceId id)
-            => $"RoomService/{id.ToString()}";
+        public Task<List<RoomServiceModel>> GetByEmployeeId(Guid id)
+         => _session.Query<RoomServiceModel>().Where(x => x.EmployeeId == id).ToListAsync();
+    
+        public Task<List<RoomServiceModel>> GetByRoomId(Guid roomId) =>
+             _session.Query<RoomServiceModel>().Where(x => x.RoomId == roomId).ToListAsync();
 
     }
 }

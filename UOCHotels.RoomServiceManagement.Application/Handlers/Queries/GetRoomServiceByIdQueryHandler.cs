@@ -24,18 +24,18 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Queries
 
         public async Task<RoomServiceModel> Handle(GetRoomServiceByIdQuery request, CancellationToken cancellationToken)
         {
-            var roomService = await _roomServiceRepository.GetById(new RoomServiceId(request.RoomServiceId));
+            var roomService = await _roomServiceRepository.GetById(request.RoomServiceId);
 
             if (roomService != null)
             {
-                var room = await _roomRepository.GetById(roomService.AssociatedRoomId);
-                var employee = await _employeeRepository.GetById((roomService.ServicedById));
+                var room = await _roomRepository.GetById(roomService.RoomId);
+                var employee = await _employeeRepository.GetById((roomService.EmployeeId));
 
                 return new RoomServiceModel()
                 {
                     PlannedOn = roomService.PlannedOn,
-                    Floor = room.Address.Floor.ToString(),
-                    RoomNumber = room.Address.DoorNumber.ToString(),
+                    Floor = room.Floor,
+                    RoomNumber = room.Number,
                     Owner =  string.Concat(employee.Name," ",employee.SurName)
                 };
             }

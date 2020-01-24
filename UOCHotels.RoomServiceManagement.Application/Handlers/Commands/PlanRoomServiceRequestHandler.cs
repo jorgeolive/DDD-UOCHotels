@@ -4,44 +4,39 @@ using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
-using UOCHotels.RoomServiceManagement.Domain.Entities;
+using UOCHotels.RoomServiceManagement.Domain.Aggregates;
 using UOCHotels.RoomServiceManagement.Application.Repositories;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
+using UOCHotels.RoomServiceManagement.Application.ReadModel;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
 {
     public class PlanRoomServiceRequestHandler : AsyncRequestHandler<PlanRoomServiceRequest>
     {
-        readonly IEmployeeRepository _employeeRepository;
         readonly IRoomServiceRepository _roomServiceRepository;
         readonly IMediator _mediator;
+        private readonly IAggregateStore _store;
 
         public PlanRoomServiceRequestHandler(
-            IEmployeeRepository employeeRepository,
             IRoomServiceRepository roomServiceRepository,
-            IMediator mediator)
+            IMediator mediator,
+            IAggregateStore store)
         {
             _roomServiceRepository = roomServiceRepository;
-            _employeeRepository = employeeRepository;
-            this._mediator = mediator;
+            _mediator = mediator;
+            _store = store;
         }
 
         protected override async Task Handle(PlanRoomServiceRequest request, CancellationToken cancellationToken)
         {
-            RoomService roomService = null;
+            if (!(await this._roomServiceRepository.GetById(request.RoomServiceId) is RoomServiceModel model))
+                throw new RoomServiceNotFoundException("");
 
-            try
-            {
-                roomService = await this._roomServiceRepository.GetById(new RoomServiceId(request.RoomServiceId));
-            }
-            catch (Exception e)
-            {
-                throw new RoomServiceNotFoundException(e.Message);
-            }
+            var roomAggregate = await _store.Load<RoomService, RoomServiceId>(RoomServiceId.CreateFor(request.RoomServiceId)) as RoomService;
 
-            roomService.Plan(request.PlanDate);
-            await _roomServiceRepository.Commit();
-            //Here we might want to notify other services through the messaging queue. 
+            roomAggregate.Plan(request.PlanDate);
+
+            await _store.Save<RoomService, RoomServiceId>(roomAggregate);
         }
     }
 }

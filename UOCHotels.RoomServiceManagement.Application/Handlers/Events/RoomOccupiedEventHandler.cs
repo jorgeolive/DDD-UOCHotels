@@ -7,27 +7,26 @@ using UOCHotels.RoomServiceManagement.Application.IntegrationEvents;
 using UOCHotels.RoomServiceManagement.Domain.Events;
 using UOCHotels.RoomServiceManagement.Application.Repositories;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
+using UOCHotels.RoomServiceManagement.Domain.Aggregates;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Events
 {
     public class RoomOccupationStartedHandler : INotificationHandler<RoomOccupationStarted>
     {
-        readonly IRoomRepository _roomRepository;
-
-        public RoomOccupationStartedHandler(IRoomRepository roomRepository)
+        private readonly IRoomRepository roomRepository;        
+        private readonly IAggregateStore store;
+        public RoomOccupationStartedHandler(IAggregateStore store, IRoomRepository roomRepository)
         {
-            _roomRepository = roomRepository;
+            this.roomRepository = roomRepository;
+            this.store = store;
         }
 
         public async Task Handle(RoomOccupationStarted @event, CancellationToken cancellationToken)
         {
-            var room = await _roomRepository.GetByAddress(Address.CreateFor(DoorNumber.CreateFor(@event.RoomNumber), Floor.CreateFor(@event.Floor), Building.CreateFor(@event.Building)));
-            if (room == null)
-                return;
-            //Not sure if this exception belongs to the application layer
 
+            var room = await store.Load<Room, RoomId>(RoomId.CreateFor(@event.RoomId)) as Room;
             room.StartOccupation(@event.OccupationEndDate);
-            await _roomRepository.Commit();
+            await store.Save<Room, RoomId>(room);
         }
     }
 }

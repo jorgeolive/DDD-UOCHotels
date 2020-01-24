@@ -4,7 +4,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:53828",
-      "sslPort": 44375
+      "sslPort": 0
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
@@ -18,14 +18,14 @@
       }
     },
     "RoomServiceManagement.Api": {
-      "commandName": "Project",
+      "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "AppSettings__JwtSecret": "aef3423423f23f#@#¢ef2e243423422"
+        "AppSettings__JwtSecret": "aasd3423423rji23jri23rj23jrj23rji23ii3"
       },
-      "applicationUrl": "https://0.0.0.0:44386"
+      "applicationUrl": "https://0.0.0.0:443"
     },
     "Docker": {
       "commandName": "Docker",

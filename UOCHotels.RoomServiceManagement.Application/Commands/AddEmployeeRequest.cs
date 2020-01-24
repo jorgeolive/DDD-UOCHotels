@@ -8,14 +8,18 @@ namespace UOCHotels.RoomServiceManagement.Application.Commands
         public DateTime OnBoardingDate;
         public string Name;
         public string SurName;
+        public string SocialSecurityNumber;
+        public DateTime DateOfBirth;
 
         private AddEmployeeRequest() { }
 
-        public AddEmployeeRequest(string name, string surName, DateTime onBoarding)
+        public AddEmployeeRequest(string name, string surName, DateTime onBoarding, string socialSecurityNumber, DateTime dateOfBirth)
         {
-            this.Name = name;
-            this.SurName = surName;
-            this.OnBoardingDate = onBoarding;
+            Name = name;
+            SurName = surName;
+            OnBoardingDate = onBoarding;
+            SocialSecurityNumber = socialSecurityNumber;
+            DateOfBirth = dateOfBirth;
         }
     }
 }

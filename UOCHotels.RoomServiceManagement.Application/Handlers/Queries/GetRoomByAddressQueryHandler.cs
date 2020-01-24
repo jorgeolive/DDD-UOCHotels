@@ -22,18 +22,7 @@ namespace UOCHotels.RoomServiceManagement.Application.Handlers.Queries
 
         public async Task<RoomModel> Handle(GetRoomByAddressQuery request, CancellationToken cancellationToken)
         {
-            var room = await _roomRepository.GetByAddress(Address.CreateFor(
-                                  DoorNumber.CreateFor(request.RoomNumber),
-                                  Floor.CreateFor(request.Floor),
-                                  Building.CreateFor(request.BuildingName)));
-
-            return new RoomModel()
-            {
-                RoomId = room.Id.GetValue(),
-                Floor = room.Address.Floor.Value,
-                Building = room.Address.Building.Name,
-                Number = room.Address.DoorNumber.Value
-            };
+            return await _roomRepository.GetByAddress(request.BuildingName,request.RoomNumber,request.Floor);
         }
     }
 }

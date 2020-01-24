@@ -1,30 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
+using UOCHotels.RoomServiceManagement.Application.ReadModel;
 using UOCHotels.RoomServiceManagement.Application.Repositories;
-using UOCHotels.RoomServiceManagement.Domain;
-using UOCHotels.RoomServiceManagement.Domain.Entities;
-using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
 
 namespace UOCHotels.RoomServiceManagement.Persistence
 {
-    public class RoomRepository : RavenDbRepository<Room, RoomId>, IRoomRepository, IDisposable
+    public class RoomRepository : RavenDbRepository<RoomModel>, IRoomRepository, IDisposable
     {
-        public RoomRepository(IDocumentStore documentStore) : base(documentStore.OpenAsyncSession(), EntityId) { }
+        public RoomRepository(IDocumentStore documentStore) : base(documentStore.OpenAsyncSession()) { }
 
-
-        protected static string EntityId(RoomId id)
-        => $"Room/{id.ToString()}";
-
-        public Task<Room> GetByAddress(Address address)
+        public Task<RoomModel> GetByAddress(string building, int floor, int number)
         {
-            return _session.Query<Room>().Where(x => x.Address == address).FirstOrDefaultAsync();
+            return _session.Query<RoomModel>().Where(x => x.Floor == floor && x.Building == building && x.Number == number).FirstOrDefaultAsync();
         }
-
-        public Task<List<Room>> GetAll() => _session.Query<Room>().ToListAsync();
-
     }
 }

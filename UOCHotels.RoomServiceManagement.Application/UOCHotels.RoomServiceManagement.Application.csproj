@@ -9,11 +9,8 @@
         <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="Services\" />
         <Folder Include="Queries\" />
-        <Folder Include="ReadModel\" />
         <Folder Include="Handlers\Queries\" />
-        <Folder Include="HostedServices\" />
         <Folder Include="Handlers\Events\" />
         <Folder Include="IntegrationEvents\" />
         <Folder Include="Hubs\" />

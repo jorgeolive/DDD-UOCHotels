@@ -3,39 +3,34 @@ using System.Threading.Tasks;
 using MediatR;
 using UOCHotels.RoomServiceManagement.Application.Commands;
 using UOCHotels.RoomServiceManagement.Application.Exceptions;
-using UOCHotels.RoomServiceManagement.Domain.Entities;
+using UOCHotels.RoomServiceManagement.Domain.Aggregates;
 using UOCHotels.RoomServiceManagement.Application.Repositories;
 using UOCHotels.RoomServiceManagement.Domain.ValueObjects;
+using UOCHotels.RoomServiceManagement.Application.ReadModel;
 
 namespace UOCHotels.RoomServiceManagement.Application.Handlers.Commands
 {
     public class StartRoomServiceRequestHandler : AsyncRequestHandler<StartRoomServiceRequest>
     {
         private readonly IRoomServiceRepository _roomServiceRepository;
-        private readonly IMediator _mediator;
+        private readonly IAggregateStore _store;
 
-        public StartRoomServiceRequestHandler(IRoomServiceRepository context, IMediator mediator)
+        public StartRoomServiceRequestHandler(IRoomServiceRepository context, IAggregateStore store)
         {
             _roomServiceRepository = context;
-            this._mediator = mediator;
+            _store = store;
         }
 
         protected override async Task Handle(StartRoomServiceRequest request, CancellationToken cancellationToken)
         {
-            RoomService room = null;
-
-            try
-            {
-                room = await this._roomServiceRepository.GetById(new RoomServiceId(request.RoomServiceId));
-            }
-            catch
-            {
+            if (!(await this._roomServiceRepository.GetById(request.RoomServiceId) is RoomServiceModel model))
                 throw new RoomServiceNotFoundException("");
-            }
 
-            room.Start();
-            await _roomServiceRepository.Commit();
-            //Here we might want to notify other services through the messaging queue. 
+            var roomAggregate = await _store.Load<RoomService, RoomServiceId>(RoomServiceId.CreateFor(request.RoomServiceId)) as RoomService;
+
+            roomAggregate.Start();
+
+            await _store.Save<RoomService, RoomServiceId>(roomAggregate);
         }
     }
 }
